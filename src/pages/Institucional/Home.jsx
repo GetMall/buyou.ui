@@ -4,6 +4,7 @@ import imgConta from "../../assets/institucional/img_shopping-mulher.svg"
 import imgSobreNos from "../../assets/institucional/img_mulher.svg"
 import imgGerencie from "../../assets/institucional/img_entrega.svg"
 import imgEntregador from "../../assets/institucional/img_entregador.svg"
+import Footer from "./components/Footer"
 
 function Home() {
     return (
@@ -50,6 +51,7 @@ function Home() {
                     <img className="w-1/3 mr-80" src={imgEntregador} alt="imagem de um shopping e uma moça" />
                 </section>
             </main>
+            <Footer/>
         </>
     )
 }

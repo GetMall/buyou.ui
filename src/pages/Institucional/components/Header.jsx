@@ -1,4 +1,9 @@
+import { useNavigate } from "react-router-dom";
+
 function Header (){
+
+    const navigate = useNavigate('');
+
     return (
         <>
         <header className="bg-primary text-white w-full fixed top-0 p-4">
@@ -9,7 +14,7 @@ function Header (){
                     <p className="hover:text-white font-bold">Sobre nós</p>
                     <p className="hover:text-white font-bold">Dúvidas</p>
                     <p className="hover:text-white font-bold">Trabalhe Conosco</p>
-                    <button className="bg-white text-primary p-3 rounded-md">Pedir na GetShop!</button>
+                    <button onClick={() => navigate('/acesso')} className="bg-white text-primary p-3 rounded-md">Pedir na GetShop!</button>
                 </nav>
             </div>
         </header>

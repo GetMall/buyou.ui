@@ -2,6 +2,10 @@ import Header from "./components/Header"
 import imgConta from "../../assets/institucional/img_shopping-mulher.svg"
 import imgSobreNos from "../../assets/institucional/img_mulher.svg"
 import imgGerencie from "../../assets/institucional/img_entrega.svg"
+import parceira1 from "../../assets/institucional/carrossel/Parceira-1.svg"
+import parceira2 from "../../assets/institucional/carrossel/Parceira-2.svg"
+import parceira3 from "../../assets/institucional/carrossel/Parceira-3.svg"
+import parceira from "../../assets/institucional/carrossel/Parceira.svg"
 
 function Home() {
     return (
@@ -19,8 +23,8 @@ function Home() {
                 <section className="flex">
                 <div className="p-36 pl-72 w-7/12 text-black">
                         <h1 className="text-5xl font-bold text-primary">Sobre Nós</h1>
-                        <p className="mt-8 text-lg">Para o consumidor de aplicativos de compras online, que possui a necessidade da entrega imediata de determinados produtos, e precisa de uma plataforma que facilite e agilize esse processo, que proporciona comodidade e praticidade.</p>
-                        <button className="bg-primary text-white p-3 rounded-md mt-8">Criar uma conta</button>
+                        <p className="mt-8 text-lg">Sua solução definitiva para uma experiência de compras verdadeiramente rápida e conveniente. Estamos aqui para tornar a busca pelo produto que você deseja uma experiência descomplicada e, o mais importante, para entregá-lo na velocidade da luz, diretamente às suas mãos.</p>
+                        <button className="bg-primary text-white p-3 rounded-md mt-8">Conheça nossa empresa!</button>
                 </div>
                     <img className="w-1/3 mr-80" src={imgSobreNos} alt="imagem de um shopping e uma moça" />
                 </section>
@@ -31,6 +35,19 @@ function Home() {
                         <p className="mt-8 text-lg">Com a GetShop, você conecta seu restaurante a milhões de novos clientes, expande sua área de entrega e vende muito mais.</p>
                         <button className="bg-primary text-white p-3 rounded-md mt-8">Gerencie sua loja!</button>
                 </div>
+                </section> 
+
+                <section className="flex flex-col justify-center bg-white_opacity">
+                    <div className="flex flex-col mt-5 items-center">
+                        <h2 className="text-2xl">Nossas Parceiras</h2>
+                        <h1 className="text-4xl mt-8 font-bold text-primary">Lojas do mundo todo estão aqui. Esperando por você!</h1>
+                    </div>
+                    <div className="flex gap-28 mt-8 justify-center">
+                        <img className="w-60" src={parceira} alt="imagem de um shopping e uma moça" />
+                        <img className="w-60" src={parceira1} alt="imagem de um shopping e uma moça" />
+                        <img className="w-60" src={parceira2} alt="imagem de um shopping e uma moça" />
+                        <img className="w-60" src={parceira3} alt="imagem de um shopping e uma moça" />
+                    </div>
                 </section>
             </main>
         </>

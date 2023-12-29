@@ -1,7 +1,12 @@
+import bgAcesso from '../../assets/institucional/acesso/bg_acesso.svg'
+
 function Acesso () {
     return (
         <>
-            <h1>Acesso</h1>
+            <div>
+                <img className='h-screen' src={bgAcesso} alt=""/>
+                
+            </div>
         </>
     )
 }

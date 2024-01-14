@@ -22,6 +22,7 @@ function Acesso() {
     const cadastrar = (data) => {
         api.post('/clientes', data).then((response) => {
             console.log(response)
+            setFormularioCadastro(false)
         }
         ).catch((error) => {
             console.log(error)
@@ -71,8 +72,8 @@ function Acesso() {
                                         <h1 className='font-bold text-center text-3xl'>Que bom ver você aqui!</h1>
                                         <h2 className=' flex justify-center mt-3 mb-3'>Como deseja continuar?</h2>
                                         <div className='flex flex-col w-96 gap-5'>
-                                            <input {...register("email")} className='outline-none p-2  border-b_gray border-2' type="text" placeholder='Insira seu Email' />
-                                            <input {...register("senha")} className='outline-none p-2 border-b_gray border-2' type="password" placeholder='Insira sua senha' />
+                                            <input {...register("emailLogin")} className='outline-none p-2  border-b_gray border-2' type="text" placeholder='Insira seu Email' />
+                                            <input {...register("senhaLogin")} className='outline-none p-2 border-b_gray border-2' type="password" placeholder='Insira sua senha' />
                                             <button type='submit' className='bg-btn_orange text-white p-2 font-bold cursor-pointer'>Acessar a GetShop!</button>
                                             <p className='flex text-center justify-center'>Ou</p>
                                             <button onClick={criarConta} className='bg-white text-btn_orange p-2 font-bold shadow cursor-pointer'>Criar uma conta GetShop!</button>

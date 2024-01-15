@@ -7,16 +7,19 @@ import arrow from '../../../assets/plataforma/icon-arrow.svg'
 import uparrow from '../../../assets/plataforma/icon-uparrow.svg'
 import config from '../../../assets/plataforma/icon-config.svg'
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 function Header() {
 
     const [menuAberto, setMenuAberto] = useState(false)
     const nomeUsuario = sessionStorage.getItem('nomeUsuario')
 
+    const navigate = useNavigate()
+
     return (
         <header className="bg-white text-secundary shadow-md w-full fixed top-0 p-4">
             <div className="container mx-auto flex">
-                <div className="text-2xl uppercase font-bold">GetShop</div>
+                <div onClick={() => navigate('/inicio')} className="text-2xl uppercase cursor-pointer font-bold">GetShop</div>
                 <div className="flex items-center mx-auto gap-5">
                     <div className='flex gap-1'>
                         <img src={local} alt="" />

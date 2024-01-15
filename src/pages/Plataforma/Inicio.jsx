@@ -4,10 +4,13 @@ import Footer from "./components/Footer";
 import api from "../../services/api";
 import { useState } from "react";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Inicio() {
     const [shopping, setShopping] = useState([])
     const [loja, setLoja] = useState([])
+
+    const navigate = useNavigate()
 
     const getShopping = () => {
         api.get('/shopping').then(response => {
@@ -45,7 +48,7 @@ function Inicio() {
                 <h2 className='text-xl'>Shoppings Populares</h2>
                 <div className="flex flex-wrap gap-5">
                     {shopping.map((shopping) => (
-                        <Card key={shopping.id} nomeLoja={shopping.nome} />
+                        <Card onClick={() => navigate(`/shopping/${shopping.id}/${shopping.nome}`)} key={shopping.id} nomeLoja={shopping.nome} />
                     ))}
                 </div>
             </div>

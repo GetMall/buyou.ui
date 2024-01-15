@@ -38,7 +38,7 @@ function Shopping() {
                 <h2 className='text-xl'>Lojas de <span className='text-secundary'>{nomeShopping}</span></h2>
                 <div className="flex bg-slate-200 gap-2 p-2">
                     <img src={search} alt="" />
-                    <input className='bg-none text-slate-800 w-96 border-none outline-none bg-slate-200' type="text" placeholder='Pesquise por item ou loja' />
+                    <input className='bg-none text-slate-800 w-96 border-none outline-none bg-slate-200' type="text" placeholder='Pesquise por loja' />
                 </div>
             </div>
             <div className='flex p-5 gap-3 flex-col pl-20'>

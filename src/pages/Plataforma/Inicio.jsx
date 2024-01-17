@@ -56,7 +56,7 @@ function Inicio() {
                 <h2 className='text-xl'>Lojas Populares</h2>
                 <div className="flex flex-wrap gap-5">
                     {loja.map((loja) => (
-                        <Card onClick={() => navigate(`/loja/${loja.id}`)} key={loja.id} nomeLoja={loja.nome} />
+                        <Card onClick={() => navigate(`/loja/${loja.id}/${loja.nome}`)} key={loja.id} nomeLoja={loja.nome} />
                     ))}
                 </div>
             </div>

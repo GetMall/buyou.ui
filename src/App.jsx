@@ -14,7 +14,7 @@ function App() {
         <Route path="/acesso" element={<Acesso />} />
         <Route path="/inicio" element={<Inicio />} />
 '       <Route path="/shopping/:idShopping/:nomeShopping" element={<Shopping />} />
-        <Route path="/loja/:idLoja" element={<Loja />} />
+        <Route path="/loja/:idLoja/:nomeLoja" element={<Loja />} />
       </Routes>
     </Router>
   )

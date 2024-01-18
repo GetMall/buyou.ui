@@ -16,6 +16,14 @@ function Header() {
 
     const navigate = useNavigate()
 
+    const fecharMenu = () => {
+        setMenuAberto(false)
+    }
+
+    const abrirMenu = () => {
+        setMenuAberto(true)
+    }
+
     return (
         <header className="bg-white text-secundary shadow-md w-full fixed top-0 p-4">
             <div className="container mx-auto flex">
@@ -31,7 +39,7 @@ function Header() {
                     </div>
                     <div className='flex gap-5'>
                         <img className='cursor-pointer' src={cart} alt="" />
-                        <div onClick={() => setMenuAberto(true)} className='flex justify-center items-center gap-2 cursor-pointer bg-white_opacity p-2'>
+                        <div onClick={menuAberto ? fecharMenu : abrirMenu} className='flex justify-center items-center gap-2 cursor-pointer bg-white_opacity p-2'>
                             <img src={profile} alt="" />
                             <p>{nomeUsuario}</p>
                             <img src={arrow} className='size-3' alt="" />
@@ -44,9 +52,6 @@ function Header() {
                                     <div className='p-2 gap-2 flex items-center'>
                                         <img className='size-6' src={logout} alt="" />
                                         <p>Sair</p>
-                                    </div>
-                                    <div onClick={(e) => {e.stopPropagation(); setMenuAberto(false);}} className='p-2 flex justify-center'>
-                                        <img className='size-3' src={uparrow} alt="" />
                                     </div>
                                 </div>
                             )}

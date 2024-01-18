@@ -10,10 +10,10 @@ function Loja() {
     return (
         <>
             <Header />
-            <div className='flex p-5 justify-center w-full pl-20 mt-28'>
+            <div className='flex p-5 justify-center w-full pl-20 mt-20'>
                 <Categoria />
             </div>
-            <div className='flex w-full mt-10'>
+            <div className='flex w-full mt-3'>
                 <Banner nome={nomeLoja}/>
             </div>
         </>

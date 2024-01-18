@@ -6,8 +6,10 @@ import local from '../../../assets/plataforma/icon-local.svg'
 import arrow from '../../../assets/plataforma/icon-arrow.svg'
 import uparrow from '../../../assets/plataforma/icon-uparrow.svg'
 import config from '../../../assets/plataforma/icon-config.svg'
+import InputPesquisa from './InputPesquisa'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { Input } from 'postcss'
 
 function Header() {
 
@@ -33,10 +35,7 @@ function Header() {
                         <img src={local} alt="" />
                         <p className='cursor-pointer underline'>Digitar minha localização</p>
                     </div>
-                    <div className="flex bg-white_opacity gap-2 p-2">
-                        <img src={search} alt="" />
-                        <input className='bg-none text-black w-96 border-none outline-none bg-white_opacity' type="text" placeholder='Pesquise por item ou loja' />
-                    </div>
+                    <InputPesquisa width={"24rem"} placeholder={"Pesquise por item ou loja"} />
                     <div className='flex gap-5'>
                         <img className='cursor-pointer' src={cart} alt="" />
                         <div onClick={menuAberto ? fecharMenu : abrirMenu} className='flex justify-center items-center gap-2 cursor-pointer bg-white_opacity p-2'>

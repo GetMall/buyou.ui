@@ -8,6 +8,8 @@ import imgShopping from '../../assets/plataforma/card/img-loja.svg'
 import search from '../../assets/plataforma/icon-search.svg'
 import Card from "./components/Card";
 import Footer from "./components/Footer";
+import InputPesquisa from "./components/InputPesquisa";
+
 
 function Shopping() {
 
@@ -36,10 +38,7 @@ function Shopping() {
             </div>
             <div className="flex p-5 items-center gap-5 pl-20 mt-20">
                 <h2 className='text-xl'>Lojas de <span className='text-secundary'>{nomeShopping}</span></h2>
-                <div className="flex bg-slate-200 gap-2 p-2">
-                    <img src={search} alt="" />
-                    <input className='bg-none text-slate-800 w-96 border-none outline-none bg-slate-200' type="text" placeholder='Pesquise por loja' />
-                </div>
+                <InputPesquisa width={"24rem"} placeholder={"Pesquise por item ou loja"} />
             </div>
             <div className='flex p-5 gap-3 flex-col pl-20'>
                 <div className="flex flex-wrap gap-5">

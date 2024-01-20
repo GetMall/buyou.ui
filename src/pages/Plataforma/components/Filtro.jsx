@@ -9,8 +9,9 @@ function Filtro({ width, placeholder }) {
     return (
         <ContainerBusca>
             <select name='select' style={inputStyle} className='bg-none text-slate-800 w- border-none outline-none bg-slate-200' type="text" placeholder={placeholder}>
-                <option className='text-slate-800' value="maior">Maior preço</option>
-                <option className='text-slate-800' value="menor">Menor preço</option>
+                <option value="todos">Todos</option>
+                <option value="maior">Maior preço</option>
+                <option value="menor">Menor preço</option>
             </select>
         </ContainerBusca>
     )

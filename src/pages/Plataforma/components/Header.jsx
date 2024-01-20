@@ -1,11 +1,9 @@
-import search from '../../../assets/plataforma/icon-search.svg'
-import cart from '../../../assets/plataforma/icon-cart.svg'
-import profile from '../../../assets/plataforma/icon-profile.svg'
-import logout from '../../../assets/plataforma/icon-logout.svg'
-import local from '../../../assets/plataforma/icon-local.svg'
-import arrow from '../../../assets/plataforma/icon-arrow.svg'
-import uparrow from '../../../assets/plataforma/icon-uparrow.svg'
-import config from '../../../assets/plataforma/icon-config.svg'
+import cart from '../../../assets/plataforma/icons/icon-cart.svg'
+import profile from '../../../assets/plataforma/icons/icon-profile.svg'
+import logout from '../../../assets/plataforma/icons/icon-logout.svg'
+import local from '../../../assets/plataforma/icons/icon-local.svg'
+import arrow from '../../../assets/plataforma/icons/icon-arrow.svg'
+import config from '../../../assets/plataforma/icons/icon-config.svg'
 import InputPesquisa from './InputPesquisa'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -27,7 +25,7 @@ function Header() {
     }
 
     return (
-        <header className="bg-white text-secundary shadow-md w-full fixed top-0 p-4">
+        <header className="bg-white z-50 text-secundary shadow-md w-full fixed top-0 p-4">
             <div className="container mx-auto flex">
                 <div onClick={() => navigate('/inicio')} className="text-2xl uppercase cursor-pointer font-bold">GetShop</div>
                 <div className="flex items-center mx-auto gap-5">

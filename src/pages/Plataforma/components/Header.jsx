@@ -1,6 +1,6 @@
 import cart from '../../../assets/plataforma/icons/icon-cart.svg'
 import profile from '../../../assets/plataforma/icons/icon-profile.svg'
-import logout from '../../../assets/plataforma/icons/icon-logout.svg'
+import logoutIcon from '../../../assets/plataforma/icons/icon-logout.svg'
 import local from '../../../assets/plataforma/icons/icon-local.svg'
 import arrow from '../../../assets/plataforma/icons/icon-arrow.svg'
 import config from '../../../assets/plataforma/icons/icon-config.svg'
@@ -22,6 +22,13 @@ function Header() {
 
     const abrirMenu = () => {
         setMenuAberto(true)
+    }
+
+    const logout = () => {
+        sessionStorage.removeItem('token');
+        sessionStorage.removeItem('idUsuario');
+        sessionStorage.removeItem('nomeUsuario');
+        navigate('/acesso')
     }
 
     return (
@@ -46,8 +53,8 @@ function Header() {
                                         <img className='size-4' src={config} alt="" />
                                         <p>Configurações</p>
                                     </div>
-                                    <div className='p-2 gap-2 flex items-center'>
-                                        <img className='size-6' src={logout} alt="" />
+                                    <div onClick={logout} className='p-2 gap-2 flex items-center'>
+                                        <img className='size-6' src={logoutIcon} alt="" />
                                         <p>Sair</p>
                                     </div>
                                 </div>

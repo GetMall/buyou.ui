@@ -6,9 +6,9 @@ function BannerLoja ({nome}) {
         <>
             <div className="w-full">
                 <img className='w-full' src={banner} alt="" />
-                <div className='flex relative gap-6 left-60 bottom-16 items-center'>
-                    <img className='border-4 rounded-full border-secundary w-52' src={logoLoja} alt="logo da loja" />
-                    <p className='text-4xl'>{nome}</p>
+                <div className='relative flex gap-6 bottom-16 items-center'>
+                    <img className='border-4 relative left-48 rounded-full border-secundary w-52' src={logoLoja} alt="logo da loja" />
+                    <p className='text-4xl relative left-48'>{nome}</p>
                 </div>
             </div>
         </>

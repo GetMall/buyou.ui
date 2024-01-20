@@ -1,8 +1,8 @@
-import mirror from '../../../assets/plataforma/icon-mirror.svg' 
-import toy from '../../../assets/plataforma/icon-toy.svg'
-import shoes from '../../../assets/plataforma/icon-shoes.svg'
-import book from '../../../assets/plataforma/icon-book.svg'
-import shirt from '../../../assets/plataforma/icon-shirt.svg'
+import mirror from '../../../../assets/plataforma/icons/icon-mirror.svg' 
+import toy from '../../../../assets/plataforma/icons/icon-toy.svg'
+import shoes from '../../../../assets/plataforma/icons/icon-shoes.svg'
+import book from '../../../../assets/plataforma/icons/icon-book.svg'
+import shirt from '../../../../assets/plataforma/icons/icon-shirt.svg'
 
 function Categoria( {onCategoriaSelecionada} ) {
   return (

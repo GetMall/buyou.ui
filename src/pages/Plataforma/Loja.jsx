@@ -1,10 +1,9 @@
 import Header from "./components/Header"
-import Categoria from "./components/Categoria"
-import Banner from "./components/BannerLoja"
+import Categoria from "./components/loja/Categoria"
+import Banner from "./components/loja/BannerLoja"
 import InputPesquisa from "./components/InputPesquisa"
 import { useParams } from "react-router-dom"
-import Filtro from "./components/Filtro";
-import imgProduto from '../../assets/plataforma/Loja/img-produto.svg'
+import Filtro from "./components/loja/Filtro";
 import ContainerCard from "./components/loja/ContainerCard";
 import CardProduto from "./components/loja/CardProduto";
 import api from "../../services/api";

@@ -1,4 +1,4 @@
-import search from '../../../assets/plataforma/icon-search.svg'
+import search from '../../../assets/plataforma/icons/icon-search.svg'
 import ContainerBusca from './ContainerBusca';
 
 function InputPesquisa({ width, placeholder }) {

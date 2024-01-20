@@ -1,5 +1,5 @@
-import banner from '../../../assets/plataforma/Loja/banner-loja.svg'
-import logoLoja from '../../../assets/plataforma/card/img-loja.svg'   
+import banner from '../../../../assets/plataforma/Loja/banner-loja.svg'
+import logoLoja from '../../../../assets/plataforma/card/img-loja.svg'   
 
 function BannerLoja ({nome}) {
     return (

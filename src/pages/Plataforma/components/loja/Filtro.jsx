@@ -1,4 +1,4 @@
-import ContainerBusca from "./ContainerBusca"
+import ContainerBusca from "../ContainerBusca"
 
 function Filtro({ width, placeholder }) {
 

@@ -1,11 +1,10 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Header from "./components/Header"
 import { useEffect } from "react";
 import api from "../../services/api";
 import { useState } from "react";
 import CardShopping from "./components/CardShopping";
 import imgShopping from '../../assets/plataforma/card/img-loja.svg'
-import search from '../../assets/plataforma/icon-search.svg'
 import Card from "./components/Card";
 import Footer from "./components/Footer";
 import InputPesquisa from "./components/InputPesquisa";
@@ -17,6 +16,8 @@ function Shopping() {
     const { nomeShopping } = useParams()
 
     const [loja, setLoja] = useState([])
+
+    const navigate = useNavigate()
 
     const getLojasShopping = () => {
         api.get(`/lojas/shopping/${idShopping}`).then(response => {
@@ -43,7 +44,7 @@ function Shopping() {
             <div className='flex p-5 gap-3 flex-col pl-20'>
                 <div className="flex flex-wrap gap-5">
                     {loja.map((loja) => (
-                        <Card key={loja.id} nomeLoja={loja.nome} />
+                        <Card onClick={() => navigate(`/loja/${loja.id}/${loja.nome}`)} key={loja.id} nomeLoja={loja.nome} />
                     ))}
                 </div>
             </div>

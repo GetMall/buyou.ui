@@ -3,6 +3,7 @@ import Categoria from "./components/Categoria"
 import Banner from "./components/BannerLoja"
 import InputPesquisa from "./components/InputPesquisa"
 import { useParams } from "react-router-dom"
+import Filtro from "./components/Filtro";
 
 function Loja() {
 
@@ -17,8 +18,9 @@ function Loja() {
             <div className='flex w-full mt-3'>
                 <Banner nome={nomeLoja}/>
             </div>
-            <div className='flex pl-60'>
+            <div className='flex gap-5 pl-60'>
                 <InputPesquisa width={"24rem"} placeholder={'Pesquise por item'}/> 
+                <Filtro placeholder={'Filtrar por preço'}/>
             </div>
         </>
     )

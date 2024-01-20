@@ -27,7 +27,7 @@ function Header() {
     }
 
     return (
-        <header className="bg-white text-secundary shadow-md w-full fixed top-0 p-4">
+        <header className="bg-white z-50 text-secundary shadow-md w-full fixed top-0 p-4">
             <div className="container mx-auto flex">
                 <div onClick={() => navigate('/inicio')} className="text-2xl uppercase cursor-pointer font-bold">GetShop</div>
                 <div className="flex items-center mx-auto gap-5">

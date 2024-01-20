@@ -46,31 +46,57 @@ function Loja() {
                     <InputPesquisa width={"24rem"} placeholder={'Pesquise por item'} />
                     <Filtro placeholder={'Filtrar por preço'} />
                 </div>
-                <ContainerCard titulo={"Beleza"}>
-                    {produto.map((produto) => (
-                        <CardProduto key={produto.id} imgProduto={imgProduto} preco={produto.valorUnitario} descricao={produto.descricao} />
-                    ))}
-                </ContainerCard>
-                <ContainerCard titulo={"Brinquedos"}>
-                    {produto.map((produto) => (
-                        <CardProduto key={produto.id} imgProduto={imgProduto} preco={produto.valorUnitario} descricao={produto.descricao} />
-                    ))}
-                </ContainerCard>
-                <ContainerCard titulo={"Calçados"}>
-                    {produto.map((produto) => (
-                        <CardProduto key={produto.id} imgProduto={imgProduto} preco={produto.valorUnitario} descricao={produto.descricao} />
-                    ))}
-                </ContainerCard>
-                <ContainerCard titulo={"Livrária"}>
-                    {produto.map((produto) => (
-                        <CardProduto key={produto.id} imgProduto={imgProduto} preco={produto.valorUnitario} descricao={produto.descricao} />
-                    ))}
-                </ContainerCard>
-                <ContainerCard titulo={"Vestuário"}>
-                    {produto.map((produto) => (
-                        <CardProduto key={produto.id} imgProduto={imgProduto} preco={produto.valorUnitario} descricao={produto.descricao} />
-                    ))}
-                </ContainerCard>
+                {produto.some(item => item.categoria === 'BELEZA') && (
+                    <ContainerCard titulo={"Beleza"}>
+                        {produto.map((produto) => (
+                            produto.categoria === 'BELEZA' && (
+                                <CardProduto key={produto.id} imgProduto={imgProduto} preco={produto.valorUnitario} descricao={produto.descricao} />
+                            )
+                        ))}
+                    </ContainerCard>
+                )}
+
+                {produto.some(item => item.categoria === 'BRINQUEDOS') && (
+                    <ContainerCard titulo={"Brinquedos"}>
+                        {produto.map((produto) => (
+                            produto.categoria === 'BRINQUEDOS' && (
+                                <CardProduto key={produto.id} imgProduto={imgProduto} preco={produto.valorUnitario} descricao={produto.descricao} />
+                            )
+                        ))}
+                    </ContainerCard>
+                )}
+
+
+                {produto.some(item => item.categoria === 'CALCADOS') && (
+                    <ContainerCard titulo={"Calçados"}>
+                        {produto.map((produto) => (
+                            produto.categoria === 'CALCADOS' && (
+                                <CardProduto key={produto.id} imgProduto={imgProduto} preco={produto.valorUnitario} descricao={produto.descricao} />
+                            )
+                        ))}
+                    </ContainerCard>
+                )}
+
+
+                {produto.some(item => item.categoria === 'LIVRARIA') && (
+                    <ContainerCard titulo={"Livros"}>
+                        {produto.map((produto) => (
+                            produto.categoria === 'LIVRARIA' && (
+                                <CardProduto key={produto.id} imgProduto={imgProduto} preco={produto.valorUnitario} descricao={produto.descricao} />
+                            )
+                        ))}
+                    </ContainerCard>
+                )}
+
+                {produto.some(item => item.categoria === 'VESTUARIO') && (
+                    <ContainerCard titulo={"Vestuário"}>
+                        {produto.map((produto) => (
+                            produto.categoria === 'VESTUARIO' && (
+                                <CardProduto key={produto.id} imgProduto={imgProduto} preco={produto.valorUnitario} descricao={produto.descricao} />
+                            )
+                        ))}
+                    </ContainerCard>
+                )}
             </div>
         </>
     )

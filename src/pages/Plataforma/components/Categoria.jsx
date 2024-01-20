@@ -4,26 +4,26 @@ import shoes from '../../../assets/plataforma/icon-shoes.svg'
 import book from '../../../assets/plataforma/icon-book.svg'
 import shirt from '../../../assets/plataforma/icon-shirt.svg'
 
-function Categoria() {
+function Categoria( {onCategoriaSelecionada} ) {
   return (
     <div className="flex items-center text-xl gap-36">
-        <div className="flex cursor-pointer gap-2">
+        <div onClick={() => onCategoriaSelecionada('COSMETICOS')} className="flex cursor-pointer gap-2">
             <img src={mirror} alt="" />
             <p>Beleza</p>
         </div>
-        <div className="flex cursor-pointer gap-2">
+        <div onClick={() => onCategoriaSelecionada('BRINQUEDOS')} className="flex cursor-pointer gap-2">
             <img src={toy} alt="" />
             <p>Brinquedos</p>
         </div>
-        <div className="flex cursor-pointer gap-2">
+        <div onClick={() => onCategoriaSelecionada('CALCADOS')} className="flex cursor-pointer gap-2">
             <img src={shoes} alt="" />
             <p>Calçados</p>
         </div>
-        <div className="flex cursor-pointer gap-2">
+        <div onClick={() => onCategoriaSelecionada('LIVRARIA')} className="flex cursor-pointer gap-2">
             <img src={book} alt="" />
             <p>Livrária</p>
         </div>
-        <div className="flex cursor-pointer gap-2">
+        <div onClick={() => onCategoriaSelecionada('VESTUARIO')} className="flex cursor-pointer gap-2">
             <img src={shirt} alt="" />
             <p>Vestuário</p>
         </div>

@@ -30,7 +30,10 @@ function Acesso() {
     }
 
     const entrar = (data) => {
-        api.post('/clientes/login', data).then((response) => {
+        api.post('/clientes/login', {
+            email: data.emailLogin,
+            senha: data.senhaLogin
+        }).then((response) => {
 
             const token = response.data.token
 

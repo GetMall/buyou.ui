@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import Header from "./components/Header"
 import CardProdutoCart from "./components/loja/CardProdutoCart";
 import { useState } from "react";
+import api from "../../services/api";
 
 function Carrinho() {
     const [carrinhoItens, setCarrinhoItens] = useState(
@@ -10,6 +11,7 @@ function Carrinho() {
 
     const [total, setTotal] = useState(0);
 
+    const idCliente = sessionStorage.getItem('idUsuario')
 
     const calcularTotal = () => {
         const totalCalculado = carrinhoItens.reduce((acc, item) => acc + item.valorUnitario, 0);
@@ -21,6 +23,31 @@ function Carrinho() {
         setCarrinhoItens(novoCarrinho);
         sessionStorage.setItem("carrinho", JSON.stringify(novoCarrinho));
     };
+
+    const finalizarCompra = () => {
+        const itensParaEnviar = carrinhoItens.map(item => ({
+            idProduto: item.id,
+            codProduto: item.codigo, 
+            nomeProduto: item.nome,
+            quantidade: 1,
+        }));
+
+        const dadosParaEnviar = {
+            idCliente: idCliente,
+            itens: itensParaEnviar,
+            valorTotal: total + 7.97,
+            status: "PENDENTE",
+            dataPedido: new Date().toISOString().split('T')[0],
+            formaPagamento: "BOLETO"
+        };
+
+        api.post('/pedidos', dadosParaEnviar).then(response => {
+            console.log(response.data)
+            removerTodos()
+        }).catch(error => {
+            console.log(error)
+        })
+    }
 
     const removerTodos = () => {
         setCarrinhoItens([]);
@@ -53,7 +80,7 @@ function Carrinho() {
                         <h2 className="text-lg mt-2 font-bold">Taxa de Serviço: R$ 7.97</h2>
                         <h2 className="text-lg mt-2 font-bold">Total: <span className="text-secundary">R$ {(total + 7.97).toFixed(2)}</span></h2>
                         <div className="flex justify-center mt-5">
-                            <button className="bg-btn_orange text-white w-full  font-bold text-lg p-2">Finalizar Compra</button>
+                            <button onClick={finalizarCompra} className="bg-btn_orange text-white w-full  font-bold text-lg p-2">Finalizar Compra</button>
                         </div>
                     </div>
                 </div>

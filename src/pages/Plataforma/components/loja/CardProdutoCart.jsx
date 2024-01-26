@@ -1,6 +1,6 @@
 function CardProdutoCart({ imgProduto, preco, descricao, onClick, tamanho, cor }) {
     return (
-        <div className="w-1/3 cursor-pointer  justify-center  bg-slate-100">
+        <div className="w-full cursor-pointer  justify-center shadow-sm bg-white">
             <div className="flex">
                 <img className="w-56 h-56 flex justify-center " src={imgProduto} alt="" />
                 <div className="flex flex-col p-5">
@@ -16,7 +16,7 @@ function CardProdutoCart({ imgProduto, preco, descricao, onClick, tamanho, cor }
             </div>
             <div className="p-5">
                 <div className="flex justify-end">
-                    <button onClick={onClick} className='bg-btn_orange text-xs text-white p-2 font-bold cursor-pointer h-8'>Remover do Carrinho</button>
+                    <button onClick={onClick} className=' text-xs bg-red-600 text-white p-2 font-bold cursor-pointer h-8'>Remover do Carrinho</button>
                 </div>
             </div>
         </div>

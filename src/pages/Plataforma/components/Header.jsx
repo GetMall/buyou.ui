@@ -41,7 +41,7 @@ function Header() {
                     </div>
                     <InputPesquisa width={"24rem"} placeholder={"Pesquise por item ou loja"} />
                     <div className='flex gap-5'>
-                        <img className='cursor-pointer' src={cart} alt="" />
+                        <img className='cursor-pointer' src={cart} onClick={() => navigate('/carrinho')} alt="" />
                         <div onClick={menuAberto ? fecharMenu : abrirMenu} className='flex justify-center items-center gap-2 cursor-pointer bg-white_opacity p-2'>
                             <img src={profile} alt="" />
                             <p>{nomeUsuario}</p>

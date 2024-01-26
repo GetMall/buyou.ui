@@ -42,6 +42,12 @@ function Loja() {
             });
     }
 
+    const adicionarAoCarrinho = (produto) => {
+        const carrinho = JSON.parse(sessionStorage.getItem('carrinho')) || [];
+        carrinho.push(produto);
+        sessionStorage.setItem('carrinho', JSON.stringify(carrinho));
+    }
+    
     useEffect(() => {
         if (categoriaSelecionada) {
             getProdutoCategoria(categoriaSelecionada);
@@ -71,7 +77,7 @@ function Loja() {
                         ) : (
                             produto.map((produto) => (
                                 produto.categoria === 'BELEZA' && (
-                                    <CardProduto key={produto.id} imgProduto={`http://localhost:8080/produtos/arquivo/${produto.nomeArquivoSalvo}`} preco={produto.valorUnitario} descricao={produto.descricao} />
+                                    <CardProduto onClick={() => adicionarAoCarrinho(produto)} key={produto.id} imgProduto={`http://localhost:8080/produtos/arquivo/${produto.nomeArquivoSalvo}`} preco={produto.valorUnitario} descricao={produto.descricao} />
                                 )
                             ))
                         )}
@@ -85,7 +91,7 @@ function Loja() {
                         ) : (
                             produto.map((produto) => (
                                 produto.categoria === 'BRINQUEDOS' && (
-                                    <CardProduto key={produto.id} imgProduto={`http://localhost:8080/produtos/arquivo/${produto.nomeArquivoSalvo}`} preco={produto.valorUnitario} descricao={produto.descricao} />
+                                    <CardProduto onClick={() => adicionarAoCarrinho(produto)} key={produto.id} imgProduto={`http://localhost:8080/produtos/arquivo/${produto.nomeArquivoSalvo}`} preco={produto.valorUnitario} descricao={produto.descricao} />
                                 )
                             ))
                         )}
@@ -100,7 +106,7 @@ function Loja() {
                         ) : (
                             produto.map((produto) => (
                                 produto.categoria === 'CALCADOS' && (
-                                    <CardProduto key={produto.id} imgProduto={`http://localhost:8080/produtos/arquivo/${produto.nomeArquivoSalvo}`} preco={produto.valorUnitario} descricao={produto.descricao} />
+                                    <CardProduto onClick={() => adicionarAoCarrinho(produto)} key={produto.id} imgProduto={`http://localhost:8080/produtos/arquivo/${produto.nomeArquivoSalvo}`} preco={produto.valorUnitario} descricao={produto.descricao} />
                                 )
                             ))
                         )}
@@ -114,7 +120,7 @@ function Loja() {
                         ) : (
                             produto.map((produto) => (
                                 produto.categoria === 'LIVARIA' && (
-                                    <CardProduto key={produto.id} imgProduto={`http://localhost:8080/produtos/arquivo/${produto.nomeArquivoSalvo}`} preco={produto.valorUnitario} descricao={produto.descricao} />
+                                    <CardProduto onClick={() => adicionarAoCarrinho(produto)} key={produto.id} imgProduto={`http://localhost:8080/produtos/arquivo/${produto.nomeArquivoSalvo}`} preco={produto.valorUnitario} descricao={produto.descricao} />
                                 )
                             ))
                         )}
@@ -129,7 +135,7 @@ function Loja() {
                         ) : (
                             produto.map((produto) => (
                                 produto.categoria === 'VESTUARIO' && (
-                                    <CardProduto key={produto.id} imgProduto={`http://localhost:8080/produtos/arquivo/${produto.nomeArquivoSalvo}`} preco={produto.valorUnitario} descricao={produto.descricao} />
+                                    <CardProduto onClick={() => adicionarAoCarrinho(produto)} key={produto.id} imgProduto={`http://localhost:8080/produtos/arquivo/${produto.nomeArquivoSalvo}`} preco={produto.valorUnitario} descricao={produto.descricao} />
                                 )
                             ))
                         )}

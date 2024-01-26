@@ -1,4 +1,4 @@
-function CardProduto({imgProduto, preco, descricao, onClick}) {
+function CardProdutoCart({imgProduto, preco, descricao, onClick}) {
     return (
         <div className="w-48 cursor-pointer  justify-center  bg-slate-100">
             <img className="w-full h-56 flex justify-center " src={imgProduto} alt="" />
@@ -6,11 +6,11 @@ function CardProduto({imgProduto, preco, descricao, onClick}) {
                 <p className="font-bold text-lg">R$ {preco}</p>
                 <p className="text-sm overflow-hidden line-clamp-1">{descricao}</p>
                 <div className="flex">
-                <button onClick={onClick} className='bg-btn_orange text-xs text-white p-2 font-bold cursor-pointer h-8 w-full'>Adicionar ao Carrinho</button>
+                    <button onClick={onClick} className='bg-btn_orange text-xs text-white p-2 font-bold cursor-pointer h-8 w-full'>Remover do Carrinho</button>
                 </div>
             </div>
         </div>
     )
 }
 
-export default CardProduto
+export default CardProdutoCart

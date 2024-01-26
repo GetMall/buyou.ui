@@ -7,7 +7,6 @@ import config from '../../../assets/plataforma/icons/icon-config.svg'
 import InputPesquisa from './InputPesquisa'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Input } from 'postcss'
 
 function Header() {
 
@@ -49,7 +48,7 @@ function Header() {
                             <img src={arrow} className='size-3' alt="" />
                             {menuAberto && (
                                 <div className='absolute mt-36 bg-white rounded shadow-md'>
-                                    <div className='p-2 gap-2 flex items-center'>
+                                    <div onClick={() => navigate('/perfil')} className='p-2 gap-2 flex items-center'>
                                         <img className='size-4' src={config} alt="" />
                                         <p>Configurações</p>
                                     </div>

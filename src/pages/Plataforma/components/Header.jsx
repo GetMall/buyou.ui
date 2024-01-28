@@ -4,14 +4,19 @@ import logoutIcon from '../../../assets/plataforma/icons/icon-logout.svg'
 import local from '../../../assets/plataforma/icons/icon-local.svg'
 import arrow from '../../../assets/plataforma/icons/icon-arrow.svg'
 import config from '../../../assets/plataforma/icons/icon-config.svg'
+import cartAddProduto from '../../../assets/plataforma/icons/icon-cart-add.svg'
 import InputPesquisa from './InputPesquisa'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 function Header() {
 
     const [menuAberto, setMenuAberto] = useState(false)
     const nomeUsuario = sessionStorage.getItem('nomeUsuario')
+
+    const [carrinhoItens, setCarrinhoItens] = useState(
+        JSON.parse(sessionStorage.getItem("carrinho")) || []
+    );
 
     const navigate = useNavigate()
 
@@ -30,6 +35,11 @@ function Header() {
         navigate('/acesso')
     }
 
+    useEffect(() => {
+        const carrinho = JSON.parse(sessionStorage.getItem('carrinho')) || [];
+        setCarrinhoItens(carrinho);
+    }, [carrinhoItens]);
+
     return (
         <header className="bg-white z-50 text-secundary shadow-md w-full fixed top-0 p-4">
             <div className="container mx-auto flex">
@@ -41,7 +51,16 @@ function Header() {
                     </div>
                     <InputPesquisa width={"24rem"} placeholder={"Pesquise por item ou loja"} />
                     <div className='flex gap-5'>
-                        <img className='cursor-pointer' src={cart} alt="" />
+                        {carrinhoItens.length > 0 ? (
+                            <>
+                            <img className='cursor-pointer' src={cartAddProduto} onClick={() => navigate('/carrinho')} alt="" />
+                            </>
+                        ): (
+                            <>
+                            <img className='cursor-pointer' src={cart} onClick={() => navigate('/carrinho')} alt="" />
+                            </>
+                        )
+                    }
                         <div onClick={menuAberto ? fecharMenu : abrirMenu} className='flex justify-center items-center gap-2 cursor-pointer bg-white_opacity p-2'>
                             <img src={profile} alt="" />
                             <p>{nomeUsuario}</p>

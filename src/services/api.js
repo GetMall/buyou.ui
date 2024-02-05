@@ -2,10 +2,11 @@ import axios from "axios";
 
 const ip = {
   local: "localhost",
+  debian: "192.168.0.195"
 }
 
 const api = axios.create({
-  baseURL: `http://${ip.local}:8080`,
+  baseURL: `http://${ip.debian}:8080`,
   timeout: 1000,
 });
 

@@ -1,12 +1,21 @@
-function Pedido({ itens }) {
+function Pedido({ itens, status, dataPedido }) {
     return (
         <>
             <div className="w-full">
                 {itens.map((item) => (
-                    <div key={item} className="flex shadow-md">
-                        <p>{item.nomeProduto}</p>
-                        <p>{item.codProduto}</p>
-                        <p>{item.quantidade}</p>
+                    <div key={item} className="flex gap-10 p-10 shadow-md h-10" style={{ width: '800px' }}>
+                        <div className="w-1/3">
+                            <p>{item.nomeProduto}</p>
+                        </div>
+                        <div className="flex justify-center">
+                            <p>{item.codProduto}</p>
+                        </div>
+                        <div className="flex justify-center" style={{color: status === 'PENDENTE' ? 'gray' : status === 'CANCELADO' ? 'red' : 'green'}}>
+                            <p>{status}</p>
+                        </div>
+                        <div className="flex justify-center">
+                            <p>{dataPedido}</p>
+                        </div>
                     </div>
                 ))
                 }

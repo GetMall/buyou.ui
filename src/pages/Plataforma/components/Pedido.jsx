@@ -1,7 +1,7 @@
 function Pedido({ itens, status, dataPedido }) {
     return (
         <>
-            <div className="w-full">
+            <div className="w-full mt-10">
                 {itens.map((item) => (
                     <div key={item} className="flex gap-10 p-10 shadow-md h-10" style={{ width: '800px' }}>
                         <div className="w-1/3">

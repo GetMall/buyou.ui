@@ -6,7 +6,7 @@ const ip = {
 }
 
 const api = axios.create({
-  baseURL: `http://${ip.debian}:8080`,
+  baseURL: `http://${ip.local}:8080`,
   timeout: 1000,
 });
 

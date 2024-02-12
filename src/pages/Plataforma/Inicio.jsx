@@ -98,7 +98,10 @@ function Inicio() {
           <h2 className="text-xl">Próximos da sua região</h2>
           <div className="flex flex-wrap gap-5">
             {shoppingsProximo.map((shopping) => (
-              <Card key={shopping.id} nomeLoja={shopping.nome} />
+              <Card
+              onClick={() => navigate(`/loja/${shopping.id}/${shopping.nome}`)}
+              key={shopping.id} 
+              nomeLoja={shopping.nome} />
             ))}
           </div>
         </div>

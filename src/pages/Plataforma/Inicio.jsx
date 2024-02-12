@@ -92,6 +92,7 @@ function Inicio() {
         setEndereco(response.data.endereco);
         getShoppingsProximo();
         sessionStorage.setItem('shoppingsProximo', JSON.stringify(response.data.shoppingsProximo));
+        sessionStorage.setItem('endereco', JSON.stringify(response.data.endereco));
         setShowMap(true);
       })
       .catch((error) => {
@@ -106,10 +107,14 @@ function Inicio() {
 
   useEffect(() => {
     const savedShoppingsProximo = sessionStorage.getItem('shoppingsProximo');
+    const savedEndereco = sessionStorage.getItem('endereco');
     if (savedShoppingsProximo) {
       setShoppingsProximo(JSON.parse(savedShoppingsProximo));
     } else {
       getShoppingsProximo();
+    }
+    if (savedEndereco) {
+      setEndereco(JSON.parse(savedEndereco));
     }
     getShopping();
     getLoja();
@@ -175,7 +180,7 @@ function Inicio() {
           </Modal>
         </>
       )}
-      <Header onClick={() => setShowModal(true)} />
+      <Header endereco={endereco.rua} onClick={() => setShowModal(true)} />
       {shoppingsProximo.length === 0 ? (
         <div
           className="w-full flex bg-secundary mt-32 items-center justify-center"

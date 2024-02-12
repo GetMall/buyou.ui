@@ -38,7 +38,7 @@ function Header() {
     useEffect(() => {
         const carrinho = JSON.parse(sessionStorage.getItem('carrinho')) || [];
         setCarrinhoItens(carrinho);
-    }, [carrinhoItens]);
+    }, []);
 
     return (
         <header className="bg-white z-50 text-secundary shadow-md w-full fixed top-0 p-4">

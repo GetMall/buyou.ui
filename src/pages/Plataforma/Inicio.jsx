@@ -8,12 +8,13 @@ import { useNavigate } from "react-router-dom";
 import searchLocal from "../../assets/plataforma/icons/icon-search-local.svg";
 import { useForm } from "react-hook-form";
 import Modal from "../../components/Modal";
-import imgLocalModal from "../../assets/plataforma/cuate.svg"
+import imgLocalModal from "../../assets/plataforma/cuate.svg";
 import InputPesquisa from "./components/InputPesquisa";
 
 function Inicio() {
   const [shoppingsProximo, setShoppingsProximo] = useState([]);
   const [shopping, setShopping] = useState([]);
+  const [showModal, setShowModal] = useState(false);
   const [loja, setLoja] = useState([]);
   const nomeUsuario = sessionStorage.getItem("nomeUsuario");
   const idUser = sessionStorage.getItem("idUsuario");
@@ -54,12 +55,27 @@ function Inicio() {
   };
 
   const buscar = (data) => {
+    console.log(data);
     api
       .put(`/clientes/${idUser}/enderecos?cep=${data.local}`)
       .then((response) => {
         getShoppingsProximo();
       })
-      .catch((error) => {});
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const buscarModal = (data) => {
+    console.log(data);
+    api
+      .put(`/clientes/${idUser}/enderecos?cep=${data.localModal}`)
+      .then((response) => {
+        getShoppingsProximo();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   useEffect(() => {
@@ -68,15 +84,38 @@ function Inicio() {
 
   return (
     <>
-      <Modal>
-        <div className="flex flex-col justify-center items-center mt-10">
-          <img className="w-32" src={imgLocalModal} alt="" />
-          <h1 className="text-lg mt-5 mb-3">Onde você quer receber seu pedido?</h1>
-          <InputPesquisa bgColor={'#F7F7F7'} backgroundColor="#F7F7F7" height="40px" width="600px" placeholder="Buscar Endereço" />
-        </div>
-      </Modal>
+      {showModal && (
+        <Modal onClick={() => setShowModal(false)}>
+          <form onSubmit={handleSubmit(buscarModal)}>
+            <div className="flex flex-col justify-center items-center mt-10">
+              <img className="w-32" src={imgLocalModal} alt="" />
+              <h1 className="text-lg mt-5 mb-3">
+                Onde você quer receber seu pedido?
+              </h1>
 
-      <Header />
+              <div className="flex">
+                <button
+                  type="submit"
+                  className="relative flex h-14 justify-center w-12 bg-secundary text-white"
+                >
+                  <img className="w-8" src={searchLocal} alt="" />
+                </button>
+                <InputPesquisa
+                  register={register("localModal")}
+                  bgColor={"#F7F7F7"}
+                  backgroundColor="#F7F7F7"
+                  height="40px"
+                  paddingLeft={"10px"}
+                  width="600px"
+                  displayIcon={"none"}
+                  placeholder="Buscar Endereço"
+                />
+              </div>
+            </div>
+          </form>
+        </Modal>
+      )}
+      <Header onClick={() => setShowModal(true)} />
       {shoppingsProximo.length === 0 ? (
         <div
           className="w-full flex bg-secundary mt-32 items-center justify-center"

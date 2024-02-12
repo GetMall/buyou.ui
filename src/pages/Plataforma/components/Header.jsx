@@ -9,7 +9,7 @@ import InputPesquisa from './InputPesquisa'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-function Header() {
+function Header({onClick}) {
 
     const [menuAberto, setMenuAberto] = useState(false)
     const nomeUsuario = sessionStorage.getItem('nomeUsuario')
@@ -47,7 +47,7 @@ function Header() {
                 <div className="flex items-center mx-auto gap-5">
                     <div className='flex gap-1'>
                         <img src={local} alt="" />
-                        <p className='cursor-pointer underline'>Digitar minha localização</p>
+                        <p className='cursor-pointer underline' onClick={onClick}>Digitar minha localização</p>
                     </div>
                     <InputPesquisa width={"24rem"} placeholder={"Pesquise por item ou loja"} />
                     <div className='flex gap-5'>

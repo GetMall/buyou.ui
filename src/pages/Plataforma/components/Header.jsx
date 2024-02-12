@@ -9,7 +9,7 @@ import InputPesquisa from './InputPesquisa'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-function Header() {
+function Header({onClick, endereco}) {
 
     const [menuAberto, setMenuAberto] = useState(false)
     const nomeUsuario = sessionStorage.getItem('nomeUsuario')
@@ -32,13 +32,15 @@ function Header() {
         sessionStorage.removeItem('token');
         sessionStorage.removeItem('idUsuario');
         sessionStorage.removeItem('nomeUsuario');
+        sessionStorage.removeItem('shoppingsProximo');
+        sessionStorage.removeItem('endereco');
         navigate('/acesso')
     }
 
     useEffect(() => {
         const carrinho = JSON.parse(sessionStorage.getItem('carrinho')) || [];
         setCarrinhoItens(carrinho);
-    }, [carrinhoItens]);
+    }, []);
 
     return (
         <header className="bg-white z-50 text-secundary shadow-md w-full fixed top-0 p-4">
@@ -47,7 +49,11 @@ function Header() {
                 <div className="flex items-center mx-auto gap-5">
                     <div className='flex gap-1'>
                         <img src={local} alt="" />
-                        <p className='cursor-pointer underline'>Digitar minha localização</p>
+                        <p className='cursor-pointer underline' onClick={onClick}>{endereco ? (
+                            endereco
+                        ) : (
+                            "Digitar minha localização"
+                        )}</p>
                     </div>
                     <InputPesquisa width={"24rem"} placeholder={"Pesquise por item ou loja"} />
                     <div className='flex gap-5'>

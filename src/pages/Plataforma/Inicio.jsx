@@ -7,6 +7,9 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import searchLocal from "../../assets/plataforma/icons/icon-search-local.svg";
 import { useForm } from "react-hook-form";
+import Modal from "../../components/Modal";
+import imgLocalModal from "../../assets/plataforma/cuate.svg"
+import InputPesquisa from "./components/InputPesquisa";
 
 function Inicio() {
   const [shoppingsProximo, setShoppingsProximo] = useState([]);
@@ -65,6 +68,14 @@ function Inicio() {
 
   return (
     <>
+      <Modal>
+        <div className="flex flex-col justify-center items-center mt-10">
+          <img className="w-32" src={imgLocalModal} alt="" />
+          <h1 className="text-lg mt-5 mb-3">Onde você quer receber seu pedido?</h1>
+          <InputPesquisa bgColor={'#F7F7F7'} backgroundColor="#F7F7F7" height="40px" width="600px" placeholder="Buscar Endereço" />
+        </div>
+      </Modal>
+
       <Header />
       {shoppingsProximo.length === 0 ? (
         <div
@@ -99,9 +110,12 @@ function Inicio() {
           <div className="flex flex-wrap gap-5">
             {shoppingsProximo.map((shopping) => (
               <Card
-              onClick={() => navigate(`/loja/${shopping.id}/${shopping.nome}`)}
-              key={shopping.id} 
-              nomeLoja={shopping.nome} />
+                onClick={() =>
+                  navigate(`/loja/${shopping.id}/${shopping.nome}`)
+                }
+                key={shopping.id}
+                nomeLoja={shopping.nome}
+              />
             ))}
           </div>
         </div>

@@ -19,7 +19,7 @@ function Modal({ children, onClick }) {
         style={{ width: "40%" }}
       >
         <div onClick={onClick} className="flex cursor-pointer relative mt-3" style={{marginLeft: "92%"}}>
-          <img className="w-10" src={closeIcon}></img>
+          <img className="w-7" src={closeIcon}></img>
         </div>
         {children}
       </div>

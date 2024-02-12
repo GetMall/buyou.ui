@@ -1,8 +1,8 @@
 import React from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
-import getMarker from '../../assets/maps/getMark.svg';
-import userMarker from '../../assets/maps/userMark.svg';
+import getMarker from '../assets/maps/getMark.svg';
+import userMarker from '../assets/maps/userMark.svg';
 
 const MapComponent = ({ shoppings, lat, long }) => {
   const defaultCenter = lat && long ? [lat, long] : [-23.586494541094943, -46.68252095236397];
@@ -22,7 +22,7 @@ const MapComponent = ({ shoppings, lat, long }) => {
   });
 
   return (
-    <MapContainer center={defaultCenter} zoom={13} style={{borderBottom:'3px solid var(--color-orange)', borderTop:'3px solid var(--color-orange)', height: '400px', width: '100%', position: 'absolute' }}>
+    <MapContainer center={defaultCenter} zoom={13} style={{borderBottom:'3px solid var(--color-orange)', borderTop:'3px solid var(--color-orange)', opacity:'0.7', height: '90%', width: '100%', position: 'relative' }}>
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

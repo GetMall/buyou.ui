@@ -10,11 +10,18 @@ import { useForm } from "react-hook-form";
 import Modal from "../../components/Modal";
 import imgLocalModal from "../../assets/plataforma/cuate.svg";
 import InputPesquisa from "./components/InputPesquisa";
+import MapComponent from "../../components/MapComponent";
 
 function Inicio() {
   const [shoppingsProximo, setShoppingsProximo] = useState([]);
+  const [modalShoppingsProximo, setModalShoppingsProximo] = useState([]);
   const [shopping, setShopping] = useState([]);
   const [showModal, setShowModal] = useState(false);
+  const [showMap, setShowMap] = useState(false);
+  const [endereco, setEndereco] = useState([]);
+  const [rua, setRua] = useState("");
+  const [lat, setLat] = useState("");
+  const [long, setLong] = useState("");
   const [loja, setLoja] = useState([]);
   const nomeUsuario = sessionStorage.getItem("nomeUsuario");
   const idUser = sessionStorage.getItem("idUsuario");
@@ -45,21 +52,29 @@ function Inicio() {
       });
   };
 
+ 
   const getShoppingsProximo = () => {
     api
       .get(`/shopping/proximos?id=${idUser}`)
       .then((res) => {
-        setShoppingsProximo(res.data);
+        setModalShoppingsProximo(res.data);
+        sessionStorage.setItem('shoppingsProximo', JSON.stringify(res.data));
       })
       .catch((err) => {});
   };
 
+  const confirmarLocal = () => {
+    setShoppingsProximo(modalShoppingsProximo);
+    setShowModal(false);
+    setShowMap(false);
+  };
+
+
   const buscar = (data) => {
-    console.log(data);
     api
       .put(`/clientes/${idUser}/enderecos?cep=${data.local}`)
       .then((response) => {
-        getShoppingsProximo();
+        setShoppingsProximo(modalShoppingsProximo);
       })
       .catch((error) => {
         console.log(error);
@@ -71,49 +86,94 @@ function Inicio() {
     api
       .put(`/clientes/${idUser}/enderecos?cep=${data.localModal}`)
       .then((response) => {
+        setLat(response.data.endereco.latitude);
+        setLong(response.data.endereco.longitude);
+        setRua(response.data.endereco.rua);
+        setEndereco(response.data.endereco);
         getShoppingsProximo();
+        sessionStorage.setItem('shoppingsProximo', JSON.stringify(response.data.shoppingsProximo));
+        setShowMap(true);
       })
       .catch((error) => {
         console.log(error);
       });
   };
 
+  const closeModal = () => {
+    setShowModal(false);
+    setShowMap(false);
+  };
+
   useEffect(() => {
-    getShopping(), getLoja(), getShoppingsProximo();
+    const savedShoppingsProximo = sessionStorage.getItem('shoppingsProximo');
+    if (savedShoppingsProximo) {
+      setShoppingsProximo(JSON.parse(savedShoppingsProximo));
+    } else {
+      getShoppingsProximo();
+    }
+    getShopping();
+    getLoja();
   }, []);
 
   return (
     <>
       {showModal && (
-        <Modal onClick={() => setShowModal(false)}>
-          <form onSubmit={handleSubmit(buscarModal)}>
-            <div className="flex flex-col justify-center items-center mt-10">
-              <img className="w-32" src={imgLocalModal} alt="" />
-              <h1 className="text-lg mt-5 mb-3">
-                Onde você quer receber seu pedido?
-              </h1>
-
-              <div className="flex">
+        <>
+          <Modal onClick={closeModal}>
+            {showMap ? (
+              <>
+                <div className="flex flex-col justify-center items-center">
+                  <p className="text-lg opacity-70">
+                    {endereco.rua} - {endereco.cep}
+                  </p>
+                  <p className="text-sm opacity-50">
+                    {endereco.bairro}, {endereco.cidade} - {endereco.estado}
+                  </p>
+                </div>
                 <button
-                  type="submit"
-                  className="relative flex h-14 justify-center w-12 bg-secundary text-white"
+                onClick={confirmarLocal}
+                  className="absolute items-center z-50 p-5 flex h-14 justify-center w-96 bg-secundary text-white"
+                  style={{ marginTop: "450px", marginLeft: "10%" }}
                 >
-                  <img className="w-8" src={searchLocal} alt="" />
+                  Confirmar Localização
                 </button>
-                <InputPesquisa
-                  register={register("localModal")}
-                  bgColor={"#F7F7F7"}
-                  backgroundColor="#F7F7F7"
-                  height="40px"
-                  paddingLeft={"10px"}
-                  width="600px"
-                  displayIcon={"none"}
-                  placeholder="Buscar Endereço"
+                <MapComponent
+                  lat={lat}
+                  long={long}
+                  shoppings={modalShoppingsProximo}
                 />
-              </div>
-            </div>
-          </form>
-        </Modal>
+              </>
+            ) : (
+              <form onSubmit={handleSubmit(buscarModal)}>
+                <div className="flex flex-col justify-center items-center mt-10">
+                  <img className="w-32" src={imgLocalModal} alt="" />
+                  <h1 className="text-lg mt-5 mb-3">
+                    Onde você quer receber seu pedido?
+                  </h1>
+
+                  <div className="flex">
+                    <button
+                      type="submit"
+                      className="relative flex h-14 justify-center w-12 bg-secundary text-white"
+                    >
+                      <img className="w-8" src={searchLocal} alt="" />
+                    </button>
+                    <InputPesquisa
+                      register={register("localModal")}
+                      bgColor={"#F7F7F7"}
+                      backgroundColor="#F7F7F7"
+                      height="40px"
+                      paddingLeft={"10px"}
+                      width="600px"
+                      displayIcon={"none"}
+                      placeholder="Buscar Endereço"
+                    />
+                  </div>
+                </div>
+              </form>
+            )}
+          </Modal>
+        </>
       )}
       <Header onClick={() => setShowModal(true)} />
       {shoppingsProximo.length === 0 ? (

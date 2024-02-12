@@ -32,6 +32,7 @@ function Header({onClick}) {
         sessionStorage.removeItem('token');
         sessionStorage.removeItem('idUsuario');
         sessionStorage.removeItem('nomeUsuario');
+        sessionStorage.removeItem('shoppingsProximo');
         navigate('/acesso')
     }
 

@@ -7,7 +7,7 @@ function ContainerBusca({ children, backgroundColor }) {
 
 
     return (
-        <div style={inputStyle} className="flex bg-slate-200 gap-2 p-2">
+        <div style={inputStyle} className="flex rounded-lg bg-slate-200 gap-2 p-2">
             {children}
         </div>
     )

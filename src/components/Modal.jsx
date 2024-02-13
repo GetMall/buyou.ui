@@ -17,7 +17,7 @@ function Modal({ children, onClick }) {
     >
       <div
         className="bg-white rounded-md h-1/3 items-center mt-24 w-1/3 justify-center"
-        style={{ width: "40%", marginLeft:"25%", animation: 'slideIn 0.5s forwards' }}
+        style={{ width: "40%", marginLeft:"30%", animation: 'slideIn 0.5s forwards' }}
       >
         <div onClick={onClick} className="flex cursor-pointer" style={{marginLeft: "92%"}}>
           <img className="w-7 mt-2" src={closeIcon}></img>

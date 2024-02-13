@@ -127,7 +127,7 @@ function Inicio() {
           <Modal onClick={closeModal}>
             {showMap ? (
               <>
-                <div className="flex flex-col justify-center items-center">
+                <div className="flex relative flex-col justify-center items-center">
                   <p className="text-lg opacity-70">
                     {endereco.rua} - {endereco.cep}
                   </p>
@@ -138,7 +138,7 @@ function Inicio() {
                 <button
                 onClick={confirmarLocal}
                   className="absolute items-center z-50 p-5 flex h-14 justify-center w-96 bg-secundary text-white"
-                  style={{ marginTop: "450px", marginLeft: "10%" }}
+                  style={{ marginTop: "450px", marginLeft: "25%" }}
                 >
                   Confirmar Localização
                 </button>

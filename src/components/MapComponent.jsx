@@ -32,7 +32,7 @@ const MapComponent = ({ shoppings, lat, long }) => {
       </Marker>
 
       {/* Marcadores para os shoppings */}
-      {shoppings.map(shop => (
+      {shoppings.length > 0 && shoppings.map(shop => (
         <Marker key={shop.id} position={[shop.endereco.latitude, shop.endereco.longitude]} icon={customIcon}>
           <Popup>{shop.nome}</Popup>
         </Marker>

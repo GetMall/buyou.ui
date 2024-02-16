@@ -7,12 +7,12 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: '#559EA8',
-        secundary: '#FF530B',
+        primary: '#FFC401',
+        secundary: '#692fa3',
         white_opacity: '#F7F7F7',
-        dark_primary: '#498A93',
+        dark_primary: '#642fb0',
         b_gray: '#E0E0E0',
-        btn_orange: '#FF530B',
+        btn_orange: '#B51BF2',
       },
       fontFamily: {
         'sans': ['Roboto', 'sans-serif'],

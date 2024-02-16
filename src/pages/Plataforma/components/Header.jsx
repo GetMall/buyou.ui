@@ -42,7 +42,7 @@ function Header({ onClick, endereco }) {
   }, []);
 
   return (
-    <header className="bg-white z-50 text-secundary shadow-md w-full fixed top-0 p-4">
+    <header className="bg-secundary z-50 text-white shadow-md w-full fixed top-0 p-4">
       <div className="container mx-auto flex">
         <div
           onClick={() => navigate("/inicio")}
@@ -86,13 +86,13 @@ function Header({ onClick, endereco }) {
             )}
             <div
               onClick={menuAberto ? fecharMenu : abrirMenu}
-              className="flex justify-center items-center gap-2 cursor-pointer bg-white_opacity p-2"
+              className="flex justify-center items-center gap-2 cursor-pointer bg-secundary p-2"
             >
               <img src={profile} alt="" />
               <p>{nomeUsuario}</p>
               <img src={arrow} className="size-3" alt="" />
               {menuAberto && (
-                <div className="absolute mt-36 bg-white rounded shadow-md">
+                <div className="absolute mt-36 text-secundary bg-white rounded shadow-md">
                   <div
                     onClick={() => navigate("/perfil")}
                     className="p-2 gap-2 flex items-center"

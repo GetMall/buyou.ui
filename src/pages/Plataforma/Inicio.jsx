@@ -183,7 +183,7 @@ function Inicio() {
       <Header endereco={endereco.rua} onClick={() => setShowModal(true)} />
       {shoppingsProximo.length === 0 ? (
         <div
-          className="w-full flex bg-secundary mt-32 items-center justify-center"
+          className="w-full flex bg-secundary mt-6 items-center justify-center"
           style={{ height: "500px" }}
         >
           <div className="flex flex-col items-center">

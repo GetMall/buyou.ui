@@ -1,7 +1,7 @@
 function Footer() {
     return (
         <>
-            <footer className="footer bg-white">
+            <footer className="footer bg-white_opacity">
                 <div className="container mx-auto px-6">
                     <div className="flex">
                         <div className="flex p-16 flex-col opacity-45">

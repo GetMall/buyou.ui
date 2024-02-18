@@ -5,6 +5,8 @@ import CarrinhoVazio from "../../assets/plataforma/Loja/carrinhoVazio.svg";
 import { useState } from "react";
 import api from "../../services/api";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Carrinho() {
   const [carrinhoItens, setCarrinhoItens] = useState(
@@ -29,6 +31,11 @@ function Carrinho() {
     const novoCarrinho = carrinhoItens.filter((item) => item.id !== itemId);
     setCarrinhoItens(novoCarrinho);
     sessionStorage.setItem("carrinho", JSON.stringify(novoCarrinho));
+    toast.success("Produto removido com sucesso!", {
+      position: "bottom-right",
+      autoClose: true,
+      closeButton: true,
+    });
   };
 
   const finalizarCompra = () => {
@@ -62,6 +69,11 @@ function Carrinho() {
   const removerTodos = () => {
     setCarrinhoItens([]);
     sessionStorage.removeItem("carrinho");
+    toast.success("Todos os produtos foram removidos com sucesso!", {
+      position: "bottom-right",
+      autoClose: true,
+      closeButton: true,
+    });
   };
 
   useEffect(() => {
@@ -71,6 +83,7 @@ function Carrinho() {
   return (
     <>
       <Header />
+      <ToastContainer />
       <div className="mt-40 pl-20">
         {carrinhoItens.length === 0 ? (
           <>

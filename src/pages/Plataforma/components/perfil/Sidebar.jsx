@@ -55,12 +55,12 @@ export function Sidebar({ onSelect}) {
           </ListItemPrefix>
           Ajuda
         </ListItem>
-        <ListItem onClick={() => handleItemClick('loja')} className="gap-2">
+        {/* <ListItem onClick={() => handleItemClick('loja')} className="gap-2">
           <ListItemPrefix>
             <ShoppingCartIcon className="h-5 w-5 text-secundary" />
           </ListItemPrefix>
           Minha Loja
-        </ListItem>
+        </ListItem> */}
         <ListItem onClick={() => navigate('/inicio')} className="gap-2">
           <ListItemPrefix>
             <HomeIcon className="h-5 w-5 text-secundary" />

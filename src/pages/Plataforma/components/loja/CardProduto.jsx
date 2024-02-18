@@ -6,7 +6,7 @@ function CardProduto({imgProduto, preco, descricao, onClick}) {
                 <p className="font-bold text-lg">R$ {preco}</p>
                 <p className="text-sm overflow-hidden line-clamp-1">{descricao}</p>
                 <div className="flex">
-                <button onClick={onClick} className='bg-btn_orange text-xs text-white p-2 font-bold cursor-pointer h-8 w-full'>Adicionar ao Carrinho</button>
+                <button onClick={onClick} className='bg-secundary hover:bg-btn_orange text-xs text-white p-2 font-bold cursor-pointer h-8 w-full'>Adicionar ao Carrinho</button>
                 </div>
             </div>
         </div>

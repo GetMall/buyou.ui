@@ -74,6 +74,7 @@ function Inicio() {
     api
       .put(`/clientes/${idUser}/enderecos?cep=${data.local}`)
       .then((response) => {
+        setEndereco(response.data.endereco);
         setShoppingsProximo(modalShoppingsProximo);
       })
       .catch((error) => {

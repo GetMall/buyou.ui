@@ -34,7 +34,7 @@ function Home() {
                 </div>
               </button>
               <button className="bg-black text-lg text-white p-3 rounded-md mt-8">
-                Explore a Buyou na Web
+                Explore a BuyU na Web
               </button>
             </div>
           </div>
@@ -95,7 +95,7 @@ function Home() {
               A Parceira certa para seu negócio!
             </h1>
             <p className="mt-8 text-lg text-secundary">
-              Com a Buyou, você conecta seu restaurante a milhões de novos
+              Com a BuyU, você conecta seu restaurante a milhões de novos
               clientes, expande sua área de entrega e vende muito mais.
             </p>
             <button className="bg-secundary text-white p-3 rounded-md mt-8">
@@ -118,7 +118,7 @@ function Home() {
               Seja um entregador!
             </h1>
             <p className="mt-8 text-lg text-secundary">
-              Seja um entregador parceiro da Buyou e ganhe dinheiro fazendo
+              Seja um entregador parceiro da BuyU e ganhe dinheiro fazendo
               entregas para milhares de pessoas na sua cidade.
             </p>
             <button className="bg-secundary text-white p-3 rounded-md mt-8">

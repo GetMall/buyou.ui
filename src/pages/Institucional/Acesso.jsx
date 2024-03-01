@@ -23,7 +23,11 @@ function Acesso() {
 
   const cadastrar = (data) => {
     api
-      .post("/clientes", data)
+      .post("/clientes", {
+        nome: data.nome,
+        email: data.email,
+        senha: data.senha,
+      })
       .then((response) => {
         toast.success("Cadastro realizado com sucesso!", {
           position: "top-right",

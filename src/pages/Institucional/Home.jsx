@@ -24,7 +24,7 @@ function Home() {
               precisa de uma plataforma que facilite e agilize esse processo,
               que proporciona comodidade e praticidade.
             </p>
-            <button className="bg-white flex text-secundary p-3 rounded-md mt-8">
+            <button className="bg-white flex text-secundary p-3 font-bold rounded-md mt-8">
               {" "}
               <img src={downloadIcon} alt="" />
               Baixar o App
@@ -48,7 +48,7 @@ function Home() {
               e, o mais importante, para entregá-lo na velocidade da luz,
               diretamente às suas mãos.
             </p>
-            <button className="bg-secundary text-white p-3 rounded-md mt-8">
+            <button className="bg-secundary text-white p-3 font-bold rounded-md mt-8">
               Conheça nossa empresa!
             </button>
           </div>
@@ -72,7 +72,7 @@ function Home() {
               Com a GetShop, você conecta seu restaurante a milhões de novos
               clientes, expande sua área de entrega e vende muito mais.
             </p>
-            <button className="bg-secundary text-white p-3 rounded-md mt-8">
+            <button className="bg-secundary text-white p-3 font-bold rounded-md mt-8">
               Gerencie sua loja!
             </button>
           </div>
@@ -95,7 +95,7 @@ function Home() {
               Seja um entregador parceiro da GetShop e ganhe dinheiro fazendo
               entregas para milhares de pessoas na sua cidade.
             </p>
-            <button className="bg-secundary text-white p-3 rounded-md mt-8">
+            <button className="bg-secundary text-white p-3 font-bold rounded-md mt-8">
               Seja um entregador!
             </button>
           </div>

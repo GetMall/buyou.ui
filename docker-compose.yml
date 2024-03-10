@@ -7,7 +7,7 @@ services:
     volumes:
       - .:/app
   nginx:
-    build: ./nginx
+    build: .
     ports:
       - "80:80"
     depends_on:

@@ -7,9 +7,7 @@ services:
     volumes:
       - .:/app
   nginx:
-    build:
-      context: .
-      dockerfile: Dockerfile-nginx
+    build: ./nginx
     ports:
       - "80:80"
     depends_on:

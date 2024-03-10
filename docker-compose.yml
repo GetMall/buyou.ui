@@ -6,3 +6,11 @@ services:
       - "3000:3000"
     volumes:
       - .:/app
+  nginx:
+    build:
+      context: .
+      dockerfile: Dockerfile-nginx
+    ports:
+      - "80:80"
+    depends_on:
+      - app

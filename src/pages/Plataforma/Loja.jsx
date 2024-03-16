@@ -22,7 +22,6 @@ function Loja() {
     api
       .get(`/produtos/loja/${idLoja}`)
       .then((response) => {
-        console.log(response.data);
         setProduto(response.data);
       })
       .catch((error) => {
@@ -93,7 +92,7 @@ function Loja() {
                     <CardProduto
                       onClick={() => adicionarAoCarrinho(produto)}
                       key={produto.id}
-                      imgProduto={`http://localhost:8080/midias/imagens/${produto.nomeArquivoSalvo}`}
+                      imgProduto={`http://localhost:8080/midias/imagens/${produto.nomeArquivo}`}
                       preco={produto.valorUnitario}
                       descricao={produto.descricao}
                     />

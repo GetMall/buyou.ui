@@ -19,3 +19,13 @@ EXPOSE 3000
 # Comando para iniciar o aplicativo React
 CMD ["npm", "run", "dev"]
 
+# Use a imagem oficial do Nginx como base
+FROM nginx:latest
+
+# Remova o arquivo de configuração padrão do Nginx
+RUN rm /etc/nginx/conf.d/default.conf
+
+# Copie o arquivo de configuração personalizado para o diretório de configuração do Nginx
+COPY nginx.conf /etc/nginx/conf.d
+
+

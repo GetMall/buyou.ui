@@ -7,6 +7,7 @@ import Shopping from './pages/Plataforma/Shopping'
 import Loja from './pages/Plataforma/Loja'
 import Perfil from './pages/Plataforma/Perfil'
 import Carrinho from './pages/Plataforma/Carrinho'
+import Compra from './pages/Plataforma/Compra'
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/loja/:idLoja/:nomeLoja" element={<Loja />} />
         <Route path="/perfil" element={<Perfil />} />
         <Route path="/carrinho" element={<Carrinho />} />
+        <Route path="/compra" element={<Compra />} />
       </Routes>
     </Router>
   )

@@ -13,8 +13,8 @@ function Home() {
     <>
       <Header />
       <main className="flex flex-col">
-        <section className="flex bg-secundary h-[70vh]">
-          <div className="p-36 pl-72 w-6/12 text-white">
+        <section className="flex justify-end bg-secundary h-[70vh] relative">
+          <div className="p-36 w-6/12 text-white">
             <h1 className="text-5xl font-bold">
               Um Shopping inteiro na sua mão.
             </h1>
@@ -30,17 +30,18 @@ function Home() {
               Baixar o App
             </button>
           </div>
-          <div className="flex-1 relative">
+          <div className="flex-1 absolute inset-0 top-0 right-0">
             <img
               src={imgConta}
-              className="h-[70vh] absolute top-0"
+              className="object-cover ml-32 w-[1000px] h-full"
               alt="imagem de um shopping e uma moça"
             />
           </div>
         </section>
+
         <section className="flex">
           <div className="p-36 pl-72 w-7/12 text-black">
-            <h1 className="text-5xl font-bold text-secundary">Sobre Nós</h1>
+            <h1 className="text-5xl font-bold text-secundary">O que é a Buyu?</h1>
             <p className="mt-8 text-lg">
               Sua solução definitiva para uma experiência de compras
               verdadeiramente rápida e conveniente. Estamos aqui para tornar a
@@ -69,7 +70,7 @@ function Home() {
               A Parceira certa para seu negócio!
             </h1>
             <p className="mt-8 text-lg">
-              Com a GetShop, você conecta seu restaurante a milhões de novos
+              Com a Buyu, você conecta seu restaurante a milhões de novos
               clientes, expande sua área de entrega e vende muito mais.
             </p>
             <button className="bg-secundary text-white p-3 font-bold rounded-md mt-8">
@@ -92,7 +93,7 @@ function Home() {
               Seja um entregador!
             </h1>
             <p className="mt-8 text-lg">
-              Seja um entregador parceiro da GetShop e ganhe dinheiro fazendo
+              Seja um entregador parceiro da Buyu e ganhe dinheiro fazendo
               entregas para milhares de pessoas na sua cidade.
             </p>
             <button className="bg-secundary text-white p-3 font-bold rounded-md mt-8">

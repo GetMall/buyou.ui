@@ -138,7 +138,7 @@ function Inicio() {
                 </div>
                 <button
                 onClick={confirmarLocal}
-                  className="absolute items-center z-50 p-5 flex h-14 justify-center w-96 bg-secundary text-white"
+                  className="absolute z-50 p-5 flex h-14 justify-center w-96 bg-secundary text-white"
                   style={{ marginTop: "450px", marginLeft: "25%" }}
                 >
                   Confirmar Localização
@@ -160,7 +160,7 @@ function Inicio() {
                   <div className="flex">
                     <button
                       type="submit"
-                      className="relative flex h-14 justify-center w-12 bg-secundary text-white"
+                      className="relative flex h-14 justify-center items-center w-12 bg-secundary text-white"
                     >
                       <img className="w-8" src={searchLocal} alt="" />
                     </button>
@@ -201,7 +201,7 @@ function Inicio() {
                 />
                 <button
                   type="submit"
-                  className="relative flex justify-center right-10 w-10 bg-black text-white"
+                  className="relative flex justify-center items-center right-10 w-10 bg-black text-white"
                 >
                   <img className="w-8" src={searchLocal} alt="" />
                 </button>

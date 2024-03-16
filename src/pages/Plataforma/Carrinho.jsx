@@ -30,7 +30,7 @@ function Carrinho() {
   const removerDoCarrinho = (itemId) => {
     const novoCarrinho = carrinhoItens.filter((item) => item.id !== itemId);
     setCarrinhoItens(novoCarrinho);
-    sessionStorage.setItem("carrinho", JSON.stringify(novoCarrinho));
+    sessionStorage.setItem("carrinho", JSON.stringify(novoCarrinho));    
     toast.success("Produto removido com sucesso!", {
       position: "bottom-right",
       autoClose: true,
@@ -43,6 +43,7 @@ function Carrinho() {
       idProduto: item.id,
       codProduto: item.codigo,
       nomeProduto: item.nome,
+      valorUnitario: item.valorUnitario,
       quantidade: 1,
     }));
 

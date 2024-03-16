@@ -47,7 +47,7 @@ function Loja() {
 
   const adicionarAoCarrinho = (produto) => {
     toast.success("Produto adicionado ao carrinho!", {
-      position: "bottom-right",
+      position: "top-right",
       autoClose: true,
       closeButton: true,
     });

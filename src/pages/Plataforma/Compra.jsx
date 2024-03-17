@@ -3,23 +3,21 @@ import HeaderLogo from "./components/HeaderLogo";
 import api from "../../services/api";
 import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
+
 
 
 function Compra() {
     const [dadosParaEnviar, setDadosParaEnviar] = useState({});
     const [itens, setItens] = useState([]);
+    const [isPix, setIsPix] = useState(false);
+    const { register, handleSubmit, watch, setError, formState: { errors } } = useForm();
+    const [isDisabled, setIsDisabled] = useState(true);
+    const [formValues, setFormValues] = useState({ cpf: '', nomeCompleto: '' }); 
 
     const idUsuario = sessionStorage.getItem("idUsuario");
 
     const navigate = useNavigate();
-
-    useEffect(() => {
-        const obterDadosParaEnviar = JSON.parse(sessionStorage.getItem("dadosParaEnviar"));
-        if (obterDadosParaEnviar) {
-            setDadosParaEnviar(obterDadosParaEnviar);
-            setItens(obterDadosParaEnviar.itens);
-        }
-    }, []);
 
     const finalizarPedido = () => {
         const itensParaEnviar = itens.map((item) => ({
@@ -39,14 +37,52 @@ function Compra() {
         };
 
         api.post("/pedidos", dadosParaEnviar).then((res) => {
-            sessionStorage.removeItem("dadosParaEnviar");
-            sessionStorage.removeItem("carrinho");
-            navigate("/pedido-realizado");
+            toast.success("Pedido realizado com sucesso!", {
+                position: "top-right",
+                autoClose: true,
+                closeButton: true,
+            });
         }
         ).catch((err) => {
             console.log(err);
         });
     }
+
+    const efetuarPagamento = (data) => {
+        api.post("/transacao/pix", null, {
+            params: {
+                cpf: data.cpf,
+                nome: data.nomeCompleto,
+                valor: dadosParaEnviar.valorTotal.toString()
+            }
+        }
+        ).then((res) => {
+            finalizarPedido();
+            console.log(res);
+        }
+        ).catch((err) => {
+            console.log(err);
+        });
+    }
+
+    const handleInputChange = (event) => {
+        const { name, value } = event.target;
+        const updatedFormValues = { ...formValues, [name]: value };
+        setFormValues(updatedFormValues);
+
+        if (updatedFormValues.cpf.trim() !== '' && updatedFormValues.nomeCompleto.trim() !== '') {
+            setIsDisabled(false);
+        } else {
+            setIsDisabled(true);
+        }
+    };
+    useEffect(() => {
+        const obterDadosParaEnviar = JSON.parse(sessionStorage.getItem("dadosParaEnviar"));
+        if (obterDadosParaEnviar) {
+            setDadosParaEnviar(obterDadosParaEnviar);
+            setItens(obterDadosParaEnviar.itens);
+        }
+    }, []);
 
     return (
         <>
@@ -62,20 +98,52 @@ function Compra() {
                             <p className="text-lg">R. Fraiburgo</p>
                             <p>São Paulo</p>
                         </div>
-                        <h2 className="text-xl">Pagamento</h2>
+                        <h2 className="text-xl">Forma de Pagamento</h2>
                         <div className="flex flex-col">
                             <div className="flex gap-2 mt-2">
-                                <input id="pix" name="pagamento" type="radio" />
+                                <input id="pix" name="pagamento" onChange={() => setIsPix(true)} type="radio" />
                                 <label htmlFor="pix">Pix</label>
                             </div>
+                            {isPix && (
+                                <>
+                                    <form onSubmit={handleSubmit(efetuarPagamento)}>
+                                        <div className="flex flex-col gap-2 mt-2">
+                                            <label htmlFor="chavePix">CPF</label>
+                                            <input
+                                                name="cpf"
+                                                {...register('cpf')}
+                                                id="chavePix"
+                                                className="border-slate-200 border-2 outline-none p-2"
+                                                type="text"
+                                                onChange={handleInputChange}
+                                            />
+                                        </div>
+                                        <div className="flex flex-col gap-2 mt-2">
+                                            <label htmlFor="chavePix">Nome Completo</label>
+                                            <input
+                                                name="nomeCompleto"
+                                                {...register('nomeCompleto')}
+                                                id="chavePix" className="border-slate-200 border-2 outline-none p-2"
+                                                type="text"
+                                                onChange={handleInputChange}
+                                            />
+                                        </div>
+                                        <div className="flex flex-col gap-2 mt-2">
+                                            <label htmlFor="chavePix">Valor Total</label>
+                                            <input {...register('valorTotal')} disabled={true} defaultValue={dadosParaEnviar.valorTotal} id="chavePix" className="bg-slate-200 border-2 outline-none p-2" type="text" />
+                                        </div>
+                                        <div className="flex mt-5 justify-end">
+                                            <button disabled={isDisabled} className={`w-full h-10 rounded-sm ${isDisabled ? 'bg-slate-200' : 'bg-btn_orange text-white'}`} type="submit">Solicitar Pedido</button>
+                                        </div>
+                                    </form>
+                                </>
+                            )}
                             <div className="flex gap-2 mt-2">
-                                <input id="cartao" name="pagamento" type="radio" />
+                                <input id="cartao" name="pagamento" type="radio" onChange={() => setIsPix(false)} />
                                 <label htmlFor="cartao">Cartão de Crédito</label>
                             </div>
                         </div>
-                        <div className="flex justify-end">
-                            <button className="bg-btn_orange text-white w-full h-10 rounded-sm" onClick={finalizarPedido}>Finalizar a compra</button>
-                        </div>
+
                     </div>
                 </div>
                 <div>

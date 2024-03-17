@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import buyuLogoAmarelo from "../../../assets/plataforma/logos/logotipo-amarelo.svg";
 
 function HeaderLogo() {
 
@@ -11,7 +12,7 @@ function HeaderLogo() {
                     onClick={() => navigate("/inicio")}
                     className="text-2xl uppercase cursor-pointer font-bold"
                 >
-                    GetShop
+                    <img className="w-32" src={buyuLogoAmarelo} alt="" />
                 </div>
             </div>
         </header>

@@ -92,7 +92,7 @@ function Loja() {
                     <CardProduto
                       onClick={() => adicionarAoCarrinho(produto)}
                       key={produto.id}
-                      imgProduto={`http://localhost:8080/midias/imagens/${produto[0].imagens[0].nomeArquivoSalvo}`}
+                      imgProduto={`http://localhost:8080/midias/imagens/${produto.imagens[0].nomeArquivoSalvo}`}
                       preco={produto.valorUnitario}
                       descricao={produto.descricao}
                     />

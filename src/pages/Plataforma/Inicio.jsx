@@ -216,7 +216,7 @@ function Inicio() {
             {shoppingsProximo.map((shopping) => (
               <Card
                 onClick={() =>
-                  navigate(`/loja/${shopping.id}/${shopping.nome}`)
+                  navigate(`/shopping/${shopping.id}/${shopping.nome}`)
                 }
                 key={shopping.id}
                 nomeLoja={shopping.nome}

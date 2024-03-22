@@ -112,8 +112,8 @@ function Compra() {
                         <div className="bg-white flex w-full gap-2 p-2 border-sm border">
                             <img src={imageMap} className="w-[50px]" alt="" />
                             <div>
-                                <p className="text-lg">{endereco.rua}</p>
-                                <p>{endereco.bairro}</p>
+                                <p className="text-lg">{endereco?.rua}</p>
+                                <p>{endereco?.bairro}</p>
                             </div>
                         </div>
                         <h2 className="text-xl">Forma de Pagamento</h2>

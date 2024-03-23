@@ -156,7 +156,7 @@ function Compra() {
                                             <label htmlFor="chavePix">Valor Total</label>
                                             <input
                                                 disabled={true}
-                                                defaultValue={`R$ ${dadosParaEnviar.valorTotal}`}
+                                                defaultValue={`R$ ${dadosParaEnviar.valorTotal?.toFixed(2)}`}
                                                 id="chavePix"
                                                 className="bg-slate-200 border-2 outline-none p-2"
                                                 type="text"

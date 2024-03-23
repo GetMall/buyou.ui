@@ -11,10 +11,12 @@ import Modal from "../../components/Modal";
 import imgLocalModal from "../../assets/plataforma/cuate.svg";
 import InputPesquisa from "./components/InputPesquisa";
 import MapComponent from "../../components/MapComponent";
+import Loading from "../../components/loading";
 
 function Inicio() {
   const [shoppingsProximo, setShoppingsProximo] = useState([]);
   const [modalShoppingsProximo, setModalShoppingsProximo] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [shopping, setShopping] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [showMap, setShowMap] = useState(false);
@@ -31,37 +33,51 @@ function Inicio() {
   const { register, handleSubmit } = useForm();
 
   const getShopping = () => {
-    api
-      .get("/shopping")
-      .then((response) => {
-        setShopping(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    return new Promise((resolve, reject) => {
+      api
+        .get("/shopping")
+        .then((response) => {
+          setShopping(response.data);
+          resolve();
+        })
+        .catch((error) => {
+          console.log(error);
+          reject(error);
+        });
+    });
   };
-
+  
   const getLoja = () => {
-    api
-      .get("/lojas")
-      .then((response) => {
-        setLoja(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    return new Promise((resolve, reject) => {
+      api
+        .get("/lojas")
+        .then((response) => {
+          setLoja(response.data);
+          resolve();
+        })
+        .catch((error) => {
+          console.log(error);
+          reject(error);
+        });
+    });
   };
 
- 
+
   const getShoppingsProximo = () => {
-    api
-      .get(`/shopping/proximos?id=${idUser}`)
-      .then((res) => {
-        setModalShoppingsProximo(res.data);
-        sessionStorage.setItem('shoppingsProximo', JSON.stringify(res.data));
-      })
-      .catch((err) => {});
+    return new Promise((resolve, reject) => {
+      api
+        .get(`/shopping/proximos?id=${idUser}`)
+        .then((res) => {
+          setModalShoppingsProximo(res.data);
+          sessionStorage.setItem('shoppingsProximo', JSON.stringify(res.data));
+          resolve();
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
   };
+
 
   const confirmarLocal = () => {
     setShoppingsProximo(modalShoppingsProximo);
@@ -107,6 +123,15 @@ function Inicio() {
   };
 
   useEffect(() => {
+    Promise.all([getShoppingsProximo(), getShopping(), getLoja()])
+      .then(() => {
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+        setLoading(false);
+      });
+
     const savedShoppingsProximo = sessionStorage.getItem('shoppingsProximo');
     const savedEndereco = sessionStorage.getItem('endereco');
     if (savedShoppingsProximo) {
@@ -117,8 +142,6 @@ function Inicio() {
     if (savedEndereco) {
       setEndereco(JSON.parse(savedEndereco));
     }
-    getShopping();
-    getLoja();
   }, []);
 
   return (
@@ -137,8 +160,8 @@ function Inicio() {
                   </p>
                 </div>
                 <button
-                onClick={confirmarLocal}
-                  className="absolute items-center z-50 p-5 flex h-14 justify-center w-96 bg-secundary text-white"
+                  onClick={confirmarLocal}
+                  className="absolute z-50 p-5 flex h-14 justify-center w-96 bg-secundary text-white"
                   style={{ marginTop: "450px", marginLeft: "25%" }}
                 >
                   Confirmar Localização
@@ -160,7 +183,7 @@ function Inicio() {
                   <div className="flex">
                     <button
                       type="submit"
-                      className="relative flex h-14 justify-center w-12 bg-secundary text-white"
+                      className="relative flex h-14 justify-center items-center w-12 bg-secundary text-white"
                     >
                       <img className="w-8" src={searchLocal} alt="" />
                     </button>
@@ -181,77 +204,83 @@ function Inicio() {
           </Modal>
         </>
       )}
-      <Header endereco={endereco.rua} onClick={() => setShowModal(true)} />
-      {shoppingsProximo.length === 0 ? (
-        <div
-          className="w-full flex bg-secundary mt-6 items-center justify-center"
-          style={{ height: "500px" }}
-        >
-          <div className="flex flex-col items-center">
-            <h1 className="font-bold text-white text-5xl">
-              Bem vindo, {nomeUsuario}!
-            </h1>
-            <form onSubmit={handleSubmit(buscar)}>
-              <div className="flex mt-6">
-                <input
-                  {...register("local")}
-                  className="w-72 p-4 outline-none"
-                  type="text"
-                  placeholder="Onde deseja receber a compra?"
-                />
-                <button
-                  type="submit"
-                  className="relative flex justify-center right-10 w-10 bg-black text-white"
-                >
-                  <img className="w-8" src={searchLocal} alt="" />
-                </button>
+      {loading && <div><Loading /></div>}
+      {!loading && (
+        <>
+          <Header endereco={endereco.rua} onClick={() => setShowModal(true)} />
+          {shoppingsProximo.length === 0 ? (
+            <div
+              className="w-full flex bg-secundary mt-6 items-center justify-center"
+              style={{ height: "500px" }}
+            >
+              <div className="flex flex-col items-center">
+                <h1 className="font-bold text-white text-5xl">
+                  Bem vindo, {nomeUsuario}!
+                </h1>
+                <form onSubmit={handleSubmit(buscar)}>
+                  <div className="flex mt-6">
+                    <input
+                      {...register("local")}
+                      className="w-72 p-4 outline-none"
+                      type="text"
+                      placeholder="Onde deseja receber a compra?"
+                    />
+                    <button
+                      type="submit"
+                      className="relative flex justify-center items-center right-10 w-10 bg-black text-white"
+                    >
+                      <img className="w-8" src={searchLocal} alt="" />
+                    </button>
+                  </div>
+                </form>
               </div>
-            </form>
+            </div>
+          ) : (
+            <div className="flex p-5 gap-3 flex-col pl-20 mt-36">
+              <h2 className="text-xl">Próximos da sua região</h2>
+              <div className="flex flex-wrap gap-5">
+                {shoppingsProximo.map((shopping) => (
+                  <Card
+                    onClick={() =>
+                      navigate(`/shopping/${shopping.id}/${shopping.nome}`)
+                    }
+                    key={shopping.id}
+                    nomeLoja={shopping.nome}
+                  />
+                ))}
+              </div>
+            </div>
+          )}
+          <div className="flex p-5 gap-3 flex-col pl-20 mt-36">
+            <h2 className="text-xl">Shoppings Populares</h2>
+            <div className="flex flex-wrap gap-5">
+              {shopping.map((shopping) => (
+                <Card
+                  onClick={() =>
+                    navigate(`/shopping/${shopping.id}/${shopping.nome}`)
+                  }
+                  key={shopping.id}
+                  nomeLoja={shopping.nome}
+                />
+              ))}
+            </div>
           </div>
-        </div>
-      ) : (
-        <div className="flex p-5 gap-3 flex-col pl-20 mt-36">
-          <h2 className="text-xl">Próximos da sua região</h2>
-          <div className="flex flex-wrap gap-5">
-            {shoppingsProximo.map((shopping) => (
-              <Card
-                onClick={() =>
-                  navigate(`/loja/${shopping.id}/${shopping.nome}`)
-                }
-                key={shopping.id}
-                nomeLoja={shopping.nome}
-              />
-            ))}
+          <div className="flex p-5 gap-3 flex-col pl-20 mt-36">
+            <h2 className="text-xl">Lojas Populares</h2>
+            <div className="flex flex-wrap gap-5">
+              {loja.map((loja) => (
+                <Card
+                  onClick={() => navigate(`/loja/${loja.id}/${loja.nome}`)}
+                  key={loja.id}
+                  nomeLoja={loja.nome}
+                />
+              ))}
+            </div>
           </div>
-        </div>
+          <Footer />
+        </>
       )}
-      <div className="flex p-5 gap-3 flex-col pl-20 mt-36">
-        <h2 className="text-xl">Shoppings Populares</h2>
-        <div className="flex flex-wrap gap-5">
-          {shopping.map((shopping) => (
-            <Card
-              onClick={() =>
-                navigate(`/shopping/${shopping.id}/${shopping.nome}`)
-              }
-              key={shopping.id}
-              nomeLoja={shopping.nome}
-            />
-          ))}
-        </div>
-      </div>
-      <div className="flex p-5 gap-3 flex-col pl-20 mt-36">
-        <h2 className="text-xl">Lojas Populares</h2>
-        <div className="flex flex-wrap gap-5">
-          {loja.map((loja) => (
-            <Card
-              onClick={() => navigate(`/loja/${loja.id}/${loja.nome}`)}
-              key={loja.id}
-              nomeLoja={loja.nome}
-            />
-          ))}
-        </div>
-      </div>
-      <Footer />
+
     </>
   );
 }

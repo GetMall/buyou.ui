@@ -5,6 +5,7 @@ import local from "../../../assets/plataforma/icons/icon-local.svg";
 import arrow from "../../../assets/plataforma/icons/icon-arrow.svg";
 import config from "../../../assets/plataforma/icons/icon-config.svg";
 import cartAddProduto from "../../../assets/plataforma/icons/icon-cart-add.svg";
+import buyuLogoAmarelo from "../../../assets/plataforma/logos/logotipo-amarelo.svg";
 import InputPesquisa from "./InputPesquisa";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -43,12 +44,12 @@ function Header({ onClick, endereco }) {
 
   return (
     <header className="bg-secundary z-50 text-white shadow-md w-full fixed top-0 p-4">
-      <div className="container mx-auto flex">
+      <div className="container mx-auto flex items-center">
         <div
           onClick={() => navigate("/inicio")}
           className="text-2xl uppercase cursor-pointer font-bold"
         >
-          GetShop
+         <img className="w-32" src={buyuLogoAmarelo} alt="" />
         </div>
         <div className="flex items-center mx-auto gap-5">
           <div className="flex gap-1">

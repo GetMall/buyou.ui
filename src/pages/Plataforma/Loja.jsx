@@ -22,7 +22,6 @@ function Loja() {
     api
       .get(`/produtos/loja/${idLoja}`)
       .then((response) => {
-        console.log(response.data);
         setProduto(response.data);
       })
       .catch((error) => {
@@ -48,7 +47,7 @@ function Loja() {
 
   const adicionarAoCarrinho = (produto) => {
     toast.success("Produto adicionado ao carrinho!", {
-      position: "bottom-right",
+      position: "top-right",
       autoClose: true,
       closeButton: true,
     });
@@ -93,7 +92,7 @@ function Loja() {
                     <CardProduto
                       onClick={() => adicionarAoCarrinho(produto)}
                       key={produto.id}
-                      imgProduto={`http://localhost:8080/produtos/arquivo/${produto.nomeArquivoSalvo}`}
+                      imgProduto={`http://localhost:8080/midias/imagens/${produto.imagens[0].nomeArquivoSalvo}`}
                       preco={produto.valorUnitario}
                       descricao={produto.descricao}
                     />
@@ -116,7 +115,7 @@ function Loja() {
                     <CardProduto
                       onClick={() => adicionarAoCarrinho(produto)}
                       key={produto.id}
-                      imgProduto={`http://localhost:8080/produtos/arquivo/${produto.nomeArquivoSalvo}`}
+                      imgProduto={`http://localhost:8080/midias/imagens/${produto.imagens[0].nomeArquivoSalvo}`}
                       preco={produto.valorUnitario}
                       descricao={produto.descricao}
                     />
@@ -139,7 +138,7 @@ function Loja() {
                     <CardProduto
                       onClick={() => adicionarAoCarrinho(produto)}
                       key={produto.id}
-                      imgProduto={`http://localhost:8080/produtos/arquivo/${produto.nomeArquivoSalvo}`}
+                      imgProduto={`http://localhost:8080/midias/imagens/${produto.imagens[0].nomeArquivoSalvo}`}
                       preco={produto.valorUnitario}
                       descricao={produto.descricao}
                     />
@@ -162,7 +161,7 @@ function Loja() {
                     <CardProduto
                       onClick={() => adicionarAoCarrinho(produto)}
                       key={produto.id}
-                      imgProduto={`http://localhost:8080/produtos/arquivo/${produto.nomeArquivoSalvo}`}
+                      imgProduto={`http://localhost:8080/midias/imagens/${produto.imagens[0].nomeArquivoSalvo}`}
                       preco={produto.valorUnitario}
                       descricao={produto.descricao}
                     />
@@ -185,7 +184,7 @@ function Loja() {
                     <CardProduto
                       onClick={() => adicionarAoCarrinho(produto)}
                       key={produto.id}
-                      imgProduto={`http://localhost:8080/produtos/arquivo/${produto.nomeArquivoSalvo}`}
+                      imgProduto={`http://localhost:8080/midias/imagens/${produto.imagens[0].nomeArquivoSalvo}`}
                       preco={produto.valorUnitario}
                       descricao={produto.descricao}
                     />

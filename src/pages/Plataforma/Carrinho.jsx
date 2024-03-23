@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import Header from "./components/Header";
+import HeaderLogo from "./components/HeaderLogo";
 import CardProdutoCart from "./components/loja/CardProdutoCart";
 import CarrinhoVazio from "../../assets/plataforma/Loja/carrinhoVazio.svg";
 import { useState } from "react";
@@ -30,7 +30,7 @@ function Carrinho() {
   const removerDoCarrinho = (itemId) => {
     const novoCarrinho = carrinhoItens.filter((item) => item.id !== itemId);
     setCarrinhoItens(novoCarrinho);
-    sessionStorage.setItem("carrinho", JSON.stringify(novoCarrinho));
+    sessionStorage.setItem("carrinho", JSON.stringify(novoCarrinho));    
     toast.success("Produto removido com sucesso!", {
       position: "bottom-right",
       autoClose: true,
@@ -43,6 +43,7 @@ function Carrinho() {
       idProduto: item.id,
       codProduto: item.codigo,
       nomeProduto: item.nome,
+      valorUnitario: item.valorUnitario,
       quantidade: 1,
     }));
 
@@ -52,18 +53,10 @@ function Carrinho() {
       valorTotal: total + 7.97,
       status: "PENDENTE",
       dataPedido: new Date().toISOString().split("T")[0],
-      formaPagamento: "BOLETO",
     };
 
-    api
-      .post("/pedidos", dadosParaEnviar)
-      .then((response) => {
-        console.log(response.data);
-        removerTodos();
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    sessionStorage.setItem("dadosParaEnviar", JSON.stringify(dadosParaEnviar));
+    navigate("/compra")
   };
 
   const removerTodos = () => {
@@ -82,7 +75,7 @@ function Carrinho() {
 
   return (
     <>
-      <Header />
+      <HeaderLogo />
       <ToastContainer />
       <div className="mt-40 pl-20">
         {carrinhoItens.length === 0 ? (
@@ -107,13 +100,13 @@ function Carrinho() {
         ) : (
           <>
             <h2 className="text-xl mb-2 font-bold">Seu Carrinho</h2>
-            <button
-              onClick={removerTodos}
-              className="bg-red-600 flex relative justify-end text-white font-bold text-xs p-2"
-              style={{ marginLeft: "760px" }}
-            >
-              Remover todos
-            </button>
+            <div className="flex justify-end w-[40%]">
+              <button
+                onClick={removerTodos}
+                className="bg-red-600 flex text-white font-bold text-xs p-2"            >
+                Remover todos
+              </button>
+            </div>
             <div className="flex">
               <div className="overflow-y-auto" style={{ maxHeight: "800px" }}>
                 <div
@@ -124,7 +117,7 @@ function Carrinho() {
                     <div key={item.id}>
                       <CardProdutoCart
                         onClick={() => removerDoCarrinho(item.id)}
-                        imgProduto={`http://localhost:8080/produtos/arquivo/${item.nomeArquivoSalvo}`}
+                        imgProduto={`http://localhost:8080/midias/imagens/${item.imagens[0].nomeArquivoSalvo}`}
                         tamanho={item.tamanho}
                         cor={item.cor}
                         preco={item.valorUnitario}
@@ -134,7 +127,7 @@ function Carrinho() {
                   ))}
                 </div>
               </div>
-              <div className="flex flex-col ml-10 h-56 w-96 mt-4 p-4 shadow-md bg-white ">
+              <div className="flex flex-col ml-10 h-56 w-[50%] mt-4 p-4 shadow-md bg-white ">
                 <h1 className="text-lg font-bold justify-center flex">
                   Resumo da Compra
                 </h1>
@@ -153,9 +146,9 @@ function Carrinho() {
                 <div className="flex justify-center mt-5">
                   <button
                     onClick={finalizarCompra}
-                    className="bg-btn_orange text-white w-full  font-bold text-lg p-2"
+                    className="bg-btn_orange text-white w-full rounded-sm  font-bold text-lg p-2"
                   >
-                    Finalizar Compra
+                  Escolher forma de pagamento
                   </button>
                 </div>
               </div>

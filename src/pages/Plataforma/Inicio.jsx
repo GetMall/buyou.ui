@@ -11,7 +11,6 @@ import Modal from "../../components/Modal";
 import imgLocalModal from "../../assets/plataforma/cuate.svg";
 import InputPesquisa from "./components/InputPesquisa";
 import MapComponent from "../../components/MapComponent";
-import Loading from "../../components/loading";
 
 function Inicio() {
   const [shoppingsProximo, setShoppingsProximo] = useState([]);
@@ -204,7 +203,7 @@ function Inicio() {
           </Modal>
         </>
       )}
-      {loading && <div><Loading /></div>}
+      {loading && <div>carregando</div>}
       {!loading && (
         <>
           <Header endereco={endereco.rua} onClick={() => setShowModal(true)} />

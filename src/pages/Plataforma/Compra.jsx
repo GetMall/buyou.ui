@@ -56,13 +56,18 @@ function Compra() {
     };
 
     const efetuarPagamento = (data) => {
+        const requestData = {
+            cpf: data.cpf,
+            nome: data.nomeCompleto,
+            valor: dadosParaEnviar.valorTotal.toString(),
+        };
+    
         api
-            .post("/transacao/pix", null, {
-                params: {
-                    cpf: data.cpf,
-                    nome: data.nomeCompleto,
-                    valor: dadosParaEnviar.valorTotal.toString(),
-                },
+            .post("/transacao/pix", requestData, {
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json",
+                }
             })
             .then((res) => {
                 finalizarPedido();
@@ -166,8 +171,8 @@ function Compra() {
                                             <button
                                                 disabled={isDisabled}
                                                 className={`w-full h-10 rounded-sm ${isDisabled
-                                                        ? "bg-slate-200"
-                                                        : "bg-btn_orange text-white"
+                                                    ? "bg-slate-200"
+                                                    : "bg-btn_orange text-white"
                                                     }`}
                                                 type="submit"
                                             >

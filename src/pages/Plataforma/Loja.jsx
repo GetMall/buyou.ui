@@ -9,7 +9,7 @@ import CardProduto from "./components/loja/CardProduto";
 import api from "../../services/api";
 import { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
-import Loading from "../../components/loading";
+import Loading from "../../components/Loading";
 import "react-toastify/dist/ReactToastify.css";
 
 function Loja() {

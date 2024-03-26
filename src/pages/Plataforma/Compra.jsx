@@ -18,6 +18,7 @@ function Compra() {
     } = useForm();
     const [isDisabled, setIsDisabled] = useState(true);
     const [formValues, setFormValues] = useState({ cpf: "", nomeCompleto: "" });
+    const [pix, setPix] = useState('');
     const endereco = JSON.parse(sessionStorage.getItem("endereco"));
 
     const idUsuario = sessionStorage.getItem("idUsuario");
@@ -56,16 +57,22 @@ function Compra() {
     };
 
     const efetuarPagamento = (data) => {
+        const requestData = {
+            cpf: data.cpf,
+            nome: data.nomeCompleto,
+            valor: dadosParaEnviar.valorTotal.toString(),
+        };
         api
-            .post("/transacao/pix", null, {
-                params: {
-                    cpf: data.cpf,
-                    nome: data.nomeCompleto,
-                    valor: dadosParaEnviar.valorTotal.toString(),
-                },
+            .post("/transacao/pix", requestData, {
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json",
+                }
             })
             .then((res) => {
                 finalizarPedido();
+                setPix(res.data.pixCopiaECola);
+                console.log(pix)
                 console.log(res);
             })
             .catch((err) => {
@@ -156,7 +163,7 @@ function Compra() {
                                             <label htmlFor="chavePix">Valor Total</label>
                                             <input
                                                 disabled={true}
-                                                defaultValue={`R$ ${dadosParaEnviar.valorTotal}`}
+                                                defaultValue={`R$ ${dadosParaEnviar.valorTotal?.toFixed(2)}`}
                                                 id="chavePix"
                                                 className="bg-slate-200 border-2 outline-none p-2"
                                                 type="text"
@@ -166,13 +173,23 @@ function Compra() {
                                             <button
                                                 disabled={isDisabled}
                                                 className={`w-full h-10 rounded-sm ${isDisabled
-                                                        ? "bg-slate-200"
-                                                        : "bg-btn_orange text-white"
+                                                    ? "bg-slate-200"
+                                                    : "bg-btn_orange text-white"
                                                     }`}
                                                 type="submit"
                                             >
                                                 Solicitar Pedido
                                             </button>
+                                        </div>
+                                        <div className="flex flex-col gap-2 mt-2">
+                                            <label htmlFor="chavePix">Chave Pix</label>
+                                            <input
+                                                disabled={true}
+                                                defaultValue={pix}
+                                                id="chavePix"
+                                                className="bg-slate-200 border-2 outline-none p-2"
+                                                type="text"
+                                            />
                                         </div>
                                     </form>
                                 </>

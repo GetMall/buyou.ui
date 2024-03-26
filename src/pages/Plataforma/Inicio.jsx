@@ -11,6 +11,8 @@ import Modal from "../../components/Modal";
 import imgLocalModal from "../../assets/plataforma/cuate.svg";
 import InputPesquisa from "./components/InputPesquisa";
 import MapComponent from "../../components/MapComponent";
+import Loading from "../../components/Loading";
+
 
 function Inicio() {
   const [shoppingsProximo, setShoppingsProximo] = useState([]);

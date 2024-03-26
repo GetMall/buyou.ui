@@ -18,6 +18,7 @@ function Compra() {
     } = useForm();
     const [isDisabled, setIsDisabled] = useState(true);
     const [formValues, setFormValues] = useState({ cpf: "", nomeCompleto: "" });
+    const [pix, setPix] = useState('');
     const endereco = JSON.parse(sessionStorage.getItem("endereco"));
 
     const idUsuario = sessionStorage.getItem("idUsuario");
@@ -61,7 +62,6 @@ function Compra() {
             nome: data.nomeCompleto,
             valor: dadosParaEnviar.valorTotal.toString(),
         };
-    
         api
             .post("/transacao/pix", requestData, {
                 headers: {
@@ -71,6 +71,8 @@ function Compra() {
             })
             .then((res) => {
                 finalizarPedido();
+                setPix(res.data.pixCopiaECola);
+                console.log(pix)
                 console.log(res);
             })
             .catch((err) => {
@@ -178,6 +180,16 @@ function Compra() {
                                             >
                                                 Solicitar Pedido
                                             </button>
+                                        </div>
+                                        <div className="flex flex-col gap-2 mt-2">
+                                            <label htmlFor="chavePix">Chave Pix</label>
+                                            <input
+                                                disabled={true}
+                                                defaultValue={pix}
+                                                id="chavePix"
+                                                className="bg-slate-200 border-2 outline-none p-2"
+                                                type="text"
+                                            />
                                         </div>
                                     </form>
                                 </>

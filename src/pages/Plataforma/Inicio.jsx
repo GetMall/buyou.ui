@@ -13,6 +13,7 @@ import InputPesquisa from "./components/InputPesquisa";
 import MapComponent from "../../components/MapComponent";
 import Loading from "../../components/Loading";
 
+
 function Inicio() {
   const [shoppingsProximo, setShoppingsProximo] = useState([]);
   const [modalShoppingsProximo, setModalShoppingsProximo] = useState([]);
@@ -204,7 +205,7 @@ function Inicio() {
           </Modal>
         </>
       )}
-      {loading && <div><Loading /></div>}
+      {loading && <div>carregando</div>}
       {!loading && (
         <>
           <Header endereco={endereco.rua} onClick={() => setShowModal(true)} />

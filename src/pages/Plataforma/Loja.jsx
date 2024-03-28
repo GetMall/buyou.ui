@@ -19,7 +19,24 @@ function Loja() {
   const [produto, setProduto] = useState([]);
   const [categoriaSelecionada, setCategoriaSelecionada] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [loja, setLoja] = useState([]);
 
+
+
+  const getInfoLoja = () => {
+    return new Promise((resolve, reject) => {
+      api
+        .get(`/lojas/${idLoja}`)
+        .then((response) => {
+          setLoja(response.data);
+          resolve();
+        })
+        .catch((error) => {
+          console.log(error);
+          reject(error);
+        });
+    });
+  };
 
   const getProduto = () => {
     return new Promise((resolve, reject) => {
@@ -67,7 +84,7 @@ function Loja() {
   };
 
   useEffect(() => {
-    Promise.all([getProduto()])
+    Promise.all([getProduto(), getInfoLoja()])
       .then(() => {
         setInterval(() => {
           setLoading(false);
@@ -90,7 +107,7 @@ function Loja() {
             <Categoria onCategoriaSelecionada={getProdutoCategoria} />
           </div>
           <div className="flex w-full mt-3">
-            <Banner nome={nomeLoja} />
+            <Banner nome={nomeLoja} logoLoja={`http://50.17.33.63:8080/midias/imagens/${loja.imagens[0]?.nomeArquivoSalvo}`} />
           </div>
           <div className="pl-36">
             <div className="flex gap-5">

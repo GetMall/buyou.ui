@@ -3,7 +3,7 @@ import axios from "axios";
 const ip = {
   local: "localhost",
   debian: "192.168.0.195",
-  ec2: "50.17.33.63"
+  ec2: "3.91.11.40"
 }
 
 const api = axios.create({

@@ -19,7 +19,24 @@ function Loja() {
   const [produto, setProduto] = useState([]);
   const [categoriaSelecionada, setCategoriaSelecionada] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [loja, setLoja] = useState([]);
 
+
+
+  const getInfoLoja = () => {
+    return new Promise((resolve, reject) => {
+      api
+        .get(`/lojas/${idLoja}`)
+        .then((response) => {
+          setLoja(response.data);
+          resolve();
+        })
+        .catch((error) => {
+          console.log(error);
+          reject(error);
+        });
+    });
+  };
 
   const getProduto = () => {
     return new Promise((resolve, reject) => {
@@ -67,7 +84,7 @@ function Loja() {
   };
 
   useEffect(() => {
-    Promise.all([getProduto()])
+    Promise.all([getProduto(), getInfoLoja()])
       .then(() => {
         setInterval(() => {
           setLoading(false);
@@ -90,7 +107,7 @@ function Loja() {
             <Categoria onCategoriaSelecionada={getProdutoCategoria} />
           </div>
           <div className="flex w-full mt-3">
-            <Banner nome={nomeLoja} />
+            <Banner nome={nomeLoja} logoLoja={`http://3.91.11.40:8080/midias/imagens/${loja.imagens[0]?.nomeArquivoSalvo}`} />
           </div>
           <div className="pl-36">
             <div className="flex gap-5">
@@ -110,7 +127,7 @@ function Loja() {
                         <CardProduto
                           onClick={() => adicionarAoCarrinho(produto)}
                           key={produto.id}
-                          imgProduto={`http://localhost:8080/midias/imagens/${produto.imagens[0].nomeArquivoSalvo}`}
+                          imgProduto={`http://3.91.11.40:8080/midias/imagens/${produto.imagens[0].nomeArquivoSalvo}`}
                           preco={produto.valorUnitario}
                           descricao={produto.descricao}
                         />
@@ -133,7 +150,7 @@ function Loja() {
                         <CardProduto
                           onClick={() => adicionarAoCarrinho(produto)}
                           key={produto.id}
-                          imgProduto={`http://localhost:8080/midias/imagens/${produto.imagens[0].nomeArquivoSalvo}`}
+                          imgProduto={`http://3.91.11.40:8080/midias/imagens/${produto.imagens[0].nomeArquivoSalvo}`}
                           preco={produto.valorUnitario}
                           descricao={produto.descricao}
                         />
@@ -156,7 +173,7 @@ function Loja() {
                         <CardProduto
                           onClick={() => adicionarAoCarrinho(produto)}
                           key={produto.id}
-                          imgProduto={`http://localhost:8080/midias/imagens/${produto.imagens[0].nomeArquivoSalvo}`}
+                          imgProduto={`http://3.91.11.40:8080/midias/imagens/${produto.imagens[0].nomeArquivoSalvo}`}
                           preco={produto.valorUnitario}
                           descricao={produto.descricao}
                         />
@@ -179,7 +196,7 @@ function Loja() {
                         <CardProduto
                           onClick={() => adicionarAoCarrinho(produto)}
                           key={produto.id}
-                          imgProduto={`http://localhost:8080/midias/imagens/${produto.imagens[0].nomeArquivoSalvo}`}
+                          imgProduto={`http://3.91.11.40:8080/midias/imagens/${produto.imagens[0].nomeArquivoSalvo}`}
                           preco={produto.valorUnitario}
                           descricao={produto.descricao}
                         />
@@ -202,7 +219,7 @@ function Loja() {
                         <CardProduto
                           onClick={() => adicionarAoCarrinho(produto)}
                           key={produto.id}
-                          imgProduto={`http://localhost:8080/midias/imagens/${produto.imagens[0].nomeArquivoSalvo}`}
+                          imgProduto={`http://3.91.11.40:8080/midias/imagens/${produto.imagens[0].nomeArquivoSalvo}`}
                           preco={produto.valorUnitario}
                           descricao={produto.descricao}
                         />

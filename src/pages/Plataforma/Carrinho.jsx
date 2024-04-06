@@ -117,7 +117,7 @@ function Carrinho() {
                     <div key={item.id}>
                       <CardProdutoCart
                         onClick={() => removerDoCarrinho(item.id)}
-                        imgProduto={`http://localhost:8080/midias/imagens/${item.imagens[0].nomeArquivoSalvo}`}
+                        imgProduto={`http://3.91.11.40:8080/midias/imagens/${item.imagens[0].nomeArquivoSalvo}`}
                         tamanho={item.tamanho}
                         cor={item.cor}
                         preco={item.valorUnitario}

@@ -54,6 +54,7 @@ function Inicio() {
         .get("/lojas")
         .then((response) => {
           setLoja(response.data);
+          console.log(response.data);
           resolve();
         })
         .catch((error) => {
@@ -257,7 +258,7 @@ function Inicio() {
                     navigate(`/shopping/${shopping.id}/${shopping.nome}`)
                   }
                   key={shopping.id}
-                  nomeLoja={shopping.nome}
+                  nomeLoja={shopping.nome}                  
                 />
               ))}
             </div>
@@ -270,6 +271,7 @@ function Inicio() {
                   onClick={() => navigate(`/loja/${loja.id}/${loja.nome}`)}
                   key={loja.id}
                   nomeLoja={loja.nome}
+                  imgLoja={`http://3.91.11.40:8080/midias/imagens/${loja.imagens[0]?.nomeArquivoSalvo}`}
                 />
               ))}
             </div>

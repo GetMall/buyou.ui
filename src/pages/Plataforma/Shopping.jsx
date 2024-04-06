@@ -44,7 +44,9 @@ function Shopping() {
             <div className='flex p-5 gap-3 flex-col pl-20'>
                 <div className="flex flex-wrap gap-5">
                     {loja.map((loja) => (
-                        <Card onClick={() => navigate(`/loja/${loja.id}/${loja.nome}`)} key={loja.id} nomeLoja={loja.nome} />
+                        <Card onClick={() => navigate(`/loja/${loja.id}/${loja.nome}`)} key={loja.id} nomeLoja={loja.nome} 
+                        imgLoja={`http://3.91.11.40:8080/midias/imagens/${loja.imagens[0]?.nomeArquivoSalvo}`}
+                        />
                     ))}
                 </div>
             </div>

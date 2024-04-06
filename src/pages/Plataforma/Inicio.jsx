@@ -13,6 +13,7 @@ import InputPesquisa from "./components/InputPesquisa";
 import MapComponent from "../../components/MapComponent";
 import Loading from "../../components/Loading";
 
+
 function Inicio() {
   const [shoppingsProximo, setShoppingsProximo] = useState([]);
   const [modalShoppingsProximo, setModalShoppingsProximo] = useState([]);
@@ -65,7 +66,6 @@ function Inicio() {
 
 
   const getShoppingsProximo = () => {
-    return new Promise((resolve, reject) => {
       api
         .get(`/shopping/proximos?id=${idUser}`)
         .then((res) => {
@@ -76,7 +76,6 @@ function Inicio() {
         .catch((err) => {
           reject(err);
         });
-    });
   };
 
 
@@ -124,22 +123,20 @@ function Inicio() {
   };
 
   useEffect(() => {
-    Promise.all([getShoppingsProximo(), getShopping(), getLoja()])
+    Promise.all([getShopping(), getLoja()])
       .then(() => {
         setLoading(false);
       })
       .catch((error) => {
         console.error('Error:', error);
-        setLoading(false);
+        setLoading(true);
       });
 
     const savedShoppingsProximo = sessionStorage.getItem('shoppingsProximo');
     const savedEndereco = sessionStorage.getItem('endereco');
     if (savedShoppingsProximo) {
       setShoppingsProximo(JSON.parse(savedShoppingsProximo));
-    } else {
-      getShoppingsProximo();
-    }
+    } 
     if (savedEndereco) {
       setEndereco(JSON.parse(savedEndereco));
     }
@@ -205,7 +202,7 @@ function Inicio() {
           </Modal>
         </>
       )}
-      {loading && <div><Loading /></div>}
+      {loading && <Loading />}
       {!loading && (
         <>
           <Header endereco={endereco.rua} onClick={() => setShowModal(true)} />

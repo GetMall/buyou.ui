@@ -1,31 +1,16 @@
-# Use a imagem oficial do Node como base
-FROM node:latest
+FROM node
 
-# Defina o diretório de trabalho dentro do contêiner
-WORKDIR /app
+WORKDIR /tmp/react
 
-# Copie o package.json e o package-lock.json para o diretório de trabalho
-COPY package.json package-lock.json ./
-
-# Instale as dependências do projeto
-RUN npm install
-
-# Copie todo o código fonte para o diretório de trabalho
 COPY . .
 
-# Exponha a porta 3000 para que possa ser acessível fora do contêiner
-EXPOSE 3000
+RUN npm i
 
-# Comando para iniciar o aplicativo React
-CMD ["npm", "run", "dev"]
+RUN npm run build
 
-# Use a imagem oficial do Nginx como base
-FROM nginx:latest
+RUN mkdir -p /var/www/html
+RUN mv dist/* /var/www/html
 
-# Remova o arquivo de configuração padrão do Nginx
-RUN rm /etc/nginx/conf.d/default.conf
+WORKDIR /
 
-# Copie o arquivo de configuração personalizado para o diretório de configuração do Nginx
-COPY nginx.conf /etc/nginx/conf.d
-
-
+RUN rm -rf /tmp/react

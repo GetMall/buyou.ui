@@ -12,13 +12,13 @@ function Header() {
             <img className="w-40" src={logo}></img>
           </div>
           <nav className="flex gap-10 items-center space-x-4">
-            <p className="hover:text-white font-bold">Início</p>
-            <p className="hover:text-white font-bold">Sobre nós</p>
-            <p className="hover:text-white font-bold">Dúvidas</p>
-            <p className="hover:text-white font-bold">Trabalhe Conosco</p>
+            <p className="hover:text-white tracking-widest">Início</p>
+            <p className="hover:text-white tracking-widest">Sobre nós</p>
+            <p className="hover:text-white tracking-widest">Dúvidas</p>
+            <p className="hover:text-white tracking-widest">Trabalhe Conosco</p>
             <button
               onClick={() => navigate("/acesso")}
-              className="bg-white text-secundary p-3 rounded-md"
+              className="bg-[#f0b70f] tracking-widest text-white  p-2 rounded-md"
             >
               Pedir na BuyU!
             </button>

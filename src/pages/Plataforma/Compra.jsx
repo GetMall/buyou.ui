@@ -19,6 +19,8 @@ function Compra() {
     const [isDisabled, setIsDisabled] = useState(true);
     const [formValues, setFormValues] = useState({ cpf: "", nomeCompleto: "" });
     const [pix, setPix] = useState('');
+    const [qrCode, setQrCode] = useState('');
+    const [isAguardandoPagamento, setIsAguardandoPagamento] = useState(false);
     const endereco = JSON.parse(sessionStorage.getItem("endereco"));
 
     const idUsuario = sessionStorage.getItem("idUsuario");
@@ -57,11 +59,14 @@ function Compra() {
     };
 
     const efetuarPagamento = (data) => {
+        const valorFormatado = dadosParaEnviar.valorTotal.toFixed(2);
+
         const requestData = {
             cpf: data.cpf,
             nome: data.nomeCompleto,
-            valor: dadosParaEnviar.valorTotal.toString(),
+            valor: valorFormatado.toString(),
         };
+        console.log(requestData)
         api
             .post("/transacao/pix", requestData, {
                 headers: {
@@ -72,7 +77,9 @@ function Compra() {
             .then((res) => {
                 finalizarPedido();
                 setPix(res.data.pixCopiaECola);
-                console.log(pix)
+                setQrCode(res.data.imagemQrCode);
+                setIsDisabled(true);
+                setIsAguardandoPagamento(true);
                 console.log(res);
             })
             .catch((err) => {
@@ -178,10 +185,10 @@ function Compra() {
                                                     }`}
                                                 type="submit"
                                             >
-                                                Solicitar Pedido
+                                               {isAguardandoPagamento ? "Aguardando pagamento" : "Solicitar Pedido"}
                                             </button>
                                         </div>
-                                        <div className="flex flex-col gap-2 mt-2">
+                                        <div className="flex flex-col w-[30vw] gap-2 mt-2">
                                             <label htmlFor="chavePix">Chave Pix</label>
                                             <input
                                                 disabled={true}
@@ -190,6 +197,7 @@ function Compra() {
                                                 className="bg-slate-200 border-2 outline-none p-2"
                                                 type="text"
                                             />
+                                            <img className="flex w-[20vw] m-auto" src={qrCode} alt="" />
                                         </div>
                                     </form>
                                 </>

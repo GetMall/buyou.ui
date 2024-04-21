@@ -1,7 +1,7 @@
 function Footer() {
     return (
         <>
-            <footer className="footer bg-primary">
+            <footer className="footer bg-secundary">
                 <div className="container mx-auto px-6">
                     <div className="flex">
                         <div className="flex p-16 flex-col">

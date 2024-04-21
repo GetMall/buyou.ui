@@ -259,7 +259,7 @@ function Inicio() {
                   }
                   key={shopping.id}
                   nomeLoja={shopping.nome}   
-                  imgLoja={`http://localhost:8080/midias/imagens/${shopping.imagens?.nomeArquivoSalvo}`}
+                  imgLoja={`http://localhost:8080/api/midias/imagens/${shopping.imagens?.nomeArquivoSalvo}`}
                 />
               ))}
             </div>
@@ -272,7 +272,7 @@ function Inicio() {
                   onClick={() => navigate(`/loja/${loja.id}/${loja.nome}`)}
                   key={loja.id}
                   nomeLoja={loja.nome}
-                  imgLoja={`http://localhost:8080/midias/imagens/${loja.imagens[0]?.nomeArquivoSalvo}`}
+                  imgLoja={`http://localhost:8080/api/midias/imagens/${loja.imagens[0]?.nomeArquivoSalvo}`}
                 />
               ))}
             </div>

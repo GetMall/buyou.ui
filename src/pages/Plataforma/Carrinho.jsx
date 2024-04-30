@@ -127,7 +127,7 @@ function Carrinho() {
                   ))}
                 </div>
               </div>
-              <div className="flex flex-col ml-10 h-56 w-[50%] mt-4 p-4 shadow-md bg-white ">
+              <div className="flex flex-col ml-10 h-56 w-[50%] mt-4 p-4 border shadow-sm bg-white ">
                 <h1 className="text-lg font-bold justify-center flex">
                   Resumo da Compra
                 </h1>

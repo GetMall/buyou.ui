@@ -9,6 +9,7 @@ import CardProduto from "./components/loja/CardProduto";
 import api from "../../services/api";
 import { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
+import { useForm } from "react-hook-form";
 import Loading from "../../components/Loading";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -20,8 +21,7 @@ function Loja() {
   const [categoriaSelecionada, setCategoriaSelecionada] = useState(null);
   const [loading, setLoading] = useState(true);
   const [loja, setLoja] = useState([]);
-
-
+  const { register, handleSubmit } = useForm();
 
   const getInfoLoja = () => {
     return new Promise((resolve, reject) => {
@@ -69,7 +69,7 @@ function Loja() {
           console.log(err);
           reject(err);
         });
-    })
+    });
   };
 
   const adicionarAoCarrinho = (produto) => {
@@ -83,6 +83,14 @@ function Loja() {
     sessionStorage.setItem("carrinho", JSON.stringify(carrinho));
   };
 
+  const pesquisarItem = (data) => {
+    const itemPesquisado = produto.filter((item) =>
+      item.nome.toLowerCase().includes(data.item.toLowerCase())
+    );
+    setProduto(itemPesquisado);
+  };
+
+
   useEffect(() => {
     Promise.all([getProduto(), getInfoLoja()])
       .then(() => {
@@ -92,13 +100,16 @@ function Loja() {
       })
       .catch((err) => {
         setLoading(true);
-      })
-      ;
+      });
   }, []);
 
   return (
     <>
-      {loading && <div><Loading /></div>}
+      {loading && (
+        <div>
+          <Loading />
+        </div>
+      )}
       {!loading && (
         <>
           <Header />
@@ -107,11 +118,22 @@ function Loja() {
             <Categoria onCategoriaSelecionada={getProdutoCategoria} />
           </div>
           <div className="flex w-full mt-3">
-            <Banner nome={nomeLoja} logoLoja={`http://localhost:8080/api/midias/imagens/${loja.imagens[0]?.nomeArquivoSalvo}`} />
+            <Banner
+              nome={nomeLoja}
+              logoLoja={`http://localhost:8080/api/midias/imagens/${loja.imagens[0]?.nomeArquivoSalvo}`}
+            />
           </div>
           <div className="pl-36">
             <div className="flex gap-5">
-              <InputPesquisa width={"24rem"} placeholder={"Pesquise por item"} />
+              {/* <InputPesquisa width={"24rem"} register={register("")} placeholder={"Pesquise por item"} /> */}
+              <form onSubmit={handleSubmit(pesquisarItem)}>
+              <input
+                type="text"
+                className="w-[24rem] bg-none text-slate-800 border-none outline-none bg-slate-200 p-2"
+                placeholder="Pesquise por Item"
+                {...register("item")}
+              />
+              </form>
               <Filtro placeholder={"Filtrar por preço"} />
             </div>
             {produto.some((item) => item.categoria === "BELEZA") && (

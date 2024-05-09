@@ -120,7 +120,7 @@ function Loja() {
           <div className="flex w-full mt-3">
             <Banner
               nome={nomeLoja}
-              logoLoja={`http://52.72.53.170/api/midias/imagens/${loja.imagens[0]?.nomeArquivoSalvo}`}
+              logoLoja={`http://52.72.53.170:8080/api/midias/imagens/${loja.imagens[0]?.nomeArquivoSalvo}`}
             />
           </div>
           <div className="pl-36">
@@ -149,7 +149,7 @@ function Loja() {
                         <CardProduto
                           onClick={() => adicionarAoCarrinho(produto)}
                           key={produto.id}
-                          imgProduto={`http://52.72.53.170/api/midias/imagens/${produto.imagens[0].nomeArquivoSalvo}`}
+                          imgProduto={`http://52.72.53.170:8080/api/midias/imagens/${produto.imagens[0].nomeArquivoSalvo}`}
                           preco={produto.valorUnitario}
                           descricao={produto.descricao}
                         />
@@ -172,7 +172,7 @@ function Loja() {
                         <CardProduto
                           onClick={() => adicionarAoCarrinho(produto)}
                           key={produto.id}
-                          imgProduto={`http://52.72.53.170/api/midias/imagens/${produto.imagens[0].nomeArquivoSalvo}`}
+                          imgProduto={`http://52.72.53.170:8080/api/midias/imagens/${produto.imagens[0].nomeArquivoSalvo}`}
                           preco={produto.valorUnitario}
                           descricao={produto.descricao}
                         />
@@ -195,7 +195,7 @@ function Loja() {
                         <CardProduto
                           onClick={() => adicionarAoCarrinho(produto)}
                           key={produto.id}
-                          imgProduto={`http://52.72.53.170/api/midias/imagens/${produto.imagens[0].nomeArquivoSalvo}`}
+                          imgProduto={`http://52.72.53.170:8080/api/midias/imagens/${produto.imagens[0].nomeArquivoSalvo}`}
                           preco={produto.valorUnitario}
                           descricao={produto.descricao}
                         />
@@ -218,7 +218,7 @@ function Loja() {
                         <CardProduto
                           onClick={() => adicionarAoCarrinho(produto)}
                           key={produto.id}
-                          imgProduto={`http://52.72.53.170/api/midias/imagens/${produto.imagens[0].nomeArquivoSalvo}`}
+                          imgProduto={`http://52.72.53.170:8080/api/midias/imagens/${produto.imagens[0].nomeArquivoSalvo}`}
                           preco={produto.valorUnitario}
                           descricao={produto.descricao}
                         />
@@ -241,7 +241,7 @@ function Loja() {
                         <CardProduto
                           onClick={() => adicionarAoCarrinho(produto)}
                           key={produto.id}
-                          imgProduto={`http://52.72.53.170/api/midias/imagens/${produto.imagens[0].nomeArquivoSalvo}`}
+                          imgProduto={`http://52.72.53.170:8080/api/midias/imagens/${produto.imagens[0].nomeArquivoSalvo}`}
                           preco={produto.valorUnitario}
                           descricao={produto.descricao}
                         />

@@ -235,7 +235,7 @@ function Inicio() {
                     {...register("local")}
                     className="w-72 p-4 outline-none"
                     type="text"
-                    defaultValue={`${endereco?.rua}, ${endereco?.estado}`}
+                    defaultValue={`${endereco?.rua ? `${endereco.rua}, ${endereco.estado}` : ''}`}
                     placeholder="Onde deseja receber a compra?"
                   />
                   <button

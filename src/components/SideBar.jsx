@@ -9,7 +9,7 @@ import "./SideBar.css";
 import "react-toastify/dist/ReactToastify.css";
 
 
-function SideBar({fecharCarrinho}) {
+function SideBar({fecharCarrinho, show}) {
 
     const [carrinhoItens, setCarrinhoItens] = useState(
         JSON.parse(sessionStorage.getItem("carrinho")) || []
@@ -61,25 +61,15 @@ function SideBar({fecharCarrinho}) {
         navigate("/compra")
     };
 
-    const removerTodos = () => {
-        setCarrinhoItens([]);
-        sessionStorage.removeItem("carrinho");
-        toast.success("Todos os produtos foram removidos com sucesso!", {
-            position: "bottom-right",
-            autoClose: true,
-            closeButton: true,
-        });
-    };
-
     useEffect(() => {
         calcularTotal();
     }, [carrinhoItens]);
 
 
     return (
-        <div className="h-screen z-10 w-3/12 mt-20 fixed bg-white border">
-            <div onClick={fecharCarrinho} className="p-6">
-                <h1 className="text-2xl text-primary cursor-pointer">X</h1>
+    <div className={`h-screen z-10 w-3/12 mt-20 fixed bg-white border  ${show ? 'slide-in-right' : 'slide-out-right'}`}>
+            <div className="p-6">
+                <h1 onClick={fecharCarrinho} className="text-2xl w-2 text-primary cursor-pointer">X</h1>
             </div>
             {carrinhoItens.length === 0 ? (
                 <>

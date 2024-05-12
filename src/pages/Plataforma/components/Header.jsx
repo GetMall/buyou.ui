@@ -39,6 +39,14 @@ function Header({ onClick, endereco, fecharCarrinho }) {
   const abrirMenu = () => {
     setMenuAberto(true);
   };
+  
+  const abrirMenuCarrinho = () => {
+    setShowSideBar(true);
+  };
+
+  const fecharMenuCarrinho = () => {
+    setShowSideBar(false);
+  };
 
   const logout = () => {
     sessionStorage.removeItem("token");
@@ -100,10 +108,10 @@ function Header({ onClick, endereco, fecharCarrinho }) {
                 </div>
               )}
             </div>
-            <div className={`flex gap-5 cursor-pointer w-28 rounded-3xl justify-center p-2 ${carrinhoItens.length > 0 ? "bg-primary" : ""}`}>
+            <div onClick={showSideBar ? fecharMenuCarrinho : abrirMenuCarrinho} className={`flex gap-5 cursor-pointer w-28 rounded-3xl justify-center p-2 ${carrinhoItens.length > 0 ? "bg-primary" : ""}`}>
               {carrinhoItens.length > 0 ? (
                 <>
-                  <div onClick={() => setShowSideBar(true)} className="flex gap-2">
+                  <div  className="flex gap-2">
                     <img
                       src={cartAddProduto}
                       alt=""
@@ -117,7 +125,7 @@ function Header({ onClick, endereco, fecharCarrinho }) {
                 </>
               ) : (
                 <>
-                  <div onClick={() => setShowSideBar(true)} className="flex gap-2 cursor-pointer">
+                  <div  className="flex gap-2 cursor-pointer">
                     <img
                       src={cart}
                       alt=""
@@ -135,9 +143,11 @@ function Header({ onClick, endereco, fecharCarrinho }) {
         </div>
       </header>
       <div >
-        {showSideBar && <div className="flex justify-end">
-          <SideBar fecharCarrinho={() => setShowSideBar(false)} />
-        </div>}
+      {showSideBar && (
+          <div className="flex justify-end">
+            <SideBar fecharCarrinho={fecharMenuCarrinho} show={showSideBar} />
+          </div>
+        )}
       </div>
     </>
   );

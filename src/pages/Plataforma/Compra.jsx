@@ -93,7 +93,6 @@ function Compra() {
         setFormValues(updatedFormValues);
 
         if (
-            updatedFormValues.cpf.trim() !== "" &&
             updatedFormValues.nomeCompleto.trim() !== ""
         ) {
             setIsDisabled(false);
@@ -120,14 +119,39 @@ function Compra() {
             <div className="container mt-32 flex justify-center gap-[200px]">
                 <div className="flex">
                     <div className="flex flex-col gap-6">
-                        <div className="mb-10">
+                        <div className="mb-5">
                             <h1 className="text-2xl font-bold">Finalize seu pedido</h1>
                         </div>
+
+                        <h2 className="text-xl">Dados de Endereço</h2>
+
                         <div className="bg-white flex w-full gap-2 p-2 border-sm border">
                             <img src={imageMap} className="w-[50px]" alt="" />
                             <div>
                                 <p className="text-lg">{endereco?.rua}</p>
                                 <p>{endereco?.bairro}</p>
+                            </div>
+                        </div>
+                        <div className="flex gap-2">
+                            <div className="flex flex-col gap-2 mt-2">
+                                <label htmlFor="chavePix">Número</label>
+                                <input
+                                    name="cpf"
+                                    id="chavePix"
+                                    className="border-slate-200 border-2 outline-none p-2"
+                                    type="text"
+                                    onChange={handleInputChange}
+                                />
+                            </div>
+                            <div className="flex flex-col gap-2 mt-2">
+                                <label htmlFor="chavePix">Complemento</label>
+                                <input
+                                    name="cpf"
+                                    id="chavePix"
+                                    className="border-slate-200 border-2 outline-none p-2"
+                                    type="text"
+                                    onChange={handleInputChange}
+                                />
                             </div>
                         </div>
                         <h2 className="text-xl">Forma de Pagamento</h2>
@@ -152,7 +176,6 @@ function Compra() {
                                                 id="chavePix"
                                                 className="border-slate-200 border-2 outline-none p-2"
                                                 type="text"
-                                                onChange={handleInputChange}
                                             />
                                         </div>
                                         <div className="flex flex-col gap-2 mt-2">
@@ -185,7 +208,7 @@ function Compra() {
                                                     }`}
                                                 type="submit"
                                             >
-                                               {isAguardandoPagamento ? "Aguardando pagamento" : "Solicitar Pedido"}
+                                                {isAguardandoPagamento ? "Aguardando pagamento" : "Solicitar Pedido"}
                                             </button>
                                         </div>
                                         <div className="flex flex-col w-[30vw] gap-2 mt-2">
@@ -202,15 +225,6 @@ function Compra() {
                                     </form>
                                 </>
                             )}
-                            <div className="flex gap-2 mt-2">
-                                <input
-                                    id="cartao"
-                                    name="pagamento"
-                                    type="radio"
-                                    onChange={() => setIsPix(false)}
-                                />
-                                <label htmlFor="cartao">Cartão de Crédito</label>
-                            </div>
                         </div>
                     </div>
                 </div>

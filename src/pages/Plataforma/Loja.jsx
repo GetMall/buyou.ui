@@ -94,9 +94,7 @@ function Loja() {
   useEffect(() => {
     Promise.all([getProduto(), getInfoLoja()])
       .then(() => {
-        setInterval(() => {
           setLoading(false);
-        }, 3000);
       })
       .catch((err) => {
         setLoading(true);
@@ -149,6 +147,7 @@ function Loja() {
                         <CardProduto
                           onClick={() => adicionarAoCarrinho(produto)}
                           key={produto.id}
+                          nome={produto.nome}
                           imgProduto={`http://52.72.53.170:8080/api/midias/imagens/${produto.imagens[0].nomeArquivoSalvo}`}
                           preco={produto.valorUnitario}
                           descricao={produto.descricao}
@@ -172,6 +171,7 @@ function Loja() {
                         <CardProduto
                           onClick={() => adicionarAoCarrinho(produto)}
                           key={produto.id}
+                          nome={produto.nome}
                           imgProduto={`http://52.72.53.170:8080/api/midias/imagens/${produto.imagens[0].nomeArquivoSalvo}`}
                           preco={produto.valorUnitario}
                           descricao={produto.descricao}
@@ -195,6 +195,7 @@ function Loja() {
                         <CardProduto
                           onClick={() => adicionarAoCarrinho(produto)}
                           key={produto.id}
+                          nome={produto.nome}
                           imgProduto={`http://52.72.53.170:8080/api/midias/imagens/${produto.imagens[0].nomeArquivoSalvo}`}
                           preco={produto.valorUnitario}
                           descricao={produto.descricao}
@@ -218,6 +219,7 @@ function Loja() {
                         <CardProduto
                           onClick={() => adicionarAoCarrinho(produto)}
                           key={produto.id}
+                          nome={produto.nome}
                           imgProduto={`http://52.72.53.170:8080/api/midias/imagens/${produto.imagens[0].nomeArquivoSalvo}`}
                           preco={produto.valorUnitario}
                           descricao={produto.descricao}
@@ -241,6 +243,7 @@ function Loja() {
                         <CardProduto
                           onClick={() => adicionarAoCarrinho(produto)}
                           key={produto.id}
+                          nome={produto.nome}
                           imgProduto={`http://52.72.53.170:8080/api/midias/imagens/${produto.imagens[0].nomeArquivoSalvo}`}
                           preco={produto.valorUnitario}
                           descricao={produto.descricao}

@@ -171,7 +171,7 @@ function Acesso() {
                       {errors.emailLogin && <p className="text-red-500">{errors.emailLogin.message}</p>}
                       <input
                         {...register("senhaLogin")}
-                        className={`outline-none p-2 border-b_gray border-2 ${errors.senhaLogin ? "border-red-500" : ""}`}
+                        className={`outline-none p-2 border-b_gray border-2`}
                         type="password"
                         placeholder="Insira sua senha"
                       />

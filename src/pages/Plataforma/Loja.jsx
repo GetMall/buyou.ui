@@ -94,9 +94,7 @@ function Loja() {
   useEffect(() => {
     Promise.all([getProduto(), getInfoLoja()])
       .then(() => {
-        setInterval(() => {
           setLoading(false);
-        }, 3000);
       })
       .catch((err) => {
         setLoading(true);

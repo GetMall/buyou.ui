@@ -132,15 +132,27 @@ function Compra() {
                                 <p>{endereco?.bairro}</p>
                             </div>
                         </div>
-                        <div className="flex flex-col gap-2 mt-2">
-                            <label htmlFor="chavePix">Número</label>
-                            <input
-                                name="cpf"
-                                id="chavePix"
-                                className="border-slate-200 border-2 outline-none p-2"
-                                type="text"
-                                onChange={handleInputChange}
-                            />
+                        <div className="flex gap-2">
+                            <div className="flex flex-col gap-2 mt-2">
+                                <label htmlFor="chavePix">Número</label>
+                                <input
+                                    name="cpf"
+                                    id="chavePix"
+                                    className="border-slate-200 border-2 outline-none p-2"
+                                    type="text"
+                                    onChange={handleInputChange}
+                                />
+                            </div>
+                            <div className="flex flex-col gap-2 mt-2">
+                                <label htmlFor="chavePix">Complemento</label>
+                                <input
+                                    name="cpf"
+                                    id="chavePix"
+                                    className="border-slate-200 border-2 outline-none p-2"
+                                    type="text"
+                                    onChange={handleInputChange}
+                                />
+                            </div>
                         </div>
                         <h2 className="text-xl">Forma de Pagamento</h2>
                         <div className="flex flex-col">
@@ -212,7 +224,7 @@ function Compra() {
                                         </div>
                                     </form>
                                 </>
-                            )}                        
+                            )}
                         </div>
                     </div>
                 </div>

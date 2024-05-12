@@ -21,6 +21,10 @@ function Header({ onClick, endereco, fecharCarrinho }) {
     JSON.parse(sessionStorage.getItem("carrinho")) || []
   );
 
+  const local = sessionStorage.getItem("endereco");
+
+  const {rua} = JSON.parse(local);
+
   const calcularTotal = () => {
     const totalCalculado = carrinhoItens.reduce(
       (acc, item) => acc + item.valorUnitario,
@@ -75,7 +79,7 @@ function Header({ onClick, endereco, fecharCarrinho }) {
             <div className="flex gap-1">
               <img src={local} alt="" />
               <p className="cursor-pointer underline" onClick={onClick}>
-                {endereco ? endereco : "Digitar minha localização"}
+                {endereco || rua ? endereco || rua  : "Digitar minha localização"}
               </p>
             </div>
             <InputPesquisa

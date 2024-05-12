@@ -266,6 +266,7 @@ function Inicio() {
           )}
           <div className="flex p-5 gap-3 flex-col pl-20 mt-36">
             <h2 className="text-xl">Shoppings Populares</h2>
+
             <div className="flex flex-wrap gap-5">
               {shopping.map((shopping) => (
                 <Card

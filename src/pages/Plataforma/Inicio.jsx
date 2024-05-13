@@ -235,7 +235,7 @@ function Inicio() {
                     {...register("local")}
                     className="w-72 p-4 outline-none"
                     type="text"
-                    defaultValue={`${endereco?.rua}, ${endereco?.estado}`}
+                    defaultValue={`${endereco?.rua ? `${endereco.rua}, ${endereco.estado}` : ''}`}
                     placeholder="Onde deseja receber a compra?"
                   />
                   <button
@@ -266,6 +266,7 @@ function Inicio() {
           )}
           <div className="flex p-5 gap-3 flex-col pl-20 mt-36">
             <h2 className="text-xl">Shoppings Populares</h2>
+
             <div className="flex flex-wrap gap-5">
               {shopping.map((shopping) => (
                 <Card

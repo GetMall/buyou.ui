@@ -47,7 +47,7 @@ function Inicio() {
         });
     });
   };
-  
+
   const getLoja = () => {
     return new Promise((resolve, reject) => {
       api
@@ -66,16 +66,16 @@ function Inicio() {
 
 
   const getShoppingsProximo = () => {
-      api
-        .get(`/shopping/proximos?id=${idUser}`)
-        .then((res) => {
-          setModalShoppingsProximo(res.data);
-          sessionStorage.setItem('shoppingsProximo', JSON.stringify(res.data));
-          resolve();
-        })
-        .catch((err) => {
-          reject(err);
-        });
+    api
+      .get(`/shopping/proximos?id=${idUser}`)
+      .then((res) => {
+        setModalShoppingsProximo(res.data);
+        sessionStorage.setItem('shoppingsProximo', JSON.stringify(res.data));
+        resolve();
+      })
+      .catch((err) => {
+        reject(err);
+      });
   };
 
 
@@ -117,6 +117,21 @@ function Inicio() {
       });
   };
 
+  const getMensagemDeSaudacao = () => {
+    const horaAtual = new Date().getHours();
+    let mensagem = "";
+
+    if (horaAtual >= 6 && horaAtual < 12) {
+      mensagem = "Bom dia";
+    } else if (horaAtual >= 12 && horaAtual < 18) {
+      mensagem = "Boa tarde";
+    } else {
+      mensagem = "Boa noite";
+    }
+
+    return `${mensagem}, ${nomeUsuario}!`;
+  };
+
   const closeModal = () => {
     setShowModal(false);
     setShowMap(false);
@@ -136,7 +151,7 @@ function Inicio() {
     const savedEndereco = sessionStorage.getItem('endereco');
     if (savedShoppingsProximo) {
       setShoppingsProximo(JSON.parse(savedShoppingsProximo));
-    } 
+    }
     if (savedEndereco) {
       setEndereco(JSON.parse(savedEndereco));
     }
@@ -206,34 +221,34 @@ function Inicio() {
       {!loading && (
         <>
           <Header endereco={endereco.rua} onClick={() => setShowModal(true)} />
-          {shoppingsProximo.length === 0 ? (
-            <div
-              className="w-full flex bg-secundary mt-6 items-center justify-center"
-              style={{ height: "500px" }}
-            >
-              <div className="flex flex-col items-center">
-                <h1 className="font-bold text-white text-5xl">
-                  Bem vindo, {nomeUsuario}!
-                </h1>
-                <form onSubmit={handleSubmit(buscar)}>
-                  <div className="flex mt-6">
-                    <input
-                      {...register("local")}
-                      className="w-72 p-4 outline-none"
-                      type="text"
-                      placeholder="Onde deseja receber a compra?"
-                    />
-                    <button
-                      type="submit"
-                      className="relative flex justify-center items-center right-10 w-10 bg-black text-white"
-                    >
-                      <img className="w-8" src={searchLocal} alt="" />
-                    </button>
-                  </div>
-                </form>
-              </div>
+          <div
+            className="w-full flex bg-secundary mt-6 items-center justify-center"
+            style={{ height: "500px" }}
+          >
+            <div className="flex flex-col items-center">
+              <h1 className="font-bold text-white text-5xl">
+                {getMensagemDeSaudacao()}
+              </h1>
+              <form onSubmit={handleSubmit(buscar)}>
+                <div className="flex mt-6">
+                  <input
+                    {...register("local")}
+                    className="w-72 p-4 outline-none"
+                    type="text"
+                    defaultValue={`${endereco?.rua ? `${endereco.rua}, ${endereco.estado}` : ''}`}
+                    placeholder="Onde deseja receber a compra?"
+                  />
+                  <button
+                    type="submit"
+                    className="relative flex justify-center items-center right-10 w-10 bg-black text-white"
+                  >
+                    <img className="w-8" src={searchLocal} alt="" />
+                  </button>
+                </div>
+              </form>
             </div>
-          ) : (
+          </div>
+          {shoppingsProximo?.length > 0 && (
             <div className="flex p-5 gap-3 flex-col pl-20 mt-36">
               <h2 className="text-xl">Próximos da sua região</h2>
               <div className="flex flex-wrap gap-5">
@@ -251,6 +266,7 @@ function Inicio() {
           )}
           <div className="flex p-5 gap-3 flex-col pl-20 mt-36">
             <h2 className="text-xl">Shoppings Populares</h2>
+
             <div className="flex flex-wrap gap-5">
               {shopping.map((shopping) => (
                 <Card
@@ -258,7 +274,7 @@ function Inicio() {
                     navigate(`/shopping/${shopping.id}/${shopping.nome}`)
                   }
                   key={shopping.id}
-                  nomeLoja={shopping.nome}   
+                  nomeLoja={shopping.nome}
                   imgLoja={`http://52.72.53.170:8080/api/midias/imagens/${shopping.imagens?.nomeArquivoSalvo}`}
                 />
               ))}

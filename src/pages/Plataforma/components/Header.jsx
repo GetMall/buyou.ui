@@ -20,10 +20,9 @@ function Header({ onClick, endereco, fecharCarrinho }) {
   const [carrinhoItens, setCarrinhoItens] = useState(
     JSON.parse(sessionStorage.getItem("carrinho")) || []
   );
-
   const local = sessionStorage.getItem("endereco");
-
-  const {rua} = JSON.parse(local);
+  const enderecoData = JSON.parse(local);
+  const rua = enderecoData?.rua ?? "";
 
   const calcularTotal = () => {
     const totalCalculado = carrinhoItens.reduce(

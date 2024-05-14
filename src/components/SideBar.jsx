@@ -113,10 +113,10 @@ function SideBar({fecharCarrinho, show}) {
                             </div>
                         </div>
                         <div className="mt-12">
-                            <div className="bg-[#e5e7eb] w-full  h-0.5"></div>
+                            <div className="bg-[#0000004a] w-full  h-[0.1px]"></div>
                         </div>
                         <div className="flex flex-col justify-evenly h-full">
-                            <div className="flex flex-col p-4 border shadow-sm bg-white ">
+                            <div className="flex flex-col p-4 border-t-2 border-b-2 shadow-sm bg-white ">
                                 <div className="flex justify-between">
                                     <h2 className="text-sm mt-2 ">
                                         Subtotal:

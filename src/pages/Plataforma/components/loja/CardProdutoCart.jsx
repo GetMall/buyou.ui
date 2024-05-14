@@ -2,7 +2,7 @@ import liveloLogo from '../../../../assets/plataforma/card/livelo-logo.png'
 
 function CardProdutoCart({ preco, onClick, nome }) {
     return (
-        <div className="w-full cursor-pointer border justify-center shadow-sm bg-white">
+        <div className="w-full cursor-pointer border-t-2 border-b-2 justify-center shadow-sm bg-white">
             <div className="flex">
                 <div className="flex flex-col w-full">
                     <div className="mt-5 p-5">

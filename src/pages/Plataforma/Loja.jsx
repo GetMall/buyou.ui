@@ -113,7 +113,7 @@ function Loja() {
           <Header />
           <ToastContainer />
           <div className="flex p-5 justify-center w-full pl-20 mt-20">
-            <Categoria onCategoriaSelecionada={getProdutoCategoria} />
+            {/* <Categoria onCategoriaSelecionada={getProdutoCategoria} /> */}
           </div>
           <div className="flex w-full mt-3">
             <Banner

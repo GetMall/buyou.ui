@@ -1,15 +1,15 @@
 import cart from "../../../assets/plataforma/icons/icon-cart.svg";
 import profile from "../../../assets/plataforma/icons/icon-profile.svg";
 import logoutIcon from "../../../assets/plataforma/icons/icon-logout.svg";
-import local from "../../../assets/plataforma/icons/icon-local.svg";
 import arrow from "../../../assets/plataforma/icons/icon-arrow.svg";
 import config from "../../../assets/plataforma/icons/icon-config.svg";
 import cartAddProduto from "../../../assets/plataforma/icons/icon-cart-add.svg";
-import buyuLogoAmarelo from "../../../assets/plataforma/logos/logotipo-amarelo.svg";
+import buyuLogoRoxo from "../../../assets/plataforma/logos/logotipo-roxo.svg";
 import InputPesquisa from "./InputPesquisa";
 import SideBar from "../../../components/SideBar";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import localIcon from "../../../assets/plataforma/icons/icon-local.svg";
 
 function Header({ onClick, endereco, fecharCarrinho }) {
   const [menuAberto, setMenuAberto] = useState(false);
@@ -66,17 +66,17 @@ function Header({ onClick, endereco, fecharCarrinho }) {
 
   return (
     <>
-      <header className="bg-secundary z-50 text-white shadow-md w-full fixed top-0 p-4">
+      <header className="bg-white z-50 text-black shadow-md w-full fixed top-0 p-4">
         <div className="container mx-auto flex items-center">
           <div
             onClick={() => navigate("/inicio")}
             className="text-2xl uppercase cursor-pointer font-bold"
           >
-            <img className="w-32" src={buyuLogoAmarelo} alt="" />
+            <img className="w-32" src={buyuLogoRoxo} alt="" />
           </div>
           <div className="flex items-center mx-auto gap-5">
             <div className="flex gap-1">
-              <img src={local} alt="" />
+              <img src={localIcon} className=""  alt="" />
               <p className="cursor-pointer underline" onClick={onClick}>
                 {endereco || rua ? endereco || rua  : "Digitar minha localização"}
               </p>
@@ -90,7 +90,7 @@ function Header({ onClick, endereco, fecharCarrinho }) {
             />
             <div
               onClick={menuAberto ? fecharMenu : abrirMenu}
-              className="flex justify-center items-center gap-2 cursor-pointer bg-secundary p-2"
+              className="flex justify-center items-center gap-2 cursor-pointer bg-white p-2"
             >
               <img src={profile} alt="" />
               <p>{nomeUsuario}</p>
@@ -121,8 +121,8 @@ function Header({ onClick, endereco, fecharCarrinho }) {
                       className="w-6"
                     />
                     <div>
-                      <p className="text-xs">{totalCalculado.toFixed(2)}</p>
-                      <p className="text-xs">{carrinhoItens.length} itens</p>
+                      <p className="text-xs text-black">R$ {totalCalculado.toFixed(2)}</p>
+                      <p className="text-xs text-black">{carrinhoItens.length} itens</p>
                     </div>
                   </div>
                 </>

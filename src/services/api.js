@@ -7,8 +7,8 @@ const ip = {
 }
 
 const api = axios.create({
-  baseURL: `http://${ip.local}:8080/`,
-  timeout: 20000,
+  baseURL: `http://${ip.local}:8080/api`,
+  timeout: 50000,
 });
 
 api.interceptors.request.use(

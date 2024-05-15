@@ -116,16 +116,16 @@ function Compra() {
         <>
             <HeaderLogo />
             <ToastContainer />
-            <div className="container mt-32 flex justify-center gap-[200px]">
+            <div className="container mt-32 flex gap-[200px]">
                 <div className="flex">
-                    <div className="flex flex-col gap-6">
+                    <div className="flex ml-56 flex-col gap-6">
                         <div className="mb-5">
                             <h1 className="text-2xl font-bold">Finalize seu pedido</h1>
                         </div>
 
                         <h2 className="text-xl">Dados de Endereço</h2>
 
-                        <div className="bg-white flex w-full gap-2 p-2 border-sm border">
+                        <div className="bg-white flex w-full gap-2 p-2 border-xl border border-secundary">
                             <img src={imageMap} className="w-[50px]" alt="" />
                             <div>
                                 <p className="text-lg">{endereco?.rua}</p>
@@ -160,12 +160,13 @@ function Compra() {
                                 <input
                                     id="pix"
                                     name="pagamento"
+                                    checked={true}
                                     onChange={() => setIsPix(true)}
                                     type="radio"
                                 />
                                 <label htmlFor="pix">Pix</label>
                             </div>
-                            {isPix && (
+                            {/* {isPix && ( */}
                                 <>
                                     <form onSubmit={handleSubmit(efetuarPagamento)}>
                                         <div className="flex flex-col gap-2 mt-2">
@@ -224,13 +225,13 @@ function Compra() {
                                         </div>
                                     </form>
                                 </>
-                            )}
+                            {/* )} */}
                         </div>
                     </div>
                 </div>
-                <div>
+                <div className="w-full">
                     <h2 className="text-2xl mb-10 font-bold">Resumo da Compra</h2>
-                    <div className="flex flex-col mt-2 p-10 gap-2 bg-white border-sm border">
+                    <div className="flex flex-col mt-2 p-10 gap-2 bg-white shadow-md border-sm border">
                         <h1 className="text-lg font-bold ">Produtos</h1>
                         {itens.map((item) => (
                             <div key={item.id}>

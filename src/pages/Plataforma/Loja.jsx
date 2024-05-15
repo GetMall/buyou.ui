@@ -113,12 +113,12 @@ function Loja() {
           <Header />
           <ToastContainer />
           <div className="flex p-5 justify-center w-full pl-20 mt-20">
-            <Categoria onCategoriaSelecionada={getProdutoCategoria} />
+            {/* <Categoria onCategoriaSelecionada={getProdutoCategoria} /> */}
           </div>
           <div className="flex w-full mt-3">
             <Banner
               nome={nomeLoja}
-              logoLoja={`http://52.72.53.170:8080/api/midias/imagens/${loja.imagens[0]?.nomeArquivoSalvo}`}
+              logoLoja={`http://localhost:8080/api/midias/imagens/${loja.imagens[0]?.nomeArquivoSalvo}`}
             />
           </div>
           <div className="pl-36">
@@ -148,7 +148,7 @@ function Loja() {
                           onClick={() => adicionarAoCarrinho(produto)}
                           key={produto.id}
                           nome={produto.nome}
-                          imgProduto={`http://52.72.53.170:8080/api/midias/imagens/${produto.imagens[0].nomeArquivoSalvo}`}
+                          imgProduto={`http://localhost:8080/api/midias/imagens/${produto.imagens[0].nomeArquivoSalvo}`}
                           preco={produto.valorUnitario}
                           descricao={produto.descricao}
                         />
@@ -172,7 +172,7 @@ function Loja() {
                           onClick={() => adicionarAoCarrinho(produto)}
                           key={produto.id}
                           nome={produto.nome}
-                          imgProduto={`http://52.72.53.170:8080/api/midias/imagens/${produto.imagens[0].nomeArquivoSalvo}`}
+                          imgProduto={`http://localhost:8080/api/midias/imagens/${produto.imagens[0].nomeArquivoSalvo}`}
                           preco={produto.valorUnitario}
                           descricao={produto.descricao}
                         />
@@ -196,7 +196,7 @@ function Loja() {
                           onClick={() => adicionarAoCarrinho(produto)}
                           key={produto.id}
                           nome={produto.nome}
-                          imgProduto={`http://52.72.53.170:8080/api/midias/imagens/${produto.imagens[0].nomeArquivoSalvo}`}
+                          imgProduto={`http://localhost:8080/api/midias/imagens/${produto.imagens[0].nomeArquivoSalvo}`}
                           preco={produto.valorUnitario}
                           descricao={produto.descricao}
                         />
@@ -220,7 +220,7 @@ function Loja() {
                           onClick={() => adicionarAoCarrinho(produto)}
                           key={produto.id}
                           nome={produto.nome}
-                          imgProduto={`http://52.72.53.170:8080/api/midias/imagens/${produto.imagens[0].nomeArquivoSalvo}`}
+                          imgProduto={`http://localhost:8080/api/midias/imagens/${produto.imagens[0].nomeArquivoSalvo}`}
                           preco={produto.valorUnitario}
                           descricao={produto.descricao}
                         />
@@ -244,7 +244,7 @@ function Loja() {
                           onClick={() => adicionarAoCarrinho(produto)}
                           key={produto.id}
                           nome={produto.nome}
-                          imgProduto={`http://52.72.53.170:8080/api/midias/imagens/${produto.imagens[0].nomeArquivoSalvo}`}
+                          imgProduto={`http://localhost:8080/api/midias/imagens/${produto.imagens[0].nomeArquivoSalvo}`}
                           preco={produto.valorUnitario}
                           descricao={produto.descricao}
                         />

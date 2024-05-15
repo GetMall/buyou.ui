@@ -112,11 +112,11 @@ function SideBar({fecharCarrinho, show}) {
                                 ))}
                             </div>
                         </div>
-                        <div className="mt-12">
-                            <div className="bg-[#e5e7eb] w-full  h-0.5"></div>
+                        <div className="mt-12 flex justify-center">
+                            <div className="bg-[#0000004a] w-4/5  h-[0.1px]"></div>
                         </div>
                         <div className="flex flex-col justify-evenly h-full">
-                            <div className="flex flex-col p-4 border shadow-sm bg-white ">
+                            <div className="flex flex-col p-4 border-t-2 bg-white ">
                                 <div className="flex justify-between">
                                     <h2 className="text-sm mt-2 ">
                                         Subtotal:
@@ -139,7 +139,7 @@ function SideBar({fecharCarrinho, show}) {
                                 </div>
                                 <button
                                     onClick={finalizarCompra}
-                                    className="bg-btn_orange text-white w-full rounded-sm  font-bold text-sm p-2"
+                                    className="bg-secundary text-white w-full rounded-lg  font-bold text-sm p-2"
                                 >
                                     Escolher forma de pagamento
                                 </button>

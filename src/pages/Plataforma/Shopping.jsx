@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import Header from "./components/Header"
 import { useEffect } from "react";
 import api from "../../services/api";
@@ -16,6 +16,11 @@ function Shopping() {
     const { nomeShopping } = useParams()
 
     const [loja, setLoja] = useState([])
+    const location = useLocation()
+
+    const imgShopping = location.state.image
+
+    console.log(imgShopping)
 
     const navigate = useNavigate()
 
@@ -35,7 +40,7 @@ function Shopping() {
         <>
             <Header />
             <div className='flex p-5 justify-center w-full pl-20 mt-36'>
-                <CardShopping nome={nomeShopping} img={imgShopping} />
+                <CardShopping nome={nomeShopping} img={`http://localhost:8080/api/midias/imagens/${imgShopping}`} />
             </div>
             <div className="flex p-5 items-center gap-5 pl-20 mt-20">
                 <h2 className='text-xl'>Lojas de <span className='text-secundary'>{nomeShopping}</span></h2>

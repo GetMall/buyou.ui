@@ -39,6 +39,7 @@ function Inicio() {
         .get("/shopping")
         .then((response) => {
           setShopping(response.data);
+          console.log(response.data);
           resolve();
         })
         .catch((error) => {
@@ -131,6 +132,13 @@ function Inicio() {
 
     return `${mensagem}, ${nomeUsuario}!`;
   };
+
+  const handleNavigate = (shopping) => {
+    const image = shopping.imagens[0]?.nomeArquivoSalvo;
+      navigate(`/shopping/${shopping.id}/${shopping.nome}`, {
+        state: { image }
+      });
+  }
 
   const closeModal = () => {
     setShowModal(false);
@@ -254,11 +262,10 @@ function Inicio() {
               <div className="flex flex-wrap gap-5">
                 {shoppingsProximo.map((shopping) => (
                   <Card
-                    onClick={() =>
-                      navigate(`/shopping/${shopping.id}/${shopping.nome}`)
-                    }
+                    onClick={() => handleNavigate(shopping)}
                     key={shopping.id}
                     nomeLoja={shopping.nome}
+                    imgLoja={`http://localhost:8080/api/midias/imagens/${shopping.imagens[0]?.nomeArquivoSalvo}`}
                   />
                 ))}
               </div>
@@ -270,12 +277,10 @@ function Inicio() {
             <div className="flex flex-wrap gap-5">
               {shopping.map((shopping) => (
                 <Card
-                  onClick={() =>
-                    navigate(`/shopping/${shopping.id}/${shopping.nome}`)
-                  }
+                  onClick={() => handleNavigate(shopping)}
                   key={shopping.id}
                   nomeLoja={shopping.nome}
-                  imgLoja={`http://localhost:8080/api/midias/imagens/${shopping.imagens?.nomeArquivoSalvo}`}
+                  imgLoja={`http://localhost:8080/api/midias/imagens/${shopping.imagens[0]?.nomeArquivoSalvo}`}
                 />
               ))}
             </div>

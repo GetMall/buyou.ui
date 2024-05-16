@@ -56,7 +56,7 @@ function Footer() {
                 <div className="flex flex-col items-center">
                         <div className="sm:w-full bg-secundary text-center py-6">
                             <p className="text-sm text-white font-bold mb-2">
-                                © Copyright 2023 – GetShop – Todos os direitos reservados GetShop  S.A. CNPJ 12.345.213/0001-21
+                                © Copyright 2024 – Buyou – Todos os direitos reservados Buyou  S.A. CNPJ 12.345.213/0001-21
                             </p>
                         </div>
                     </div>

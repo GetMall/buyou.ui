@@ -98,7 +98,7 @@ function Acesso() {
       <div>
         <ToastContainer />
         <div className="flex w-96 justify-center absolute mt-60 ml-60">
-          <div className="bg-white absolute shadow-lg ml-96 left-96 justify-center">
+          <div className="bg-white absolute shadow-xl border ml-96 left-96 justify-center">
             <div className="p-12 flex flex-col items-center justify-center">
               {formularioCadastro ? (
                 <>

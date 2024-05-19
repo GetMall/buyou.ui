@@ -11,7 +11,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import localIcon from "../../../assets/plataforma/icons/icon-local.svg";
 
-function Header({ onClick, endereco, fecharCarrinho }) {
+function Header({ onClick, endereco }) {
   const [menuAberto, setMenuAberto] = useState(false);
   const nomeUsuario = sessionStorage.getItem("nomeUsuario");
   const [totalCalculado, setTotal] = useState(0);

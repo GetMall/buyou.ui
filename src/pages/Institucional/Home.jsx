@@ -13,8 +13,8 @@ function Home() {
     <>
       <Header />
       <main className="flex flex-col">
-        <section className="flex justify-end bg-secundary h-[70vh] relative">
-          <div className="p-36 w-6/12 text-white">
+        <section className="flex justify-center items-center text-center bg-secundary h-[70vh] relative">
+          <div className="p-36 w-1/2 text-white">
             <h1 className="text-5xl font-bold">
               Um Shopping inteiro na sua mão.
             </h1>
@@ -24,18 +24,11 @@ function Home() {
               precisa de uma plataforma que facilite e agilize esse processo,
               que proporciona comodidade e praticidade.
             </p>
-            <button className="bg-white flex text-secundary p-3 font-bold rounded-md mt-8">
+            <button className="bg-white flex w-full justify-center text-secundary p-3 font-bold rounded-md mt-8">
               {" "}
               <img src={downloadIcon} alt="" />
               Baixar o App
             </button>
-          </div>
-          <div className="flex-1 absolute inset-0 top-0 right-0">
-            <img
-              src={imgConta}
-              className="object-cover ml-32 w-[1000px] h-full"
-              alt="imagem de um shopping e uma moça"
-            />
           </div>
         </section>
 
@@ -78,7 +71,7 @@ function Home() {
             </button>
           </div>
         </section>
-        <section className="flex flex-col justify-center h-screen bg-white_opacity">
+        <section className="flex flex-col justify-center h-screen bg-[#F7F7F7]">
           <div className="flex flex-col items-center">
             <h2 className="text-2xl">Nossas Parceiras</h2>
             <h1 className="text-4xl mt-8 font-bold text-secundary">

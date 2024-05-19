@@ -6,7 +6,7 @@ function Header() {
 ''
   return (
     <>
-      <header className="bg-secundary z-50 text-white w-full fixed top-0 p-4">
+      <header className="bg-[#F7F7F7] z-50 text-white w-full fixed top-0 p-4">
         <div className="container mx-auto flex justify-between">
           <div className=" uppercase mr-96 font-bold">
             <img className="w-40" src={logo}></img>

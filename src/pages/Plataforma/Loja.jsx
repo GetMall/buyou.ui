@@ -118,7 +118,7 @@ function Loja() {
           <div className="flex w-full mt-3">
             <Banner
               nome={nomeLoja}
-              logoLoja={`http://localhost:8080/api/midias/imagens/${loja.imagens[0]?.nomeArquivoSalvo}`}
+              logoLoja={`hhttp://${import.meta.env.VITE_LOCAL_IP}:${import.meta.env.VITE_API_PORT}/api/midias/imagens/${loja.imagens[0]?.nomeArquivoSalvo}`}
             />
           </div>
           <div className="pl-36">
@@ -148,7 +148,7 @@ function Loja() {
                           onClick={() => adicionarAoCarrinho(produto)}
                           key={produto.id}
                           nome={produto.nome}
-                          imgProduto={`http://localhost:8080/api/midias/imagens/${produto.imagens[0].nomeArquivoSalvo}`}
+                          imgProduto={`http://${import.meta.env.VITE_LOCAL_IP}:${import.meta.env.VITE_API_PORT}/api/midias/imagens/${produto.imagens[0].nomeArquivoSalvo}`}
                           preco={produto.valorUnitario}
                           descricao={produto.descricao}
                         />
@@ -172,7 +172,7 @@ function Loja() {
                           onClick={() => adicionarAoCarrinho(produto)}
                           key={produto.id}
                           nome={produto.nome}
-                          imgProduto={`http://localhost:8080/api/midias/imagens/${produto.imagens[0].nomeArquivoSalvo}`}
+                          imgProduto={`http://${import.meta.env.VITE_LOCAL_IP}:${import.meta.env.VITE_API_PORT}/api/midias/imagens/${produto.imagens[0].nomeArquivoSalvo}`}
                           preco={produto.valorUnitario}
                           descricao={produto.descricao}
                         />
@@ -196,7 +196,7 @@ function Loja() {
                           onClick={() => adicionarAoCarrinho(produto)}
                           key={produto.id}
                           nome={produto.nome}
-                          imgProduto={`http://localhost:8080/api/midias/imagens/${produto.imagens[0].nomeArquivoSalvo}`}
+                          imgProduto={`http://${import.meta.env.VITE_LOCAL_IP}:${import.meta.env.VITE_API_PORT}/api/midias/imagens/${produto.imagens[0].nomeArquivoSalvo}`}
                           preco={produto.valorUnitario}
                           descricao={produto.descricao}
                         />
@@ -220,7 +220,7 @@ function Loja() {
                           onClick={() => adicionarAoCarrinho(produto)}
                           key={produto.id}
                           nome={produto.nome}
-                          imgProduto={`http://localhost:8080/api/midias/imagens/${produto.imagens[0].nomeArquivoSalvo}`}
+                          imgProduto={`http://${import.meta.env.VITE_LOCAL_IP}:${import.meta.env.VITE_API_PORT}/api/midias/imagens/${produto.imagens[0].nomeArquivoSalvo}`}
                           preco={produto.valorUnitario}
                           descricao={produto.descricao}
                         />
@@ -244,7 +244,7 @@ function Loja() {
                           onClick={() => adicionarAoCarrinho(produto)}
                           key={produto.id}
                           nome={produto.nome}
-                          imgProduto={`http://localhost:8080/api/midias/imagens/${produto.imagens[0].nomeArquivoSalvo}`}
+                          imgProduto={`http://${import.meta.env.VITE_LOCAL_IP}:${import.meta.env.VITE_API_PORT}/api/midias/imagens/${produto.imagens[0].nomeArquivoSalvo}`}
                           preco={produto.valorUnitario}
                           descricao={produto.descricao}
                         />

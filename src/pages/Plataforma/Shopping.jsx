@@ -40,7 +40,7 @@ function Shopping() {
         <>
             <Header />
             <div className='flex p-5 justify-center w-full pl-20 mt-36'>
-                <CardShopping nome={nomeShopping} img={`http://localhost:8080/api/midias/imagens/${imgShopping}`} />
+                <CardShopping nome={nomeShopping} img={`http://${import.meta.env.VITE_LOCAL_IP}:${import.meta.env.VITE_API_PORT}/api/midias/imagens/${imgShopping}`} />
             </div>
             <div className="flex p-5 items-center gap-5 pl-20 mt-20">
                 <h2 className='text-xl'>Lojas de <span className='text-secundary'>{nomeShopping}</span></h2>
@@ -50,7 +50,7 @@ function Shopping() {
                 <div className="flex flex-wrap gap-5">
                     {loja.map((loja) => (
                         <Card onClick={() => navigate(`/loja/${loja.id}/${loja.nome}`)} key={loja.id} nomeLoja={loja.nome} 
-                        imgLoja={`http://localhost:8080/api/midias/imagens/${loja.imagens[0]?.nomeArquivoSalvo}`}
+                        imgLoja={`http://${import.meta.env.VITE_LOCAL_IP}:${import.meta.env.VITE_API_PORT}/api/midias/imagens/${loja.imagens[0]?.nomeArquivoSalvo}`}
                         />
                     ))}
                 </div>

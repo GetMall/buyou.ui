@@ -265,7 +265,7 @@ function Inicio() {
                     onClick={() => handleNavigate(shopping)}
                     key={shopping.id}
                     nomeLoja={shopping.nome}
-                    imgLoja={`http://localhost:8080/api/midias/imagens/${shopping.imagens[0]?.nomeArquivoSalvo}`}
+                    imgLoja={`http://${import.meta.env.VITE_LOCAL_IP}:${import.meta.env.VITE_API_PORT}/api/midias/imagens${shopping.imagens[0]?.nomeArquivoSalvo}`}
                   />
                 ))}
               </div>
@@ -280,8 +280,8 @@ function Inicio() {
                   onClick={() => handleNavigate(shopping)}
                   key={shopping.id}
                   nomeLoja={shopping.nome}
-                  imgLoja={`http://localhost:8080/api/midias/imagens/${shopping.imagens[0]?.nomeArquivoSalvo}`}
-                />
+                  imgLoja={`http://${import.meta.env.VITE_LOCAL_IP}:${import.meta.env.VITE_API_PORT}/api/midias/imagens/${shopping.imagens[0]?.nomeArquivoSalvo}`}
+                  />
               ))}
             </div>
           </div>
@@ -293,7 +293,7 @@ function Inicio() {
                   onClick={() => navigate(`/loja/${loja.id}/${loja.nome}`)}
                   key={loja.id}
                   nomeLoja={loja.nome}
-                  imgLoja={`http://localhost:8080/api/midias/imagens/${loja.imagens[0]?.nomeArquivoSalvo}`}
+                  imgLoja={`http://${import.meta.env.VITE_LOCAL_IP}:${import.meta.env.VITE_API_PORT}/api/midias/imagens/${loja.imagens[0]?.nomeArquivoSalvo}`}
                 />
               ))}
             </div>

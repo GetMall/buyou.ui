@@ -111,10 +111,7 @@ function SideBar({fecharCarrinho, show}) {
                                     </div>
                                 ))}
                             </div>
-                        </div>
-                        <div className="mt-12 flex justify-center">
-                            <div className="bg-[#0000004a] w-4/5  h-[0.1px]"></div>
-                        </div>
+                        </div> 
                         <div className="flex flex-col justify-evenly h-full">
                             <div className="flex flex-col p-4 border-t-2 bg-white ">
                                 <div className="flex justify-between">

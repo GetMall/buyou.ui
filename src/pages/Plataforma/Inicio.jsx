@@ -55,7 +55,6 @@ function Inicio() {
         .get("/lojas")
         .then((response) => {
           setLoja(response.data);
-          console.log(response.data);
           resolve();
         })
         .catch((error) => {

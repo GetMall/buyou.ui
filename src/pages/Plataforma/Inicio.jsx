@@ -262,9 +262,9 @@ function Inicio() {
                 {shoppingsProximo.map((shopping) => (
                   <Card
                     onClick={() => handleNavigate(shopping)}
-                    key={shopping.id}
+                    key={shopping.id}   
                     nomeLoja={shopping.nome}
-                    imgLoja={`http://${import.meta.env.VITE_LOCAL_IP}:${import.meta.env.VITE_API_PORT}/api/midias/imagens${shopping.imagens[0]?.nomeArquivoSalvo}`}
+                    imgLoja={`https://${import.meta.env.VITE_PROD_IP}/api/midias/imagens${shopping.imagens[0]?.nomeArquivoSalvo}`}
                   />
                 ))}
               </div>
@@ -279,7 +279,7 @@ function Inicio() {
                   onClick={() => handleNavigate(shopping)}
                   key={shopping.id}
                   nomeLoja={shopping.nome}
-                  imgLoja={`http://${import.meta.env.VITE_LOCAL_IP}:${import.meta.env.VITE_API_PORT}/api/midias/imagens/${shopping.imagens[0]?.nomeArquivoSalvo}`}
+                  imgLoja={`https://${import.meta.env.VITE_PROD_IP}/api/midias/imagens/${shopping.imagens[0]?.nomeArquivoSalvo}`}
                   />
               ))}
             </div>
@@ -292,7 +292,7 @@ function Inicio() {
                   onClick={() => navigate(`/loja/${loja.id}/${loja.nome}`)}
                   key={loja.id}
                   nomeLoja={loja.nome}
-                  imgLoja={`http://${import.meta.env.VITE_LOCAL_IP}:${import.meta.env.VITE_API_PORT}/api/midias/imagens/${loja.imagens[0]?.nomeArquivoSalvo}`}
+                  imgLoja={`https://${import.meta.env.VITE_PROD_IP}/api/midias/imagens/${loja.imagens[0]?.nomeArquivoSalvo}`}
                 />
               ))}
             </div>

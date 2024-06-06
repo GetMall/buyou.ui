@@ -118,7 +118,7 @@ function Loja() {
           <div className="flex w-full mt-3">
             <Banner
               nome={nomeLoja}
-              logoLoja={`hhttp://${import.meta.env.VITE_LOCAL_IP}:${import.meta.env.VITE_API_PORT}/api/midias/imagens/${loja.imagens[0]?.nomeArquivoSalvo}`}
+              logoLoja={`http://${import.meta.env.VITE_LOCAL_IP}:${import.meta.env.VITE_API_PORT}/api/midias/imagens/${loja.imagens[0]?.nomeArquivoSalvo}`}
             />
           </div>
           <div className="pl-36">

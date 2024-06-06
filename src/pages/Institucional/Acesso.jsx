@@ -187,7 +187,7 @@ function Acesso() {
                         onClick={criarConta}
                         className="bg-white text-btn_orange p-2 font-bold shadow cursor-pointer"
                       >
-                        Criar uma conta GetShop!
+                        Criar uma conta Buyou!
                       </button>
                     </div>
                   </form>

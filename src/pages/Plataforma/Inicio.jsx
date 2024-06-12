@@ -134,9 +134,9 @@ function Inicio() {
 
   const handleNavigate = (shopping) => {
     const image = shopping.imagens[0]?.nomeArquivoSalvo;
-      navigate(`/shopping/${shopping.id}/${shopping.nome}`, {
-        state: { image }
-      });
+    navigate(`/shopping/${shopping.id}/${shopping.nome}`, {
+      state: { image }
+    });
   }
 
   const closeModal = () => {
@@ -262,7 +262,7 @@ function Inicio() {
                 {shoppingsProximo.map((shopping) => (
                   <Card
                     onClick={() => handleNavigate(shopping)}
-                    key={shopping.id}   
+                    key={shopping.id}
                     nomeLoja={shopping.nome}
                     imgLoja={`https://${import.meta.env.VITE_PROD_IP}/api/midias/imagens${shopping.imagens[0]?.nomeArquivoSalvo}`}
                   />
@@ -280,7 +280,7 @@ function Inicio() {
                   key={shopping.id}
                   nomeLoja={shopping.nome}
                   imgLoja={`https://${import.meta.env.VITE_PROD_IP}/api/midias/imagens/${shopping.imagens[0]?.nomeArquivoSalvo}`}
-                  />
+                />
               ))}
             </div>
           </div>
@@ -297,6 +297,7 @@ function Inicio() {
               ))}
             </div>
           </div>
+          <div className="h-16 mt-10 mb-10 bg-[#af97c89d]"></div>
           <Footer />
         </>
       )}

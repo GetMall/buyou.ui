@@ -4,6 +4,7 @@ import api from "../../services/api";
 import { ToastContainer, toast } from "react-toastify";
 import { useForm } from "react-hook-form";
 import imageMap from "../../assets/maps/mapsIcon.jpg"
+import { useNavigate } from "react-router-dom";
 
 function Compra() {
     const [dadosParaEnviar, setDadosParaEnviar] = useState({});
@@ -22,6 +23,7 @@ function Compra() {
     const [qrCode, setQrCode] = useState('');
     const [isAguardandoPagamento, setIsAguardandoPagamento] = useState(false);
     const endereco = JSON.parse(sessionStorage.getItem("endereco"));
+    const navigate = useNavigate();
 
     const idUsuario = sessionStorage.getItem("idUsuario");
 
@@ -59,32 +61,38 @@ function Compra() {
     };
 
     const efetuarPagamento = (data) => {
-        const valorFormatado = dadosParaEnviar.valorTotal.toFixed(2);
+        // const valorFormatado = dadosParaEnviar.valorTotal.toFixed(2);
 
-        const requestData = {
-            cpf: data.cpf,
-            nome: data.nomeCompleto,
-            valor: valorFormatado.toString(),
-        };
-        console.log(requestData)
-        api
-            .post("/transacao/pix", requestData, {
-                headers: {
-                    "Content-Type": "application/json",
-                    "Accept": "application/json",
-                }
-            })
-            .then((res) => {
-                finalizarPedido();
-                setPix(res.data.pixCopiaECola);
-                setQrCode(res.data.imagemQrCode);
-                setIsDisabled(true);
-                setIsAguardandoPagamento(true);
-                console.log(res);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
+        // const requestData = {
+        //     cpf: data.cpf,
+        //     nome: data.nomeCompleto,
+        //     valor: valorFormatado.toString(),
+        // };
+        // console.log(requestData)
+        // api
+        //     .post("/transacao/pix", requestData, {
+        //         headers: {
+        //             "Content-Type": "application/json",
+        //             "Accept": "application/json",
+        //         }
+        //     })
+        //     .then((res) => {
+        //         finalizarPedido();
+        //         setPix(res.data.pixCopiaECola);
+        //         setQrCode(res.data.imagemQrCode);
+        //         setIsDisabled(true);
+        //         setIsAguardandoPagamento(true);
+        //         console.log(res);
+        //     })
+        //     .catch((err) => {
+        //         console.log(err);
+        //     });
+        finalizarPedido();
+        sessionStorage.removeItem("carrinho");
+        setTimeout(() => {
+        navigate("/pedido-realizado");
+        }
+        , 5000);
     };
 
     const handleInputChange = (event) => {

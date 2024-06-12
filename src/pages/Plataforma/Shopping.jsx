@@ -50,7 +50,7 @@ function Shopping() {
                 <div className="flex flex-wrap gap-5">
                     {loja.map((loja) => (
                         <Card onClick={() => navigate(`/loja/${loja.id}/${loja.nome}`)} key={loja.id} nomeLoja={loja.nome} 
-                        imgLoja={`http://${import.meta.env.VITE_LOCAL_IP}:${import.meta.env.VITE_API_PORT}/api/midias/imagens/${loja.imagens[0]?.nomeArquivoSalvo}`}
+                        imgLoja={`https://${import.meta.env.VITE_PROD_IP}/api/midias/imagens/${loja.imagens[0]?.nomeArquivoSalvo}`}
                         />
                     ))}
                 </div>

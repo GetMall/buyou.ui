@@ -11,27 +11,14 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import localIcon from "../../../assets/plataforma/icons/icon-local.svg";
 
-function Header({ onClick, endereco }) {
+function Header({ onClick, endereco, totalCarrinho, quantidadeCarrinho }) {
   const [menuAberto, setMenuAberto] = useState(false);
   const nomeUsuario = sessionStorage.getItem("nomeUsuario");
-  const [totalCalculado, setTotal] = useState(0);
   const [showSideBar, setShowSideBar] = useState(false);
 
-  const [carrinhoItens, setCarrinhoItens] = useState(
-    JSON.parse(sessionStorage.getItem("carrinho")) || []
-  );
   const local = sessionStorage.getItem("endereco");
   const enderecoData = JSON.parse(local);
   const rua = enderecoData?.rua ?? "";
-
-  const calcularTotal = () => {
-    const totalCalculado = carrinhoItens.reduce(
-      (acc, item) => acc + item.valorUnitario,
-      0
-    );
-    setTotal(totalCalculado);
-  };
-
 
   const navigate = useNavigate();
 
@@ -59,10 +46,6 @@ function Header({ onClick, endereco }) {
     sessionStorage.removeItem("endereco");
     navigate("/acesso");
   };
-
-  useEffect(() => {
-    calcularTotal();
-  }, [carrinhoItens]);
 
   return (
     <>
@@ -111,8 +94,8 @@ function Header({ onClick, endereco }) {
                 </div>
               )}
             </div>
-            <div onClick={showSideBar ? fecharMenuCarrinho : abrirMenuCarrinho} className={`flex gap-5 cursor-pointer w-28 rounded-3xl justify-center p-2 ${carrinhoItens.length > 0 ? "bg-primary" : ""}`}>
-              {carrinhoItens.length > 0 ? (
+            <div onClick={showSideBar ? fecharMenuCarrinho : abrirMenuCarrinho} className={`flex gap-5 cursor-pointer w-28 rounded-3xl justify-center p-2 ${quantidadeCarrinho > 0 ? "bg-primary" : ""}`}>
+              {quantidadeCarrinho > 0 ? (
                 <>
                   <div  className="flex gap-2">
                     <img
@@ -121,8 +104,8 @@ function Header({ onClick, endereco }) {
                       className="w-6"
                     />
                     <div>
-                      <p className="text-xs text-black">R$ {totalCalculado.toFixed(2)}</p>
-                      <p className="text-xs text-black">{carrinhoItens.length} itens</p>
+                      <p className="text-xs text-black">R$ {totalCarrinho.toFixed(2)}</p>
+                      <p className="text-xs text-black">{quantidadeCarrinho} itens</p>
                     </div>
                   </div>
                 </>

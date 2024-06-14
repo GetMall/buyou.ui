@@ -14,13 +14,14 @@ import Loading from "../../components/Loading";
 import "react-toastify/dist/ReactToastify.css";
 
 function Loja() {
-  const { nomeLoja } = useParams();
-  const { idLoja } = useParams();
+  const { nomeLoja, idLoja } = useParams();
 
   const [produto, setProduto] = useState([]);
   const [categoriaSelecionada, setCategoriaSelecionada] = useState(null);
   const [loading, setLoading] = useState(true);
   const [loja, setLoja] = useState([]);
+  const [totalCarrinho, setTotalCarrinho] = useState(0);
+  const [quantidadeCarrinho, setQuantidadeCarrinho] = useState(0);
   const { register, handleSubmit } = useForm();
 
   const getInfoLoja = () => {
@@ -78,9 +79,15 @@ function Loja() {
       autoClose: true,
       closeButton: true,
     });
+
     const carrinho = JSON.parse(sessionStorage.getItem("carrinho")) || [];
     carrinho.push(produto);
     sessionStorage.setItem("carrinho", JSON.stringify(carrinho));
+
+    // Atualizar total do carrinho e quantidade
+    const novoTotal = carrinho.reduce((acc, item) => acc + item.valorUnitario, 0);
+    setTotalCarrinho(novoTotal);
+    setQuantidadeCarrinho(carrinho.length);
   };
 
   const pesquisarItem = (data) => {
@@ -90,15 +97,20 @@ function Loja() {
     setProduto(itemPesquisado);
   };
 
-
   useEffect(() => {
     Promise.all([getProduto(), getInfoLoja()])
       .then(() => {
-          setLoading(false);
+        setLoading(false);
       })
       .catch((err) => {
         setLoading(true);
       });
+
+    // Inicializar total e quantidade do carrinho ao carregar a página
+    const carrinho = JSON.parse(sessionStorage.getItem("carrinho")) || [];
+    const novoTotal = carrinho.reduce((acc, item) => acc + item.valorUnitario, 0);
+    setTotalCarrinho(novoTotal);
+    setQuantidadeCarrinho(carrinho.length);
   }, []);
 
   return (
@@ -110,7 +122,7 @@ function Loja() {
       )}
       {!loading && (
         <>
-          <Header />
+          <Header totalCarrinho={totalCarrinho} quantidadeCarrinho={quantidadeCarrinho} />
           <ToastContainer />
           <div className="flex p-5 justify-center w-full pl-20 mt-20">
             {/* <Categoria onCategoriaSelecionada={getProdutoCategoria} /> */}
@@ -125,12 +137,12 @@ function Loja() {
             <div className="flex gap-5">
               {/* <InputPesquisa width={"24rem"} register={register("")} placeholder={"Pesquise por item"} /> */}
               <form onSubmit={handleSubmit(pesquisarItem)}>
-              <input
-                type="text"
-                className="w-[24rem] bg-none text-slate-800 border-none outline-none bg-slate-200 p-2"
-                placeholder="Pesquise por Item"
-                {...register("item")}
-              />
+                <input
+                  type="text"
+                  className="w-[24rem] bg-none text-slate-800 border-none outline-none bg-slate-200 p-2"
+                  placeholder="Pesquise por Item"
+                  {...register("item")}
+                />
               </form>
               <Filtro placeholder={"Filtrar por preço"} />
             </div>

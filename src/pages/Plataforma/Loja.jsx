@@ -9,8 +9,9 @@ import CardProduto from "./components/loja/CardProduto";
 import api from "../../services/api";
 import { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
-import { useForm } from "react-hook-form";
+import { set, useForm } from "react-hook-form";
 import Loading from "../../components/Loading";
+import Modal from "../../components/Modal";
 import "react-toastify/dist/ReactToastify.css";
 
 function Loja() {
@@ -22,6 +23,8 @@ function Loja() {
   const [loja, setLoja] = useState([]);
   const [totalCarrinho, setTotalCarrinho] = useState(0);
   const [quantidadeCarrinho, setQuantidadeCarrinho] = useState(0);
+  const [modalProduto, setModalProduto] = useState([]);
+  const [isOpen, setIsOpen] = useState(false);
   const { register, handleSubmit } = useForm();
 
   const getInfoLoja = () => {
@@ -73,6 +76,16 @@ function Loja() {
     });
   };
 
+  const abrirModalProduto = (produto) => {
+    setIsOpen(true);
+    setModalProduto(produto);
+  };
+
+  const fecharModal = () => {
+    setIsOpen(false);
+  };
+
+
   const adicionarAoCarrinho = (produto) => {
     toast.success("Produto adicionado ao carrinho!", {
       position: "top-right",
@@ -115,6 +128,7 @@ function Loja() {
 
   return (
     <>
+
       {loading && (
         <div>
           <Loading />
@@ -122,6 +136,20 @@ function Loja() {
       )}
       {!loading && (
         <>
+            {isOpen && (
+            <Modal onClick={fecharModal}>
+              <div>
+                <div>
+                  <img src={`http://${import.meta.env.VITE_LOCAL_IP}/api/midias/imagens/${modalProduto.imagens[0]?.nomeArquivoSalvo}`}/>
+                </div>
+                <h2>{modalProduto?.nome}</h2>
+                <p>{modalProduto?.descricao}</p>
+                <p>R$ {modalProduto?.valorUnitario?.toFixed(2)}</p>
+                <button onClick={() => adicionarAoCarrinho(modalProduto)}>Adicionar ao Carrinho</button>
+              </div>
+            </Modal>
+          )}
+
           <Header totalCarrinho={totalCarrinho} quantidadeCarrinho={quantidadeCarrinho} />
           <ToastContainer />
           <div className="flex p-5 justify-center w-full pl-20 mt-20">
@@ -157,6 +185,7 @@ function Loja() {
                     (produto) =>
                       produto.categoria === "BELEZA" && (
                         <CardProduto
+                          openDesc={() => abrirModalProduto(produto)}
                           onClick={() => adicionarAoCarrinho(produto)}
                           key={produto.id}
                           nome={produto.nome}
@@ -181,6 +210,7 @@ function Loja() {
                     (produto) =>
                       produto.categoria === "BRINQUEDOS" && (
                         <CardProduto
+                          openDesc={() => abrirModalProduto(produto)}
                           onClick={() => adicionarAoCarrinho(produto)}
                           key={produto.id}
                           nome={produto.nome}
@@ -205,6 +235,7 @@ function Loja() {
                     (produto) =>
                       produto.categoria === "CALCADOS" && (
                         <CardProduto
+                          openDesc={() => abrirModalProduto(produto)}
                           onClick={() => adicionarAoCarrinho(produto)}
                           key={produto.id}
                           nome={produto.nome}
@@ -229,6 +260,7 @@ function Loja() {
                     (produto) =>
                       produto.categoria === "LIVARIA" && (
                         <CardProduto
+                          openDesc={() => abrirModalProduto(produto)}
                           onClick={() => adicionarAoCarrinho(produto)}
                           key={produto.id}
                           nome={produto.nome}
@@ -253,6 +285,7 @@ function Loja() {
                     (produto) =>
                       produto.categoria === "VESTUARIO" && (
                         <CardProduto
+                          openDesc={() => abrirModalProduto(produto)}
                           onClick={() => adicionarAoCarrinho(produto)}
                           key={produto.id}
                           nome={produto.nome}

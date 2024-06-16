@@ -1,8 +1,8 @@
 import liveloLogo from "../../../../assets/plataforma/card/livelo-logo.png";
 
-function CardProduto({ imgProduto, preco, descricao, onClick, nome }) {
+function CardProduto({ imgProduto, preco, descricao, onClick, openDesc, nome }) {
   return (
-    <div className="w-56 cursor-pointer rounded-sm justify-center  bg-white">
+    <div onClick={openDesc} className="w-56 cursor-pointer rounded-sm justify-center  bg-white">
       <img
         className="w-full h-56 flex rounded-xl justify-center "
         src={imgProduto}

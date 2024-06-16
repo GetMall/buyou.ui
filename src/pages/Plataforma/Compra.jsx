@@ -220,7 +220,7 @@ function Compra() {
                                                 {isAguardandoPagamento ? "Aguardando pagamento" : "Solicitar Pedido"}
                                             </button>
                                         </div>
-                                        <div className="flex flex-col w-[30vw] gap-2 mt-2">
+                                        {/* <div className="flex flex-col w-[30vw] gap-2 mt-2">
                                             <label htmlFor="chavePix">Chave Pix</label>
                                             <input
                                                 disabled={true}
@@ -230,7 +230,7 @@ function Compra() {
                                                 type="text"
                                             />
                                             <img className="flex w-[20vw] m-auto" src={qrCode} alt="" />
-                                        </div>
+                                        </div> */}
                                     </form>
                                 </>
                             {/* )} */}

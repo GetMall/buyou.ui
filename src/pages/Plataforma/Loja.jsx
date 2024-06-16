@@ -25,6 +25,7 @@ function Loja() {
   const [quantidadeCarrinho, setQuantidadeCarrinho] = useState(0);
   const [modalProduto, setModalProduto] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
+  const [filtro, setFiltro] = useState("todos");
   const { register, handleSubmit } = useForm();
 
   const getInfoLoja = () => {
@@ -101,6 +102,7 @@ function Loja() {
     const novoTotal = carrinho.reduce((acc, item) => acc + item.valorUnitario, 0);
     setTotalCarrinho(novoTotal);
     setQuantidadeCarrinho(carrinho.length);
+    setIsOpen(false);
   };
 
   const pesquisarItem = (data) => {
@@ -108,6 +110,16 @@ function Loja() {
       item.nome.toLowerCase().includes(data.item.toLowerCase())
     );
     setProduto(itemPesquisado);
+  };
+
+  const ordenarProdutos = (produtos, criterio) => {
+    if (criterio === "maior") {
+      return produtos.sort((a, b) => b.valorUnitario - a.valorUnitario);
+    } else if (criterio === "menor") {
+      return produtos.sort((a, b) => a.valorUnitario - b.valorUnitario);
+    } else {
+      return produtos;
+    }
   };
 
   useEffect(() => {
@@ -126,6 +138,11 @@ function Loja() {
     setQuantidadeCarrinho(carrinho.length);
   }, []);
 
+  useEffect(() => {
+    setProduto((prevProdutos) => ordenarProdutos([...prevProdutos], filtro));
+  }, [filtro]);
+
+
   return (
     <>
 
@@ -136,16 +153,27 @@ function Loja() {
       )}
       {!loading && (
         <>
-            {isOpen && (
+          {isOpen && (
             <Modal onClick={fecharModal}>
-              <div>
+              <div className="flex mt-[6vh] w-full  justify-around">
                 <div>
-                  <img src={`http://${import.meta.env.VITE_LOCAL_IP}/api/midias/imagens/${modalProduto.imagens[0]?.nomeArquivoSalvo}`}/>
+                  <img className="w-56" src={`http://${import.meta.env.VITE_LOCAL_IP}:${import.meta.env.VITE_API_PORT}/api/midias/imagens/${modalProduto.imagens[0]?.nomeArquivoSalvo}`} />
                 </div>
-                <h2>{modalProduto?.nome}</h2>
-                <p>{modalProduto?.descricao}</p>
-                <p>R$ {modalProduto?.valorUnitario?.toFixed(2)}</p>
-                <button onClick={() => adicionarAoCarrinho(modalProduto)}>Adicionar ao Carrinho</button>
+                <div className="flex flex-col w-1/2 justify-between">
+                  <div className="flex font-bold bg-primary p-1 justify-center">
+                    <p>{modalProduto.categoria}</p>
+                  </div>
+                  <div className="flex flex-col">
+                    <div className="mb-10">
+                      <h2>{modalProduto?.nome}</h2>
+                      <p>{modalProduto?.descricao}</p>
+                      <p>Tamanho: {modalProduto?.tamanho}</p>
+                      <p>Cor: {modalProduto?.cor}</p>
+                    </div>
+                    <p className="font-bold">R$ {modalProduto?.valorUnitario?.toFixed(2)}</p>
+                    <button className="bg-secundary p-2 text-white" onClick={() => adicionarAoCarrinho(modalProduto)}>Adicionar ao Carrinho</button>
+                  </div>
+                </div>
               </div>
             </Modal>
           )}
@@ -172,7 +200,10 @@ function Loja() {
                   {...register("item")}
                 />
               </form>
-              <Filtro placeholder={"Filtrar por preço"} />
+              <Filtro
+                placeholder={"Filtrar por preço"}
+                onChange={(value) => setFiltro(value)}
+              />
             </div>
             {produto.some((item) => item.categoria === "BELEZA") && (
               <ContainerCard titulo={"Beleza"}>

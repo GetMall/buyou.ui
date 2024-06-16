@@ -92,9 +92,9 @@ function SideBar({fecharCarrinho, show}) {
                 </>
             ) : (
                 <>
-                    <div className="px-4"><p>Seus itens no carrinho</p></div>
+                    {/* <div className="px-4"><p>Seus itens no carrinho</p></div> */}
                     <div className="flex flex-col h-[90%]">
-                        <div className="overflow-y-auto h-96">
+                        <div className="overflow-y-auto h-full">
                             <div
                                 className="flex flex-col mt-5 gap-5"
                             >

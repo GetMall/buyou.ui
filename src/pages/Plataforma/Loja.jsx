@@ -157,7 +157,7 @@ function Loja() {
             <Modal onClick={fecharModal}>
               <div className="flex mt-[6vh] w-full  justify-around">
                 <div>
-                  <img className="w-56" src={`http://${import.meta.env.VITE_LOCAL_IP}:${import.meta.env.VITE_API_PORT}/api/midias/imagens/${modalProduto.imagens[0]?.nomeArquivoSalvo}`} />
+                  <img className="w-56" src={`${import.meta.env.VITE_LOCAL_IP}/midias/imagens/${modalProduto.imagens[0]?.nomeArquivoSalvo}`} />
                 </div>
                 <div className="flex flex-col w-1/2 justify-between">
                   <div className="flex font-bold bg-primary p-1 justify-center">
@@ -186,7 +186,7 @@ function Loja() {
           <div className="flex w-full mt-3">
             <Banner
               nome={nomeLoja}
-              logoLoja={`https://${import.meta.env.VITE_PROD_IP}/api/midias/imagens/${loja.imagens[0]?.nomeArquivoSalvo}`}
+              logoLoja={`${import.meta.env.VITE_LOCAL_IP}/midias/imagens/${loja.imagens[0]?.nomeArquivoSalvo}`}
             />
           </div>
           <div className="pl-36">
@@ -220,7 +220,7 @@ function Loja() {
                           onClick={() => adicionarAoCarrinho(produto)}
                           key={produto.id}
                           nome={produto.nome}
-                          imgProduto={`https://${import.meta.env.VITE_PROD_IP}/api/midias/imagens/${produto.imagens[0].nomeArquivoSalvo}`}
+                          imgProduto={`${import.meta.env.VITE_LOCAL_IP}/midias/imagens/${produto.imagens[0].nomeArquivoSalvo}`}
                           preco={produto.valorUnitario}
                           descricao={produto.descricao}
                         />
@@ -245,7 +245,7 @@ function Loja() {
                           onClick={() => adicionarAoCarrinho(produto)}
                           key={produto.id}
                           nome={produto.nome}
-                          imgProduto={`https://${import.meta.env.VITE_PROD_IP}/api/midias/imagens/${produto.imagens[0].nomeArquivoSalvo}`}
+                          imgProduto={`${import.meta.env.VITE_LOCAL_IP}/midias/imagens/${produto.imagens[0].nomeArquivoSalvo}`}
                           preco={produto.valorUnitario}
                           descricao={produto.descricao}
                         />
@@ -270,7 +270,7 @@ function Loja() {
                           onClick={() => adicionarAoCarrinho(produto)}
                           key={produto.id}
                           nome={produto.nome}
-                          imgProduto={`https://${import.meta.env.VITE_PROD_IP}/api/midias/imagens/${produto.imagens[0].nomeArquivoSalvo}`}
+                          imgProduto={`${import.meta.env.VITE_LOCAL_IP}/midias/imagens/${produto.imagens[0].nomeArquivoSalvo}`}
                           preco={produto.valorUnitario}
                           descricao={produto.descricao}
                         />
@@ -295,7 +295,7 @@ function Loja() {
                           onClick={() => adicionarAoCarrinho(produto)}
                           key={produto.id}
                           nome={produto.nome}
-                          imgProduto={`http://${import.meta.env.VITE_LOCAL_IP}:${import.meta.env.VITE_API_PORT}/api/midias/imagens/${produto.imagens[0].nomeArquivoSalvo}`}
+                          imgProduto={`${import.meta.env.VITE_LOCAL_IP}/midias/imagens/${produto.imagens[0].nomeArquivoSalvo}`}
                           preco={produto.valorUnitario}
                           descricao={produto.descricao}
                         />
@@ -320,7 +320,7 @@ function Loja() {
                           onClick={() => adicionarAoCarrinho(produto)}
                           key={produto.id}
                           nome={produto.nome}
-                          imgProduto={`http://${import.meta.env.VITE_LOCAL_IP}:${import.meta.env.VITE_API_PORT}/api/midias/imagens/${produto.imagens[0].nomeArquivoSalvo}`}
+                          imgProduto={`${import.meta.env.VITE_LOCAL_IP}/midias/imagens/${produto.imagens[0].nomeArquivoSalvo}`}
                           preco={produto.valorUnitario}
                           descricao={produto.descricao}
                         />

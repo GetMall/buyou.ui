@@ -264,7 +264,7 @@ function Inicio() {
                     onClick={() => handleNavigate(shopping)}
                     key={shopping.id}
                     nomeLoja={shopping.nome}
-                    imgLoja={`https://${import.meta.env.VITE_PROD_IP}/api/midias/imagens${shopping.imagens[0]?.nomeArquivoSalvo}`}
+                    imgLoja={`${import.meta.env.VITE_LOCAL_IP}/midias/imagens${shopping.imagens[0]?.nomeArquivoSalvo}`}
                   />
                 ))}
               </div>
@@ -279,7 +279,7 @@ function Inicio() {
                   onClick={() => handleNavigate(shopping)}
                   key={shopping.id}
                   nomeLoja={shopping.nome}
-                  imgLoja={`https://${import.meta.env.VITE_PROD_IP}/api/midias/imagens/${shopping.imagens[0]?.nomeArquivoSalvo}`}
+                  imgLoja={`${import.meta.env.VITE_LOCAL_IP}/midias/imagens/${shopping.imagens[0]?.nomeArquivoSalvo}`}
                 />
               ))}
             </div>
@@ -292,7 +292,7 @@ function Inicio() {
                   onClick={() => navigate(`/loja/${loja.id}/${loja.nome}`)}
                   key={loja.id}
                   nomeLoja={loja.nome}
-                  imgLoja={`https://${import.meta.env.VITE_PROD_IP}/api/midias/imagens/${loja.imagens[0]?.nomeArquivoSalvo}`}
+                  imgLoja={`${import.meta.env.VITE_LOCAL_IP}/midias/imagens/${loja.imagens[0]?.nomeArquivoSalvo}`}
                 />
               ))}
             </div>

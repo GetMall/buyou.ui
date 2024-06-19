@@ -88,10 +88,32 @@ function Inicio() {
 
   const buscar = (data) => {
     api
-      .put(`/clientes/${idUser}/enderecos?cep=${data.local}`)
+      .get(`https://cep.awesomeapi.com.br/json/${data.local}`)
       .then((response) => {
-        setEndereco(response.data.endereco);
+        setEndereco(response.data);
+        putEndereco(response.data);
         setShoppingsProximo(modalShoppingsProximo);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const putEndereco = (data) => {
+    api
+      .put(`/clientes/${idUser}`, {
+        endereco: {
+          cep: data.cep,
+          rua: data.address,
+          bairro: data.district,
+          cidade: data.city,
+          estado: data.state,
+          latitude: data.lat,
+          longitude: data.lng,
+        }
+      })
+      .then((response) => {
+        console.log(response.data);
       })
       .catch((error) => {
         console.log(error);
@@ -101,15 +123,15 @@ function Inicio() {
   const buscarModal = (data) => {
     console.log(data);
     api
-      .put(`/clientes/${idUser}/enderecos?cep=${data.localModal}`)
+      .get(`https://cep.awesomeapi.com.br/json/${data.local}`)
       .then((response) => {
-        setLat(response.data.endereco.latitude);
-        setLong(response.data.endereco.longitude);
-        setRua(response.data.endereco.rua);
-        setEndereco(response.data.endereco);
+        setLat(response.data.lat);
+        setLong(response.data.long);
+        setRua(response.data.address);
+        setEndereco(response.data.address_name);
         getShoppingsProximo();
-        sessionStorage.setItem('shoppingsProximo', JSON.stringify(response.data.shoppingsProximo));
-        sessionStorage.setItem('endereco', JSON.stringify(response.data.endereco));
+        // sessionStorage.setItem('shoppingsProximo', JSON.stringify(response.data.shoppingsProximo));
+        // sessionStorage.setItem('endereco', JSON.stringify(response.data.endereco));
         setShowMap(true);
       })
       .catch((error) => {
@@ -156,12 +178,12 @@ function Inicio() {
 
     const savedShoppingsProximo = sessionStorage.getItem('shoppingsProximo');
     const savedEndereco = sessionStorage.getItem('endereco');
-    if (savedShoppingsProximo) {
-      setShoppingsProximo(JSON.parse(savedShoppingsProximo));
-    }
-    if (savedEndereco) {
-      setEndereco(JSON.parse(savedEndereco));
-    }
+    // if (savedShoppingsProximo) {
+    //   setShoppingsProximo(JSON.parse(savedShoppingsProximo));
+    // }
+    // if (savedEndereco) {
+    //   setEndereco(JSON.parse(savedEndereco));
+    // }
   }, []);
 
   return (
@@ -173,10 +195,10 @@ function Inicio() {
               <>
                 <div className="flex relative flex-col justify-center items-center">
                   <p className="text-lg opacity-70">
-                    {endereco.rua} - {endereco.cep}
+                    {endereco.address} - {endereco.cep}
                   </p>
                   <p className="text-sm opacity-50">
-                    {endereco.bairro}, {endereco.cidade} - {endereco.estado}
+                    {endereco.district}, {endereco.city} - {endereco.state}
                   </p>
                 </div>
                 <button

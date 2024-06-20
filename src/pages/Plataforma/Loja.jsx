@@ -165,9 +165,8 @@ function Loja() {
                   </div>
                   <div className="flex flex-col">
                     <div className="mb-10">
-                      <h2>{modalProduto?.nome}</h2>
+                      <h2 className="font-bold">{modalProduto?.nome}</h2>
                       <p>{modalProduto?.descricao}</p>
-                      <p>Tamanho: {modalProduto?.tamanho}</p>
                       <p>Cor: {modalProduto?.cor}</p>
                     </div>
                     <p className="font-bold">R$ {modalProduto?.valorUnitario?.toFixed(2)}</p>
@@ -321,6 +320,206 @@ function Loja() {
                           key={produto.id}
                           nome={produto.nome}
                           imgProduto={`${import.meta.env.VITE_PROD_IP}/midias/imagens/${produto.imagens[0].nomeArquivoSalvo}`}
+                          preco={produto.valorUnitario}
+                          descricao={produto.descricao}
+                        />
+                      )
+                  )
+                )}
+              </ContainerCard>
+            )}
+
+            {produto.some((item) => item.categoria === "UTENSILIOS") && (
+              <ContainerCard titulo={"UTENSILIOS"}>
+                {produto.length === 0 ? (
+                  <p className="">
+                    Não há produtos disponíveis na categoria selecionada.
+                  </p>
+                ) : (
+                  produto.map(
+                    (produto) =>
+                      produto.categoria === "UTENSILIOS" && (
+                        <CardProduto
+                          openDesc={() => abrirModalProduto(produto)}
+                          onClick={() => adicionarAoCarrinho(produto)}
+                          key={produto.id}
+                          nome={produto.nome}
+                          imgProduto={`${import.meta.env.VITE_LOCAL_IP}/midias/imagens/${produto.imagens[0].nomeArquivoSalvo}`}
+                          preco={produto.valorUnitario}
+                          descricao={produto.descricao}
+                        />
+                      )
+                  )
+                )}
+              </ContainerCard>
+            )}
+
+            {produto.some((item) => item.categoria === "PAPELARIA") && (
+              <ContainerCard titulo={"PAPELARIA"}>
+                {produto.length === 0 ? (
+                  <p className="">
+                    Não há produtos disponíveis na categoria selecionada.
+                  </p>
+                ) : (
+                  produto.map(
+                    (produto) =>
+                      produto.categoria === "PAPELARIA" && (
+                        <CardProduto
+                          openDesc={() => abrirModalProduto(produto)}
+                          onClick={() => adicionarAoCarrinho(produto)}
+                          key={produto.id}
+                          nome={produto.nome}
+                          imgProduto={`${import.meta.env.VITE_LOCAL_IP}/midias/imagens/${produto.imagens[0].nomeArquivoSalvo}`}
+                          preco={produto.valorUnitario}
+                          descricao={produto.descricao}
+                        />
+                      )
+                  )
+                )}
+              </ContainerCard>
+            )}
+
+            {produto.some((item) => item.categoria === "CANECAS") && (
+              <ContainerCard titulo={"CANECAS"}>
+                {produto.length === 0 ? (
+                  <p className="">
+                    Não há produtos disponíveis na categoria selecionada.
+                  </p>
+                ) : (
+                  produto.map(
+                    (produto) =>
+                      produto.categoria === "CANECAS" && (
+                        <CardProduto
+                          openDesc={() => abrirModalProduto(produto)}
+                          onClick={() => adicionarAoCarrinho(produto)}
+                          key={produto.id}
+                          nome={produto.nome}
+                          imgProduto={`${import.meta.env.VITE_LOCAL_IP}/midias/imagens/${produto.imagens[0].nomeArquivoSalvo}`}
+                          preco={produto.valorUnitario}
+                          descricao={produto.descricao}
+                        />
+                      )
+                  )
+                )}
+              </ContainerCard>
+            )}
+
+            {produto.some((item) => item.categoria === "JOIAS") && (
+              <ContainerCard titulo={"JOIAS"}>
+                {produto.length === 0 ? (
+                  <p className="">
+                    Não há produtos disponíveis na categoria selecionada.
+                  </p>
+                ) : (
+                  produto.map(
+                    (produto) =>
+                      produto.categoria === "JOIAS" && (
+                        <CardProduto
+                          openDesc={() => abrirModalProduto(produto)}
+                          onClick={() => adicionarAoCarrinho(produto)}
+                          key={produto.id}
+                          nome={produto.nome}
+                          imgProduto={`${import.meta.env.VITE_LOCAL_IP}/midias/imagens/${produto.imagens[0].nomeArquivoSalvo}`}
+                          preco={produto.valorUnitario}
+                          descricao={produto.descricao}
+                        />
+                      )
+                  )
+                )}
+              </ContainerCard>
+            )}
+
+            {produto.some((item) => item.categoria === "CAMISETAS") && (
+              <ContainerCard titulo={"CAMISETAS"}>
+                {produto.length === 0 ? (
+                  <p className="">
+                    Não há produtos disponíveis na categoria selecionada.
+                  </p>
+                ) : (
+                  produto.map(
+                    (produto) =>
+                      produto.categoria === "CAMISETAS" && (
+                        <CardProduto
+                          openDesc={() => abrirModalProduto(produto)}
+                          onClick={() => adicionarAoCarrinho(produto)}
+                          key={produto.id}
+                          nome={produto.nome}
+                          imgProduto={`${import.meta.env.VITE_LOCAL_IP}/midias/imagens/${produto.imagens[0].nomeArquivoSalvo}`}
+                          preco={produto.valorUnitario}
+                          descricao={produto.descricao}
+                        />
+                      )
+                  )
+                )}
+              </ContainerCard>
+            )}
+
+            {produto.some((item) => item.categoria === "CHAVEIROS") && (
+              <ContainerCard titulo={"CHAVEIROS"}>
+                {produto.length === 0 ? (
+                  <p className="">
+                    Não há produtos disponíveis na categoria selecionada.
+                  </p>
+                ) : (
+                  produto.map(
+                    (produto) =>
+                      produto.categoria === "CHAVEIROS" && (
+                        <CardProduto
+                          openDesc={() => abrirModalProduto(produto)}
+                          onClick={() => adicionarAoCarrinho(produto)}
+                          key={produto.id}
+                          nome={produto.nome}
+                          imgProduto={`${import.meta.env.VITE_LOCAL_IP}/midias/imagens/${produto.imagens[0].nomeArquivoSalvo}`}
+                          preco={produto.valorUnitario}
+                          descricao={produto.descricao}
+                        />
+                      )
+                  )
+                )}
+              </ContainerCard>
+            )}
+
+            {produto.some((item) => item.categoria === "RELÓGIOS") && (
+              <ContainerCard titulo={"RELÓGIOS"}>
+                {produto.length === 0 ? (
+                  <p className="">
+                    Não há produtos disponíveis na categoria selecionada.
+                  </p>
+                ) : (
+                  produto.map(
+                    (produto) =>
+                      produto.categoria === "RELÓGIOS" && (
+                        <CardProduto
+                          openDesc={() => abrirModalProduto(produto)}
+                          onClick={() => adicionarAoCarrinho(produto)}
+                          key={produto.id}
+                          nome={produto.nome}
+                          imgProduto={`${import.meta.env.VITE_LOCAL_IP}/midias/imagens/${produto.imagens[0].nomeArquivoSalvo}`}
+                          preco={produto.valorUnitario}
+                          descricao={produto.descricao}
+                        />
+                      )
+                  )
+                )}
+              </ContainerCard>
+            )}
+            
+            {produto.some((item) => item.categoria === "DIVERSOS") && (
+              <ContainerCard titulo={"DIVERSOS"}>
+                {produto.length === 0 ? (
+                  <p className="">
+                    Não há produtos disponíveis na categoria selecionada.
+                  </p>
+                ) : (
+                  produto.map(
+                    (produto) =>
+                      produto.categoria === "DIVERSOS" && (
+                        <CardProduto
+                          openDesc={() => abrirModalProduto(produto)}
+                          onClick={() => adicionarAoCarrinho(produto)}
+                          key={produto.id}
+                          nome={produto.nome}
+                          imgProduto={`${import.meta.env.VITE_LOCAL_IP}/midias/imagens/${produto.imagens[0].nomeArquivoSalvo}`}
                           preco={produto.valorUnitario}
                           descricao={produto.descricao}
                         />

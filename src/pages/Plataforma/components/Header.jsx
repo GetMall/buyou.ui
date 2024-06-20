@@ -69,7 +69,7 @@ function Header({ onClick, endereco, totalCarrinho, quantidadeCarrinho }) {
               backgroundColor="#F7F7F7"
               width={"40vw"}
               height={"30px"}
-              placeholder={"Pesquise por item ou loja"}
+              placeholder={"Pesquise por Shopping ou Loja"}
             />
             <div
               onClick={menuAberto ? fecharMenu : abrirMenu}
